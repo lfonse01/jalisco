@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -402,6 +403,27 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
   .stbl thead{display:table-header-group;}
   .stbl tbody tr{break-inside:avoid;page-break-inside:avoid;}
 }
+
+/* ── switcher de propiedad ── */
+.propsw{display:flex;border:1px solid var(--border);border-radius:var(--r20);
+  overflow:hidden;background:var(--white);}
+.propbtn{border:none;background:var(--white);color:var(--gray);cursor:pointer;
+  font-family:inherit;font-size:10.5px;font-weight:800;letter-spacing:.3px;
+  padding:7px 14px;transition:all .16s;white-space:nowrap;display:flex;align-items:center;gap:6px;}
+.propbtn+.propbtn{border-left:1px solid var(--border);}
+.propbtn:hover{color:var(--orange-t);background:var(--orange-bg);}
+.propbtn.on{background:var(--ink);color:#fff;}
+.propbtn .pdot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.5;flex:none;}
+.propbtn.on .pdot{opacity:1;}
+/* secciones que solo existen en una propiedad */
+.section.atenuada{opacity:.5;filter:saturate(.35);}
+.solo-nota{display:none;background:var(--amber-bg);color:var(--amber-t);
+  border-left:3px solid var(--amber);border-radius:var(--r8);
+  padding:9px 14px;font-size:11.5px;font-weight:700;margin-bottom:12px;}
+.section.atenuada .solo-nota{display:block;}
+.propnota{font-size:11px;color:var(--gray-l);margin:10px 0 0;}
+@media (max-width:640px){.propbtn{padding:6px 9px;font-size:9.5px;}
+  .propbtn .pdot{display:none;}}
 </style>
 </head>
 <body>
@@ -410,19 +432,19 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
 <div class="hero" data-hero>
   <div class="hero-img"></div>
   <div class="hero-in">
-    <span class="hero-eye">◆ Campaña activa · Agosto 2026</span>
+    <span class="hero-eye">◆ Lectura para el equipo de medios</span>
     <h1 class="hero-t">Tarjeta Única<br>Al Estilo Jalisco</h1>
-    <p class="hero-s"><b>Broxel × Visa × Gobierno de Jalisco</b> · 1 al 31 de agosto de 2026 · propiedad GA4 Boom_Jalisco</p>
+    <p class="hero-s"><b>Broxel × Visa × Gobierno de Jalisco</b> · 1 de agosto al 6 de septiembre de 2026 · propiedades GA4 Boom_Jalisco y Mi tarjeta Jalisco</p>
     <div class="hero-kpis">
-      <div class="hk"><div class="hk-v">88,902</div><div class="hk-l">Usuarios activos</div></div>
-      <div class="hk"><div class="hk-v">122,368</div><div class="hk-l">Sesiones</div></div>
-      <div class="hk"><div class="hk-v">18,740</div><div class="hk-l">Registros finalizados</div></div>
-      <div class="hk"><div class="hk-v">38.04 %</div><div class="hk-l">Rebote del sitio</div></div>
+      <div class="hk"><div class="hk-v">46,534</div><div class="hk-l">Usuarios de pauta</div></div>
+      <div class="hk"><div class="hk-v">2</div><div class="hk-l">De ellos, llegaron al final</div></div>
+      <div class="hk"><div class="hk-v">21,465</div><div class="hk-l">Registros finalizados</div></div>
+      <div class="hk"><div class="hk-v">15.1 %</div><div class="hk-l">Usuarios fuera de Jalisco</div></div>
     </div>
   </div>
 </div>
 <div class="hero-band">
-  <div class="hero-band-in">La campaña de medios arrancó el <b>17 de agosto</b> · desde entonces el rebote pasó de <b>25 % a 60 %</b> y el tráfico pagado entra con <b>2 a 4 segundos</b> de permanencia</div>
+  <div class="hero-band-in">La pauta arrancó el <b>19 de agosto</b> · desde entonces el rebote del sitio pasó de <b>25.9 % a 55.4 %</b> y el <b>99.67 %</b> del tráfico comprado no pasa de la landing</div>
 </div>
 
 <div class="topbar">
@@ -435,15 +457,19 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
   <div class="tb-div"></div>
   <div class="tbdoc">Growth B2C · Medición de campaña</div>
   <div class="tb-right">
-    <span class="chip c-dark">GA4 · Boom_Jalisco</span>
-    <span class="chip">Ago 2026</span>
+    <div class="propsw" id="propsw">
+      <button class="propbtn on" data-p="boom"><span class="pdot"></span>Boom_Jalisco</button>
+      <button class="propbtn" data-p="mtj"><span class="pdot"></span>Mi tarjeta Jalisco</button>
+      <button class="propbtn" data-p="juntos"><span class="pdot"></span>Juntos</button>
+    </div>
+    <span class="chip">Ago–Sep 2026</span>
   </div>
  </div>
 </div>
 
 <div class="doc">
 
-  <p class="doc-sub" style="margin-top:4px;">Propiedad <b>Boom_Jalisco</b> (511675384) · 549,918 vistas · 118 rutas medidas · datos leídos directamente de GA4</p>
+  <p class="doc-sub" id="doc-sub" style="margin-top:4px;">Propiedades <b>Boom_Jalisco</b> (511675384) y <b>Mi tarjeta Jalisco</b> (511676885) · 649,835 vistas · 128 rutas medidas · datos leídos directamente de GA4 el 6 de septiembre</p>
 
   <!-- FILTRO -->
   <div class="filterbar">
@@ -454,7 +480,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
       <button class="fchip" data-g="organic"><span class="fdot" style="background:#0F766E"></span>Orgánico</button>
       <button class="fchip" data-g="direct"><span class="fdot" style="background:#1D2332"></span>Directo / Referido</button>
     </div>
-    <div class="fb-state" id="fb-state">122,368 sesiones · 7 canales</div>
+    <div class="fb-state" id="fb-state">158,778 sesiones · 12 canales</div>
   </div>
 
   <!-- 1 · TRÁFICO DIARIO (arriba) -->
@@ -464,7 +490,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
       <div class="sect">Tráfico diario y rebote</div>
       <div class="secflag">
         <button class="btn vsel act" data-v="canal">Por canal</button>
-        <button class="btn vsel" data-v="sitio">Por sitio</button>
+        
         <span class="chip c-amber" id="daily-state">Pendiente de cargar</span>
         <button class="btn hidden" id="reset">⬆ Cargar otro archivo</button>
       </div>
@@ -490,14 +516,9 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
         </div>
         <div class="lg" id="legend"></div>
         <div style="font-size:10.5px;color:var(--gray-l);margin-top:10px;">
-          Haz clic en la leyenda para aislar una serie · pasa el cursor sobre un día para ver el desglose completo
+          Haz clic en la leyenda para aislar una serie · pasa el cursor sobre un día para ver el desglose completo. La serie va del 1 de agosto al 5 de septiembre: el 6 de septiembre se excluye de la gráfica porque GA4 todavía lo estaba procesando cuando se leyó el dato, aunque sí está incluido en los totales.
         </div>
-        <div id="sitio-nota" class="callout" style="display:none;margin:12px 0 0;">
-          <b>Vista por sitio.</b> Compara <b>vistas de página</b> de los dos dominios: la landing de campaña contra las cuatro pantallas principales del enrolamiento
-          (<span class="mono">/0.0 Redirect</span>, <span class="mono">/1.1 PreRegistro</span>, <span class="mono">/Modular/Login</span> y <span class="mono">/4.1 CURP</span>).
-          Periodo 3–30 de agosto y sin línea de rebote, porque el rebote se mide por sesión y no por vista. El filtro de tipo de tráfico no aplica en esta vista.
-        </div>
-      </div>
+</div>
 
       <div class="tbl-scroll" style="margin-top:12px;">
         <table class="stbl">
@@ -513,29 +534,30 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
   <div class="krow">
     <div class="kpi">
       <div class="k-l">Usuarios activos</div>
-      <div class="k-v">88,902</div>
-      <div class="k-d">549,918 vistas · 6.19 vistas por usuario</div>
+      <div class="k-v">114,666</div>
+      <div class="k-d">649,835 vistas · 5.67 vistas por usuario</div>
     </div>
     <div class="kpi">
       <div class="k-l">Sesiones</div>
-      <div class="k-v" id="kpi-ses">122,368</div>
-      <div class="k-d" id="kpi-ses-d">61.96 % con interacción · 2 m 35 s de media</div>
+      <div class="k-v" id="kpi-ses">158,778</div>
+      <div class="k-d" id="kpi-ses-d">56.94 % con interacción · 2 m 17 s de media</div>
     </div>
     <div class="kpi">
       <div class="k-l">% de rebote</div>
-      <div class="k-v" id="kpi-reb">38,04%</div>
-      <div class="k-d" id="kpi-reb-d">Complemento del 61.96 % de interacción · dato de GA4</div>
+      <div class="k-v" id="kpi-reb">43.06 %</div>
+      <div class="k-d" id="kpi-reb-d">Complemento del 56.94 % de interacción · dato de GA4</div>
     </div>
   </div>
 
   
 
   <!-- 2 · Embudo -->
-  <div class="section">
+  <div class="section" data-solo="boom">
     <div class="sechdr">
       <div class="secn">2</div>
       <div class="sect">Embudo principal</div>
       <div class="secflag"><span class="chip c-amber" id="funnel-tag">Totales · todo el tráfico</span></div>
+    <div class="solo-nota">Solo Boom_Jalisco · El embudo de enrolamiento solo existe en Boom_Jalisco. Mi tarjeta Jalisco es un sitio de soporte y no tiene flujo de registro.</div>
     </div>
 
     <div class="card" style="margin-bottom:12px;">
@@ -549,22 +571,22 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
           <div class="leer-p">
             <span class="leer-n2">1</span>
             <div><b>La landing no es la puerta de entrada.</b>
-            De las 43,703 personas que inician el registro, <b>14,300 nunca vieron la landing</b>. Uno de cada tres llega directo al trámite, sobre todo desde el portal del gobierno.</div>
+            De las 49,694 personas que inician el registro, prácticamente ninguna viene de la landing: el 99.67 % de quien la vio llegó por pauta y no avanzó. Quien sí se registra entra directo desde el portal del gobierno.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">2</span>
             <div><b>La fuga grande no está en la campaña, está dentro del registro.</b>
-            Entre iniciar y finalizar se pierden <b>24,339 personas</b>, el 57 % de las que empezaron. Es la caída más costosa del flujo porque ya habían decidido registrarse.</div>
+            Entre iniciar y finalizar se pierden <b>28,229 personas</b>, el 56.8 % de las que empezaron. Es la caída más costosa del flujo porque ya habían decidido registrarse.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">3</span>
             <div><b>Cuatro de cada diez terminan el registro.</b>
-            18,740 de 43,703 llegan a Finalizado. Para una campaña de awareness no es malo, pero mide el trámite, no el anuncio.</div>
+            21,465 de 49,694 llegan a Finalizado, el 43.2 %. Para un trámite de gobierno no es malo, pero mide el trámite, no el anuncio.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">4</span>
             <div><b>El último paso está sin explicar.</b>
-            Solo 2,274 llegan a Validando información. Falta confirmar con producto si esa pantalla la ven todos los que terminan o solo los expedientes que entran a revisión manual: la diferencia cambia por completo la lectura.</div>
+            Solo 2,691 llegan a Validando información y 1,404 a Éxito. Falta confirmar con producto si esa pantalla la ven todos los que terminan o solo los expedientes que entran a revisión manual: la diferencia cambia por completo la lectura.</div>
           </div>
         </div>
         <div class="leer-n">
@@ -603,11 +625,12 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
   </div>
 
   <!-- Mapa de Jalisco -->
-  <div class="section">
+  <div class="section" data-solo="boom">
     <div class="sechdr">
       <div class="secn">3</div>
       <div class="sect">Municipios más activos</div>
       <div class="secflag"><span class="chip c-teal">Usuarios activos</span></div>
+    <div class="solo-nota">Solo Boom_Jalisco · El desglose geográfico se levantó solo para Boom_Jalisco, que es donde ocurre la adquisición.</div>
     </div>
     <div class="card">
       <div class="map-body">
@@ -625,18 +648,19 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
       <div class="dn-foot">
         Coropleta sobre las <b>fronteras oficiales de los 125 municipios</b> de Jalisco (INEGI vía CONABIO, geometría simplificada para el navegador). La intensidad de color es proporcional a los usuarios activos; los municipios en gris no registraron tráfico en el periodo.
         Las localidades que GA4 reporta por separado están agrupadas en su municipio, Tesistán en Zapopan, Coyula en Tonalá, Hacienda Santa Fe y San Agustín en Tlajomulco, San José del Castillo y San José el Quince en El Salto.
-        Periodo 3–30 de agosto; GA4 reporta la ciudad detectada, y <b>5,146 usuarios quedan como “(not set)”</b> sin ubicación.
+        Periodo 1 ago – 6 sep; GA4 reporta la ciudad detectada, y <b>7,094 usuarios quedan como “(not set)”</b> sin ubicación. Fuera de Jalisco hay <b>17,313 usuarios</b> solo en las diez ciudades más grandes.
       </div>
     </div>
   </div>
 
   <!-- Audiencia -->
-  <div class="section">
+  <div class="section" data-solo="boom">
     <div class="sechdr">
       <div class="secn">4</div>
       <div class="sect">Quién es esta audiencia</div>
       
     </div>
+    <div class="solo-nota">Solo Boom_Jalisco · El perfil de navegador y recurrencia está medido solo para Boom_Jalisco.</div>
 
     <div class="krow" style="margin-bottom:14px;">
       <div class="kpi">
@@ -655,6 +679,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
         <div class="k-d">Navegador embebido de Facebook, WhatsApp y similares</div>
       </div>
     </div>
+  </div>
 
   <!-- Deep dive UTMs de pago -->
   <div class="section">
@@ -709,13 +734,11 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
     </div>
 
     <div class="callout red" style="margin-top:14px;">
-      <b>Todo el tráfico pagado rebota por encima del 70 %.</b> Los cuatro medios con volumen real <span class="mono">PaidSocialVideo</span>, <span class="mono">cpc</span>, <span class="mono">PaidSocialDisplay</span> y <span class="mono">paid_social</span> van de <b>72 % a 83 %</b>, contra 15.8 % del portal del gobierno y 27.8 % del orgánico.
-      Ninguno se despega del resto, y eso importa: si medios distintos, plataformas distintas y agencias distintas producen el mismo resultado, el problema no está en la compra sino en <b>lo que encuentran al llegar</b>.
+      <b>Ningún medio pagado se despega del resto.</b> El mejor es <span class="mono">PaidSocialDisplay</span> con 27.6 % de interacción; el peor, <span class="mono">cpc</span> con 14.6 %. Todos quedan muy por debajo del <b>83.6 %</b> del portal del gobierno y del 71.6 % del orgánico. Cuando medios, plataformas y agencias distintas producen el mismo resultado, el problema no está en la compra sino en <b>lo que la gente encuentra al llegar</b>.
     </div>
 
     <div class="callout amber">
-      <b>Solo dos de tus cuatro medios tienen volumen.</b> Del plan de UTMs, <span class="mono">paid_social</span> registra 4,232 sesiones y <span class="mono">cpc</span> 9,031 esta última por el etiquetado automático de Google Ads, no por tus UTMs.
-      En cambio <span class="mono">display</span> tiene <b>3 sesiones</b> y <span class="mono">paid_video</span> <b>1</b>, cuando el plan contempla nueve creativos de display y cuatro de video. Ese tráfico está entrando con los medios de la agencia (<span class="mono">PaidSocialVideo</span>, <span class="mono">DigitalDisplay</span>), lo que confirma que los links del plan no se cargaron en esas plataformas.
+      <b>Solo dos de tus cuatro medios tienen volumen.</b> Del plan de UTMs, <span class="mono">paid_social</span> registra 17,650 sesiones y <span class="mono">cpc</span> 16,997, esta última por el etiquetado automático de Google Ads y no por tus UTMs. En cambio <span class="mono">display</span> tiene <b>6 sesiones</b> y <span class="mono">paid_video</span> <b>1</b>, cuando el plan contempla nueve creativos de display y cuatro de video. Ese tráfico está entrando con los medios de la agencia (<span class="mono">PaidSocialVideo</span>, <span class="mono">DigitalDisplay</span>), lo que confirma que los links del plan no se cargaron en esas plataformas.
     </div>
   </div>
 
@@ -724,7 +747,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
     <div class="sechdr">
       <div class="secn">6</div>
       <div class="sect">Pantallas del flujo</div>
-      <div class="secflag"><span class="chip c-teal">9 pantallas del flujo</span></div>
+      <div class="secflag"><span class="chip c-teal">15 pantallas del flujo</span></div>
     </div>
     <div class="tbl-scroll">
       <table class="stbl">
@@ -739,16 +762,115 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
     </div>
   </div>
 
+
+  <!-- ══ CONVERSIONES ══ -->
+  <div class="section" data-solo="boom">
+    <div class="sechdr">
+      <div class="secn">7</div>
+      <div class="sect">Qué hace el tráfico pagado al llegar</div>
+      <div class="secflag"><span class="chip c-red">Evidencia para afinar la pauta</span></div>
+    <div class="solo-nota">Solo Boom_Jalisco · El análisis del embudo pagado corresponde a Boom_Jalisco, que es la propiedad que recibe la pauta.</div>
+    </div>
+
+    <div class="dark-block">
+      <div class="db-eye">Segmento «Tráfico de pago» de GA4 · pantallas vistas</div>
+      <div class="db-title">De 46,534 usuarios comprados, 46,379 no pasaron de la landing.<br>
+        Dos llegaron al final del registro.</div>
+      <div class="db-grid">
+        <div class="hd"><div class="hd-l">Usuarios de pauta</div><div class="hd-v">46,534</div>
+          <div class="hd-d">40.58 % de los usuarios del sitio</div></div>
+        <div class="hd"><div class="hd-l">Se quedaron en la landing</div><div class="hd-v">99.67 %</div>
+          <div class="hd-d">1.25 vistas y 4 s de permanencia</div></div>
+        <div class="hd"><div class="hd-l">Llegaron a Finalizado</div><div class="hd-v">2</div>
+          <div class="hd-d">0.004 % del tráfico comprado</div></div>
+        <div class="hd"><div class="hd-l">Conversión del NO pagado</div><div class="hd-v">31.5 %</div>
+          <div class="hd-d">21,463 de 68,132 usuarios</div></div>
+      </div>
+    </div>
+
+    <div class="callout red" style="margin-top:14px;">
+      <b>Antes de concluir que la pauta no sirve, hay un matiz que cambia la lectura.</b>
+      La landing está en <span class="mono">mitarjetajalisco.com</span> y el registro en
+      <span class="mono">ciudadanoregister.broxel.com</span>. Sin medición entre dominios, quien sí da clic
+      y avanza <b>pierde su campaña de origen en el salto</b> y reaparece como referencia interna: son las
+      10,622 sesiones de <span class="mono">ciudadanoregister.broxel.com / referral</span>.
+      Las dos cosas son ciertas a la vez: la mayor parte del tráfico pagado efectivamente no engancha
+      —eso sí es accionable desde la pauta— y la parte que sí avanza no se puede acreditar todavía.
+      Lee esta tabla como señal de calidad del clic, no como el resultado final de la campaña.
+    </div>
+
+    <div class="tbl-scroll" style="margin-top:14px;">
+      <table class="stbl">
+        <thead>
+          <tr><th class="lft">Pantalla</th><th>Usuarios totales</th><th>Usuarios de pauta</th>
+              <th>Participación del pagado</th></tr>
+        </thead>
+        <tbody><tr><td class="lft"><span class="mono">/lp/campana-visa/</span></td><td><b>46,583</b></td><td class=""><b>46,379</b></td><td class="pct">99.56 %</td></tr><tr><td class="lft"><span class="mono">/</span></td><td><b>13,205</b></td><td class="eng-bad"><b>26</b></td><td class="pct">0.20 %</td></tr><tr><td class="lft"><span class="mono">/1.1 PreRegistro - Legales</span></td><td><b>49,694</b></td><td class="eng-bad"><b>7</b></td><td class="pct">0.01 %</td></tr><tr><td class="lft"><span class="mono">/0.0 Redirect Intermedio</span></td><td><b>29,917</b></td><td class="eng-bad"><b>4</b></td><td class="pct">0.01 %</td></tr><tr><td class="lft"><span class="mono">/3.1 Datos Personales</span></td><td><b>20,219</b></td><td class="eng-bad"><b>4</b></td><td class="pct">0.02 %</td></tr><tr><td class="lft"><span class="mono">/4.1 CURP - Completa</span></td><td><b>17,652</b></td><td class="eng-bad"><b>2</b></td><td class="pct">0.01 %</td></tr><tr><td class="lft"><span class="mono">/8.0 Finalizado - Inicio</span></td><td><b>21,465</b></td><td class="eng-bad"><b>2</b></td><td class="pct">0.01 %</td></tr><tr><td class="lft"><span class="mono">/7.1 Dependientes - Inicio</span></td><td><b>19,267</b></td><td class="eng-bad"><b>2</b></td><td class="pct">0.01 %</td></tr><tr><td class="lft"><span class="mono">/7.0 Dependientes - Inicio</span></td><td><b>10,206</b></td><td class="eng-bad"><b>1</b></td><td class="pct">0.01 %</td></tr></tbody>
+      </table>
+    </div>
+
+
+
+
+  </div>
+
+  <!-- ══ SEGUNDA PROPIEDAD ══ -->
+  <div class="section" data-solo="boom">
+    <div class="sechdr">
+      <div class="secn">8</div>
+      <div class="sect">La segunda propiedad · Mi tarjeta Jalisco</div>
+      <div class="secflag"><span class="chip c-dark">511676885</span></div>
+    <div class="solo-nota">Solo Boom_Jalisco · Este bloque es el resumen comparativo que se lee desde Boom_Jalisco.</div>
+    </div>
+
+    <div class="krow" style="margin-bottom:14px;">
+      <div class="kpi"><div class="k-l">Sesiones</div><div class="k-v">11,226</div>
+        <div class="k-d">Contra 158,778 de Boom_Jalisco</div></div>
+      <div class="kpi"><div class="k-l">Usuarios activos</div><div class="k-v">7,839</div>
+        <div class="k-d">20,628 vistas · 2.63 por usuario</div></div>
+      <div class="kpi"><div class="k-l">Interacción</div><div class="k-v">64.15 %</div>
+        <div class="k-d">Rebote de 35.85 % · 31 s de media</div></div>
+      <div class="kpi"><div class="k-l">Sesiones de pauta</div><div class="k-v">365</div>
+        <div class="k-d">3.25 % del sitio · casi todo search de marca</div></div>
+    </div>
+
+    <div class="tbl-scroll">
+      <table class="stbl">
+        <thead>
+          <tr><th class="lft">Canal</th><th>Sesiones</th><th>% del total</th>
+              <th>% interacción</th><th>Tiempo medio</th><th class="lft" style="width:120px;">Volumen</th></tr>
+        </thead>
+        <tbody><tr><td class="lft"><span class="sw" style="background:#0F766E"></span><b>Direct</b></td><td><b>9,897</b></td><td class="pct">88.16 %</td><td class="eng-ok">65.78 %</td><td>32 s</td><td class="lft"><span class="pbar"><i style="width:100.0%;background:#0F766E"></i></span></td></tr><tr><td class="lft"><span class="sw" style="background:#FF8300"></span><b>Organic Search</b></td><td><b>448</b></td><td class="pct">3.99 %</td><td class="">48.21 %</td><td>24 s</td><td class="lft"><span class="pbar"><i style="width:4.5%;background:#FF8300"></i></span></td></tr><tr><td class="lft"><span class="sw" style="background:#DC2626"></span><b>Paid Search</b></td><td><b>352</b></td><td class="pct">3.14 %</td><td class="eng-bad">28.41 %</td><td>8 s</td><td class="lft"><span class="pbar"><i style="width:3.6%;background:#DC2626"></i></span></td></tr><tr><td class="lft"><span class="sw" style="background:#0F766E"></span><b>Referral</b></td><td><b>342</b></td><td class="pct">3.05 %</td><td class="eng-ok">84.80 %</td><td>20 s</td><td class="lft"><span class="pbar"><i style="width:3.5%;background:#0F766E"></i></span></td></tr><tr><td class="lft"><span class="sw" style="background:#DC2626"></span><b>Unassigned</b></td><td><b>84</b></td><td class="pct">0.75 %</td><td class="eng-bad">1.19 %</td><td>20 s</td><td class="lft"><span class="pbar"><i style="width:0.8%;background:#DC2626"></i></span></td></tr><tr><td class="lft"><span class="sw" style="background:#0F766E"></span><b>Email</b></td><td><b>36</b></td><td class="pct">0.32 %</td><td class="eng-ok">75.00 %</td><td>10 s</td><td class="lft"><span class="pbar"><i style="width:0.4%;background:#0F766E"></i></span></td></tr><tr><td class="lft"><span class="sw" style="background:#FF8300"></span><b>Organic Social</b></td><td><b>18</b></td><td class="pct">0.16 %</td><td class="">38.89 %</td><td>1 s</td><td class="lft"><span class="pbar"><i style="width:0.2%;background:#FF8300"></i></span></td></tr><tr><td class="lft"><span class="sw" style="background:#FF8300"></span><b>Paid Social</b></td><td><b>11</b></td><td class="pct">0.10 %</td><td class="">45.45 %</td><td>0 s</td><td class="lft"><span class="pbar"><i style="width:0.1%;background:#FF8300"></i></span></td></tr><tr><td class="lft"><span class="sw" style="background:#DC2626"></span><b>Cross-network</b></td><td><b>7</b></td><td class="pct">0.06 %</td><td class="eng-bad">0.00 %</td><td>0 s</td><td class="lft"><span class="pbar"><i style="width:0.1%;background:#DC2626"></i></span></td></tr><tr><td class="lft"><span class="sw" style="background:#DC2626"></span><b>AI Assistant</b></td><td><b>1</b></td><td class="pct">0.01 %</td><td class="eng-bad">0.00 %</td><td>0 s</td><td class="lft"><span class="pbar"><i style="width:0.0%;background:#DC2626"></i></span></td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:14px;">
+      <b>Qué dice esta propiedad para medios.</b> El <b>88.16 %</b> de su tráfico es directo y la mitad de las
+      vistas se va a <span class="mono">/ayuda/</span>: son personas que <b>ya tienen la tarjeta</b> y vienen a
+      resolver una duda. No es un sitio de adquisición y no debería recibir pauta. Aun así llegaron 363 sesiones
+      por medios pagados, casi todas de <span class="mono">google / cpc</span>, lo que sugiere términos de marca
+      capturando gente que ya es cliente. Vale la pena revisar si ese gasto de search de marca está comprando
+      tráfico que habría llegado igual por directo.
+    </div>
+
+    <div class="callout amber">
+      <b>Y una señal de higiene.</b> Aparece un medio <span class="mono">vafvefe / email</span> con 11 sesiones:
+      un UTM tecleado a mano por error que quedó vivo en una pieza. Es el mismo patrón que
+      <span class="mono">Corona / MEDIA_JAL</span> y <span class="mono">Karen / MEDIA_JAL</span> del lado de
+      adquisición: nombres de persona usados como fuente de campaña.
+    </div>
+  </div>
+
   <!-- 5 · Hallazgos -->
   <div class="section">
     <div class="sechdr">
-      <div class="secn">7</div>
-      <div class="sect">Hallazgos y qué hacer</div>
-      <div class="secflag"><span class="chip c-red">6 acciones de medios</span></div>
+      <div class="secn">9</div>
+      <div class="sect">Qué debe afinar el equipo de medios</div>
+      <div class="secflag"><span class="chip c-red">8 acciones · solo pauta</span></div>
     </div>
 
     <div class="callout" style="border-left-color:var(--ink);background:#F3F4F6;">
-      La pauta arrancó el <b>17 de agosto</b> y aporta <b>28,801 sesiones</b>, el 24.7 % del total, pero es la fuente de peor calidad de todas: rebota entre <b>72 % y 83 %</b> frente al 16 % del portal del gobierno. A eso se suma que el etiquetado está fragmentado entre tres estándares distintos.
+      La pauta arrancó el <b>19 de agosto</b> en social y el <b>25 de agosto</b> en search, y aporta <b>50,281 sesiones</b> con medio pagado identificable, el 31.7 % del total. Es la fuente de peor calidad de todas: 18.6 % de interacción ponderada frente al 83.6 % del portal del gobierno. A eso se suma que el etiquetado está fragmentado entre tres estándares distintos, lo que impide leer el rendimiento por campaña. <br><br><b>Nota de método:</b> por grupo de canal GA4 reporta 52,188 sesiones pagadas y por medio de la sesión 50,281. La diferencia son sesiones cuyo medio cae en «Unassigned» porque el UTM no cumple el estándar. Aquí se usa la segunda cifra porque es la que suma la tabla de medios de arriba.
     </div>
 
     <div class="tbl-scroll">
@@ -765,13 +887,16 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
     </div>
 
     <div class="callout amber" style="margin-top:14px;">
-      <b>Nota sobre medición.</b> Las tres P1 son de medios y se pueden atacar ya. Pero para saber si funcionan hace falta antes marcar <span class="mono">/8.0 Finalizado</span> como evento clave y configurar la medición entre dominios: sin eso no hay conversión atribuible a campaña y cualquier mejora será invisible en los reportes.
+      <b>Cómo priorizar esta lista.</b> Las tres P1 se pueden atacar sin depender de nadie más y son las que
+      mueven el número: la landing, la segmentación geográfica y la prueba de saltarse la landing.
+      Las P2 son de etiquetado y no cambian resultados por sí solas, pero sin ellas ningún reporte de campaña
+      va a cuadrar. Las P3 son de higiene y se pueden trabajar en paralelo.
     </div>
   </div>
 
   <div class="fnote">
-    <div><b>Growth B2C</b>, Datos leídos directamente de GA4, propiedad Boom_Jalisco (511675384).</div>
-    <div>Periodo 1–31 ago 2026 · Paleta tomada de mitarjetajalisco.com</div>
+    <div><b>Growth B2C</b>, datos leídos directamente de GA4, propiedades Boom_Jalisco (511675384) y Mi tarjeta Jalisco (511676885).</div>
+    <div>Periodo 1 ago – 6 sep 2026 · Paleta tomada de mitarjetajalisco.com</div>
   </div>
 
 </div>
@@ -780,12 +905,12 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
 (function(){
   "use strict";
 
-var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 28.04, 26.8, 28.59, 27.95, 23.74, 23.28, 22.91, 24.32, 25.05, 26.08, 25.01, 23.08, 22.93, 29.45, 44.52, 44.06, 42.73, 47.13, 41.66, 51.08, 50.12, 52.38, 55.86, 60.08, 59.31, 48.61], series:[{"n": "Referral", "v": [1796, 1363, 2944, 2452, 2580, 2226, 1812, 963, 1026, 2757, 2702, 2748, 2697, 2473, 1350, 1466, 2855, 2718, 2817, 2418, 2310, 2509, 1899, 2898, 2566, 2558, 2456, 2030, 1485, 1380, 2705]}, {"n": "Paid Social", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 529, 1914, 1682, 1860, 1817, 1807, 1835, 1691, 1574, 1609, 1598, 1756, 1699]}, {"n": "Direct", "v": [246, 231, 470, 413, 442, 360, 316, 182, 216, 431, 417, 495, 391, 454, 213, 206, 487, 411, 420, 389, 359, 293, 230, 429, 457, 426, 424, 353, 228, 241, 394]}, {"n": "Organic Search", "v": [224, 176, 371, 322, 336, 283, 261, 114, 147, 408, 352, 351, 365, 356, 159, 219, 421, 413, 431, 429, 341, 235, 162, 450, 447, 458, 398, 323, 187, 184, 389]}, {"n": "Paid Search", "v": [4, 5, 6, 14, 6, 5, 10, 7, 3, 5, 9, 7, 9, 7, 11, 4, 7, 8, 4, 9, 2, 6, 2, 7, 1152, 1535, 1691, 1650, 1552, 1411, 1091]}]};
+var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26.68, 28.14, 26.89, 28.82, 27.95, 23.85, 23.34, 23.06, 24.47, 25.2, 26.21, 25.01, 23.08, 23.04, 29.5, 44.59, 44.04, 42.73, 47.1, 41.74, 51.44, 50.5, 52.64, 56.13, 60.22, 59.64, 48.5, 54.59, 55.06, 52.55, 56.84, 66.6], "series": [{"n": "Referral", "v": [1796, 1363, 2944, 2452, 2580, 2226, 1812, 963, 1026, 2757, 2702, 2748, 2697, 2473, 1350, 1466, 2855, 2718, 2817, 2418, 2310, 2509, 1899, 2898, 2566, 2558, 2456, 2030, 1485, 1380, 2705, 2049, 2137, 2332, 1904, 1172]}, {"n": "Paid Social", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 529, 1914, 1682, 1860, 1817, 1807, 1835, 1691, 1574, 1609, 1598, 1756, 1699, 1881, 2062, 1997, 1962, 2191]}, {"n": "Paid Search", "v": [4, 5, 6, 14, 6, 5, 10, 7, 3, 5, 9, 7, 9, 7, 11, 4, 7, 8, 4, 9, 0, 6, 0, 7, 1152, 1535, 1691, 1650, 1552, 1411, 1091, 1077, 1121, 1113, 1242, 1813]}, {"n": "Direct", "v": [246, 231, 470, 413, 442, 360, 316, 182, 216, 431, 417, 495, 391, 454, 213, 206, 487, 411, 420, 389, 359, 293, 230, 429, 457, 426, 424, 353, 228, 241, 394, 367, 417, 461, 410, 268]}, {"n": "Organic Search", "v": [224, 176, 371, 322, 336, 283, 261, 114, 147, 408, 352, 351, 365, 356, 159, 219, 421, 413, 431, 429, 341, 235, 162, 450, 447, 458, 398, 323, 187, 184, 389, 384, 370, 436, 417, 193]}, {"n": "Cross-network", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 73, 92, 87, 99, 92, 73, 53, 60, 57, 76, 69, 102]}, {"n": "Unassigned", "v": [3, 0, 6, 5, 6, 4, 3, 4, 0, 5, 4, 7, 8, 7, 3, 0, 0, 5, 3, 6, 4, 0, 0, 8, 37, 22, 26, 16, 22, 14, 13, 16, 11, 15, 8, 22]}]};
 
   var JAL_MUNI = [["Acatic",[[-102.991,20.607],[-103.1,20.729],[-103.1,20.748],[-103.036,20.764],[-102.976,20.817],[-102.927,20.814],[-102.887,20.849],[-102.884,20.821],[-102.821,20.773],[-102.842,20.721],[-102.948,20.666],[-102.991,20.607]]],["Acatlán de Juárez",[[-103.559,20.369],[-103.554,20.33],[-103.569,20.307],[-103.627,20.323],[-103.67,20.382],[-103.696,20.391],[-103.696,20.45],[-103.67,20.438],[-103.637,20.46],[-103.598,20.45],[-103.572,20.424],[-103.559,20.369]]],["Ahualulco de Mercado",[[-104.075,20.627],[-104.069,20.674],[-104.04,20.712],[-103.951,20.694],[-103.896,20.788],[-103.785,20.769],[-103.773,20.747],[-103.836,20.662],[-103.856,20.653],[-103.855,20.676],[-103.88,20.683],[-103.897,20.621],[-103.948,20.597],[-103.981,20.589],[-104.075,20.627]]],["Amacueca",[[-103.602,19.958],[-103.617,19.963],[-103.634,19.941],[-103.627,19.883],[-103.666,19.894],[-103.686,19.88],[-103.7,19.969],[-103.658,19.997],[-103.659,20.041],[-103.552,20.019],[-103.602,19.958]]],["Amatitán",[[-103.727,20.745],[-103.77,20.746],[-103.785,20.767],[-103.755,20.823],[-103.757,20.862],[-103.668,20.857],[-103.633,20.817],[-103.646,20.767],[-103.681,20.769],[-103.727,20.745]]],["Ameca",[[-104.209,20.422],[-104.279,20.456],[-104.255,20.497],[-104.287,20.526],[-104.26,20.561],[-104.257,20.611],[-104.167,20.588],[-104.078,20.627],[-103.974,20.589],[-103.911,20.619],[-103.907,20.583],[-103.865,20.545],[-103.936,20.499],[-103.988,20.447],[-104.013,20.373],[-104.06,20.347],[-104.134,20.375],[-104.191,20.427],[-104.209,20.422]]],["Antonio Escobedo",[[-104.04,20.712],[-104.049,20.732],[-104.087,20.743],[-104.072,20.812],[-104.092,20.844],[-104.054,20.857],[-104.012,20.842],[-103.969,20.778],[-103.918,20.805],[-103.896,20.788],[-103.951,20.694],[-104.04,20.712]]],["Arandas",[[-102.107,20.726],[-102.141,20.713],[-102.186,20.722],[-102.227,20.691],[-102.222,20.675],[-102.242,20.64],[-102.264,20.636],[-102.268,20.605],[-102.405,20.54],[-102.439,20.541],[-102.44,20.597],[-102.506,20.638],[-102.56,20.597],[-102.587,20.624],[-102.569,20.752],[-102.512,20.824],[-102.467,20.83],[-102.444,20.86],[-102.244,20.84],[-102.16,20.848],[-102.135,20.825],[-102.085,20.837],[-102.075,20.817],[-102.134,20.771],[-102.107,20.726]]],["Atemajac de Brizuela",[[-103.803,20.045],[-103.816,20.083],[-103.854,20.091],[-103.824,20.231],[-103.833,20.264],[-103.771,20.255],[-103.733,20.278],[-103.719,20.263],[-103.703,20.272],[-103.679,20.213],[-103.651,20.198],[-103.61,20.13],[-103.659,20.041],[-103.741,20.028],[-103.803,20.045]]],["Atengo",[[-104.367,20.218],[-104.426,20.291],[-104.432,20.331],[-104.412,20.366],[-104.388,20.356],[-104.282,20.39],[-104.213,20.392],[-104.18,20.339],[-104.185,20.276],[-104.286,20.196],[-104.306,20.215],[-104.367,20.218]]],["Atenguillo",[[-104.747,20.214],[-104.736,20.3],[-104.663,20.322],[-104.631,20.394],[-104.632,20.432],[-104.565,20.406],[-104.574,20.455],[-104.532,20.486],[-104.463,20.396],[-104.451,20.327],[-104.422,20.319],[-104.424,20.286],[-104.491,20.262],[-104.534,20.269],[-104.571,20.312],[-104.622,20.26],[-104.635,20.206],[-104.699,20.187],[-104.747,20.214]]],["Atotonilco El Alto",[[-102.581,20.414],[-102.61,20.446],[-102.693,20.455],[-102.688,20.477],[-102.644,20.471],[-102.635,20.488],[-102.654,20.542],[-102.681,20.544],[-102.683,20.563],[-102.602,20.598],[-102.587,20.624],[-102.563,20.597],[-102.53,20.61],[-102.509,20.639],[-102.44,20.597],[-102.441,20.544],[-102.412,20.54],[-102.419,20.452],[-102.444,20.406],[-102.581,20.414]]],["Atoyac",[[-103.337,19.96],[-103.322,19.92],[-103.412,19.88],[-103.406,19.848],[-103.419,19.842],[-103.475,19.866],[-103.498,19.844],[-103.533,19.881],[-103.553,19.958],[-103.602,19.958],[-103.549,20.022],[-103.529,20.102],[-103.501,20.104],[-103.505,20.078],[-103.485,20.086],[-103.44,20.012],[-103.421,20.034],[-103.376,19.964],[-103.337,19.96]]],["Autlán de Navarro",[[-104.158,19.683],[-104.207,19.581],[-104.32,19.579],[-104.338,19.602],[-104.389,19.607],[-104.402,19.625],[-104.384,19.657],[-104.419,19.735],[-104.477,19.779],[-104.467,19.832],[-104.484,19.865],[-104.449,19.907],[-104.404,19.914],[-104.329,19.833],[-104.206,19.749],[-104.158,19.683]]],["Ayotlán",[[-102.251,20.484],[-102.281,20.464],[-102.269,20.427],[-102.283,20.4],[-102.269,20.37],[-102.207,20.351],[-102.299,20.33],[-102.377,20.387],[-102.441,20.407],[-102.419,20.452],[-102.412,20.54],[-102.321,20.58],[-102.293,20.565],[-102.297,20.543],[-102.251,20.484]]],["Ayutla",[[-104.268,20.122],[-104.279,20.084],[-104.316,20.074],[-104.307,20.051],[-104.354,19.981],[-104.379,19.992],[-104.375,19.964],[-104.404,19.914],[-104.449,19.907],[-104.503,19.842],[-104.567,19.893],[-104.564,19.921],[-104.602,19.958],[-104.629,20.024],[-104.686,20.046],[-104.682,20.096],[-104.709,20.122],[-104.688,20.136],[-104.575,20.123],[-104.553,20.152],[-104.534,20.122],[-104.49,20.11],[-104.472,20.122],[-104.453,20.107],[-104.371,20.178],[-104.371,20.215],[-104.324,20.218],[-104.286,20.196],[-104.268,20.122]]],["Bolaños",[[-103.866,21.733],[-103.91,21.736],[-103.942,21.712],[-104.116,21.73],[-104.143,21.767],[-104.153,21.891],[-104.174,21.909],[-104.12,21.939],[-104.024,21.886],[-104,21.942],[-103.94,21.964],[-103.924,21.956],[-103.92,21.982],[-103.883,21.962],[-103.842,21.974],[-103.845,21.907],[-103.818,21.874],[-103.765,21.912],[-103.722,21.901],[-103.706,21.866],[-103.721,21.828],[-103.71,21.768],[-103.788,21.73],[-103.866,21.733]]],["Cabo Corrientes",[[-105.6,20.273],[-105.672,20.338],[-105.695,20.405],[-105.673,20.408],[-105.672,20.426],[-105.616,20.471],[-105.53,20.493],[-105.444,20.488],[-105.443,20.502],[-105.344,20.507],[-105.307,20.527],[-105.291,20.51],[-105.26,20.532],[-105.221,20.51],[-105.218,20.418],[-105.172,20.372],[-105.195,20.263],[-105.149,20.23],[-105.182,20.188],[-105.199,20.21],[-105.226,20.18],[-105.3,20.212],[-105.367,20.189],[-105.428,20.24],[-105.471,20.253],[-105.492,20.286],[-105.501,20.239],[-105.549,20.211],[-105.6,20.273]]],["Cañadas de Obregón",[[-102.631,21.098],[-102.69,21.088],[-102.768,21.044],[-102.807,21.054],[-102.837,21.025],[-102.815,21.097],[-102.822,21.136],[-102.796,21.14],[-102.778,21.167],[-102.737,21.163],[-102.73,21.193],[-102.703,21.161],[-102.656,21.187],[-102.663,21.217],[-102.642,21.225],[-102.628,21.202],[-102.659,21.145],[-102.636,21.138],[-102.631,21.098]]],["Casimiro Castillo",[[-104.586,19.465],[-104.576,19.517],[-104.609,19.568],[-104.575,19.624],[-104.539,19.625],[-104.527,19.677],[-104.505,19.674],[-104.477,19.779],[-104.419,19.735],[-104.384,19.657],[-104.398,19.616],[-104.323,19.591],[-104.329,19.513],[-104.34,19.5],[-104.405,19.5],[-104.406,19.447],[-104.586,19.465]]],["Chapala",[[-103.421,20.256],[-103.362,20.26],[-103.298,20.301],[-103.219,20.291],[-103.139,20.381],[-103.115,20.364],[-103.135,20.295],[-103.2,20.259],[-103.421,20.256]]],["Chimaltitán",[[-103.567,21.579],[-103.635,21.494],[-103.706,21.472],[-103.724,21.536],[-103.689,21.549],[-103.683,21.593],[-103.639,21.657],[-103.694,21.647],[-103.847,21.703],[-103.866,21.733],[-103.788,21.73],[-103.716,21.763],[-103.721,21.828],[-103.706,21.866],[-103.669,21.867],[-103.659,21.828],[-103.617,21.816],[-103.627,21.797],[-103.562,21.725],[-103.567,21.579]]],["Chiquilistlán",[[-104.016,19.93],[-103.99,19.967],[-104.009,19.982],[-103.989,20.024],[-103.995,20.068],[-103.96,20.073],[-103.923,20.125],[-103.891,20.119],[-103.847,20.152],[-103.854,20.091],[-103.816,20.083],[-103.803,20.045],[-103.87,20.012],[-103.858,19.957],[-103.96,19.943],[-103.988,19.914],[-104.016,19.93]]],["Cihuatlán",[[-104.68,19.202],[-104.691,19.218],[-104.734,19.222],[-104.733,19.239],[-104.755,19.225],[-104.811,19.234],[-104.773,19.293],[-104.791,19.347],[-104.752,19.361],[-104.731,19.351],[-104.673,19.38],[-104.653,19.362],[-104.675,19.332],[-104.66,19.296],[-104.603,19.306],[-104.588,19.338],[-104.553,19.352],[-104.502,19.359],[-104.468,19.337],[-104.466,19.276],[-104.482,19.249],[-104.55,19.267],[-104.597,19.201],[-104.68,19.202]]],["Ciudad Guzman",[[-103.424,19.694],[-103.465,19.66],[-103.481,19.594],[-103.54,19.589],[-103.568,19.596],[-103.608,19.723],[-103.601,19.735],[-103.497,19.716],[-103.483,19.746],[-103.461,19.748],[-103.424,19.694]]],["Ciudad Venustiano Carranza",[[-103.568,19.596],[-103.631,19.596],[-103.668,19.617],[-103.72,19.592],[-103.773,19.629],[-103.833,19.613],[-103.848,19.643],[-103.838,19.698],[-103.929,19.741],[-103.877,19.802],[-103.834,19.807],[-103.826,19.783],[-103.785,19.78],[-103.783,19.81],[-103.732,19.789],[-103.701,19.802],[-103.665,19.761],[-103.639,19.784],[-103.604,19.733],[-103.6,19.665],[-103.568,19.596]]],["Cocula",[[-103.775,20.481],[-103.783,20.435],[-103.757,20.42],[-103.773,20.38],[-103.754,20.36],[-103.779,20.326],[-103.777,20.263],[-103.923,20.28],[-103.928,20.338],[-103.887,20.332],[-103.885,20.41],[-103.862,20.427],[-103.862,20.465],[-103.775,20.481]]],["Colotlán",[[-103.167,21.959],[-103.329,21.89],[-103.34,21.993],[-103.369,21.986],[-103.382,22.025],[-103.45,22.074],[-103.416,22.132],[-103.345,22.171],[-103.305,22.096],[-103.256,22.086],[-103.267,22.066],[-103.196,22.051],[-103.139,22.009],[-103.167,21.959]]],["Concepción de Buenos Aires",[[-103.193,19.908],[-103.208,19.874],[-103.262,19.859],[-103.257,19.829],[-103.277,19.804],[-103.319,19.858],[-103.318,19.931],[-103.337,19.96],[-103.299,19.973],[-103.299,20.002],[-103.264,20.045],[-103.193,20.014],[-103.213,19.977],[-103.193,19.908]]],["Cuautitlán de García Barragán",[[-104.197,19.312],[-104.25,19.326],[-104.4,19.292],[-104.422,19.307],[-104.466,19.276],[-104.468,19.337],[-104.502,19.359],[-104.585,19.341],[-104.608,19.304],[-104.662,19.297],[-104.675,19.332],[-104.629,19.4],[-104.62,19.45],[-104.586,19.465],[-104.404,19.447],[-104.405,19.5],[-104.332,19.505],[-104.32,19.579],[-104.207,19.581],[-104.186,19.62],[-104.096,19.541],[-104.053,19.44],[-104.086,19.359],[-104.197,19.312]]],["Cuautla",[[-104.706,20.134],[-104.719,20.155],[-104.729,20.134],[-104.769,20.156],[-104.747,20.214],[-104.699,20.187],[-104.635,20.206],[-104.622,20.26],[-104.571,20.312],[-104.534,20.269],[-104.491,20.262],[-104.424,20.286],[-104.367,20.218],[-104.371,20.178],[-104.453,20.107],[-104.472,20.122],[-104.49,20.11],[-104.534,20.122],[-104.553,20.152],[-104.575,20.123],[-104.706,20.134]]],["Cuquito",[[-103.1,20.729],[-103.151,20.723],[-103.152,20.744],[-103.248,20.864],[-103.156,20.925],[-103.162,20.938],[-103.185,20.93],[-103.193,20.953],[-103.134,21.047],[-102.896,20.973],[-102.961,20.877],[-102.944,20.816],[-102.979,20.815],[-103.036,20.764],[-103.093,20.757],[-103.1,20.729]]],["Degollado",[[-102.196,20.356],[-102.269,20.37],[-102.284,20.404],[-102.269,20.427],[-102.276,20.47],[-102.251,20.484],[-102.183,20.473],[-102.156,20.504],[-102.124,20.509],[-102.118,20.488],[-102.047,20.48],[-102.066,20.369],[-102.171,20.371],[-102.196,20.356]]],["Ejutla",[[-104.214,19.84],[-104.246,19.865],[-104.242,19.897],[-104.212,19.94],[-104.173,19.939],[-104.164,19.956],[-104.018,19.931],[-103.99,19.886],[-103.997,19.809],[-104.03,19.821],[-104.045,19.774],[-104.099,19.81],[-104.055,19.875],[-104.073,19.912],[-104.093,19.904],[-104.094,19.875],[-104.214,19.84]]],["El Arenal",[[-103.646,20.767],[-103.642,20.744],[-103.602,20.733],[-103.682,20.663],[-103.727,20.704],[-103.758,20.707],[-103.751,20.732],[-103.684,20.768],[-103.646,20.767]]],["El Grullo",[[-104.112,19.765],[-104.125,19.708],[-104.158,19.683],[-104.206,19.749],[-104.325,19.831],[-104.325,19.874],[-104.246,19.865],[-104.214,19.84],[-104.221,19.814],[-104.112,19.765]]],["El Limón",[[-104.045,19.774],[-104.035,19.729],[-104.054,19.723],[-104.122,19.777],[-104.222,19.82],[-104.208,19.842],[-104.094,19.875],[-104.093,19.904],[-104.073,19.912],[-104.055,19.875],[-104.099,19.81],[-104.045,19.774]]],["El Salto",[[-103.215,20.468],[-103.252,20.438],[-103.352,20.53],[-103.31,20.539],[-103.254,20.505],[-103.186,20.51],[-103.215,20.468]]],["Encarnación de Díaz",[[-102.489,21.369],[-102.501,21.418],[-102.46,21.451],[-102.425,21.529],[-102.434,21.617],[-102.417,21.652],[-102.331,21.623],[-102.186,21.671],[-102.139,21.722],[-102.13,21.696],[-102.097,21.676],[-102.01,21.688],[-102.014,21.64],[-102.036,21.614],[-102.031,21.56],[-102.052,21.509],[-102.082,21.494],[-102.073,21.465],[-102.088,21.446],[-102.128,21.436],[-102.201,21.376],[-102.249,21.374],[-102.256,21.4],[-102.277,21.371],[-102.395,21.404],[-102.421,21.353],[-102.462,21.377],[-102.489,21.369]]],["Etzatlán",[[-104.075,20.627],[-104.179,20.589],[-104.257,20.611],[-104.273,20.66],[-104.19,20.695],[-104.19,20.74],[-104.142,20.733],[-104.138,20.84],[-104.092,20.844],[-104.075,20.825],[-104.087,20.743],[-104.049,20.732],[-104.04,20.712],[-104.069,20.674],[-104.075,20.627]]],["Gómez Farías",[[-103.534,19.727],[-103.546,19.776],[-103.483,19.825],[-103.494,19.842],[-103.48,19.862],[-103.413,19.843],[-103.412,19.88],[-103.324,19.915],[-103.322,19.863],[-103.277,19.804],[-103.308,19.81],[-103.328,19.788],[-103.389,19.798],[-103.483,19.746],[-103.497,19.716],[-103.534,19.727]]],["Guachinango",[[-104.279,20.456],[-104.302,20.42],[-104.367,20.476],[-104.403,20.473],[-104.445,20.503],[-104.447,20.59],[-104.529,20.647],[-104.614,20.775],[-104.594,20.834],[-104.619,20.899],[-104.57,20.893],[-104.469,20.784],[-104.302,20.65],[-104.259,20.569],[-104.287,20.53],[-104.255,20.497],[-104.279,20.456]]],["Guadalajara",[[-103.283,20.651],[-103.289,20.606],[-103.387,20.546],[-103.462,20.617],[-103.444,20.663],[-103.403,20.659],[-103.374,20.701],[-103.333,20.713],[-103.291,20.688],[-103.283,20.651]]],["Hostotipaquillo",[[-104.073,21.147],[-104.08,21.12],[-104.041,21.088],[-104.006,21.088],[-103.929,21.027],[-103.871,21.031],[-103.925,20.877],[-104.034,20.93],[-104.121,20.887],[-104.263,20.924],[-104.229,21.138],[-104.073,21.147]]],["Huejúcar",[[-103.088,22.177],[-103.175,22.126],[-103.266,22.192],[-103.326,22.166],[-103.342,22.174],[-103.329,22.203],[-103.377,22.232],[-103.364,22.302],[-103.289,22.328],[-103.203,22.322],[-103.186,22.29],[-103.213,22.228],[-103.105,22.211],[-103.088,22.177]]],["Huejuquilla el Alto",[[-103.96,22.251],[-104.013,22.224],[-104.06,22.295],[-103.969,22.379],[-104.048,22.584],[-103.956,22.652],[-103.839,22.664],[-103.785,22.639],[-103.776,22.609],[-103.909,22.458],[-103.952,22.346],[-103.96,22.251]]],["Ixtlahuacán de los Membrillos",[[-103.316,20.295],[-103.317,20.37],[-103.219,20.472],[-103.22,20.435],[-103.179,20.424],[-103.139,20.381],[-103.219,20.291],[-103.316,20.295]]],["Ixtlahuacán del Río",[[-103.324,20.713],[-103.376,20.886],[-103.342,20.977],[-103.35,21.001],[-103.285,21.012],[-103.269,21.039],[-103.232,21.046],[-103.156,21.029],[-103.194,20.949],[-103.185,20.93],[-103.162,20.938],[-103.156,20.925],[-103.248,20.868],[-103.204,20.793],[-103.152,20.744],[-103.151,20.723],[-103.278,20.677],[-103.324,20.713]]],["Jalostotitlán",[[-102.579,20.993],[-102.611,21.063],[-102.641,21.063],[-102.627,21.106],[-102.636,21.138],[-102.659,21.145],[-102.628,21.202],[-102.643,21.221],[-102.621,21.265],[-102.565,21.279],[-102.562,21.299],[-102.482,21.264],[-102.515,21.223],[-102.468,21.233],[-102.463,21.122],[-102.385,21.111],[-102.398,21.081],[-102.455,21.04],[-102.541,21.053],[-102.545,20.994],[-102.579,20.993]]],["Jamay",[[-102.583,20.246],[-102.626,20.249],[-102.701,20.195],[-102.717,20.211],[-102.715,20.255],[-102.743,20.267],[-102.703,20.289],[-102.654,20.352],[-102.657,20.328],[-102.607,20.307],[-102.626,20.277],[-102.591,20.27],[-102.583,20.246]]],["Jesús María",[[-102.309,20.576],[-102.265,20.609],[-102.262,20.638],[-102.241,20.642],[-102.226,20.693],[-102.168,20.728],[-102.147,20.714],[-102.107,20.726],[-102.036,20.707],[-101.98,20.602],[-102.047,20.48],[-102.118,20.488],[-102.121,20.509],[-102.156,20.504],[-102.183,20.473],[-102.237,20.477],[-102.287,20.527],[-102.309,20.576]]],["Jilotlán de los Dolores",[[-102.601,19.408],[-102.699,19.302],[-102.733,19.213],[-102.8,19.239],[-102.834,19.232],[-103.003,19.109],[-103.023,19.135],[-103.018,19.159],[-103.044,19.153],[-103.037,19.172],[-103.056,19.175],[-103.052,19.211],[-103.132,19.246],[-103.156,19.281],[-103.124,19.293],[-103.107,19.323],[-103.14,19.402],[-103.106,19.44],[-102.973,19.403],[-102.967,19.383],[-102.94,19.375],[-102.854,19.399],[-102.808,19.379],[-102.755,19.442],[-102.669,19.437],[-102.614,19.464],[-102.601,19.408]]],["Jocotepec",[[-103.477,20.166],[-103.496,20.233],[-103.565,20.285],[-103.561,20.366],[-103.54,20.373],[-103.502,20.326],[-103.454,20.305],[-103.318,20.362],[-103.316,20.295],[-103.362,20.26],[-103.426,20.256],[-103.445,20.229],[-103.427,20.196],[-103.374,20.195],[-103.387,20.144],[-103.477,20.166]]],["Juanacatlán",[[-103.139,20.381],[-103.174,20.421],[-103.224,20.444],[-103.169,20.553],[-103.135,20.494],[-103.132,20.438],[-103.1,20.399],[-103.107,20.378],[-103.139,20.381]]],["Juchitlán",[[-104.016,19.93],[-104.096,19.939],[-104.17,20.062],[-104.115,20.059],[-104.079,20.113],[-104.058,20.101],[-104.048,20.062],[-103.995,20.068],[-103.989,20.024],[-104.009,19.982],[-103.99,19.967],[-104.016,19.93]]],["La Barca",[[-102.353,20.329],[-102.495,20.311],[-102.583,20.246],[-102.591,20.27],[-102.627,20.28],[-102.607,20.307],[-102.657,20.332],[-102.636,20.363],[-102.585,20.388],[-102.581,20.414],[-102.507,20.419],[-102.388,20.392],[-102.296,20.339],[-102.353,20.329]]],["La Huerta",[[-105.067,19.463],[-105.062,19.495],[-105.086,19.513],[-105.103,19.577],[-105.125,19.588],[-105.142,19.575],[-105.162,19.612],[-105.202,19.62],[-105.239,19.662],[-105.165,19.691],[-105.136,19.753],[-105.066,19.767],[-105.01,19.699],[-104.938,19.66],[-104.925,19.69],[-104.834,19.676],[-104.792,19.624],[-104.718,19.596],[-104.692,19.614],[-104.612,19.57],[-104.576,19.517],[-104.584,19.468],[-104.631,19.441],[-104.629,19.4],[-104.65,19.364],[-104.679,19.381],[-104.731,19.351],[-104.752,19.361],[-104.794,19.344],[-104.772,19.299],[-104.81,19.245],[-104.795,19.297],[-104.835,19.307],[-104.837,19.289],[-104.874,19.276],[-104.938,19.307],[-104.993,19.358],[-104.988,19.377],[-104.998,19.365],[-105.03,19.385],[-105.025,19.436],[-105.067,19.463]]],["La Manzanilla de la Paz",[[-103.094,19.955],[-103.138,19.915],[-103.193,19.908],[-103.212,19.982],[-103.168,20.051],[-103.119,20.013],[-103.059,20.053],[-103.062,20.008],[-103.094,19.955]]],["Lago de Chapala",[[-102.995,20.152],[-103.166,20.139],[-103.194,20.12],[-103.288,20.172],[-103.421,20.193],[-103.446,20.224],[-103.426,20.256],[-103.202,20.258],[-103.135,20.295],[-103.022,20.304],[-102.924,20.277],[-102.806,20.296],[-102.775,20.264],[-102.722,20.262],[-102.706,20.235],[-102.717,20.211],[-102.701,20.195],[-102.703,20.15],[-102.827,20.118],[-102.842,20.085],[-102.896,20.135],[-102.995,20.152]]],["Lagos de Moreno",[[-102.151,21.252],[-102.166,21.284],[-102.196,21.282],[-102.191,21.379],[-102.128,21.436],[-102.077,21.457],[-102.083,21.491],[-102.052,21.509],[-102.033,21.554],[-102.036,21.614],[-102.014,21.64],[-102.009,21.685],[-102.097,21.676],[-102.13,21.696],[-102.139,21.722],[-102.067,21.817],[-101.966,21.863],[-101.962,21.81],[-101.931,21.801],[-101.859,21.703],[-101.818,21.69],[-101.837,21.669],[-101.831,21.649],[-101.783,21.6],[-101.74,21.584],[-101.694,21.523],[-101.66,21.518],[-101.67,21.483],[-101.64,21.471],[-101.665,21.396],[-101.634,21.374],[-101.671,21.317],[-101.718,21.319],[-101.751,21.295],[-101.752,21.258],[-101.785,21.193],[-101.88,21.153],[-101.882,21.187],[-101.909,21.214],[-102.044,21.225],[-102.043,21.205],[-102.086,21.205],[-102.106,21.185],[-102.108,21.227],[-102.151,21.252]]],["Magdalena",[[-103.925,20.877],[-103.877,20.866],[-103.883,20.791],[-103.918,20.805],[-103.969,20.778],[-104.007,20.838],[-104.054,20.857],[-104.133,20.839],[-104.167,20.862],[-104.286,20.826],[-104.263,20.924],[-104.121,20.887],[-104.034,20.93],[-103.925,20.877]]],["Manuel M. Dieguez",[[-102.616,19.466],[-102.669,19.437],[-102.755,19.442],[-102.808,19.379],[-102.854,19.399],[-102.94,19.375],[-102.967,19.383],[-102.973,19.403],[-103.106,19.44],[-103.07,19.492],[-103.028,19.517],[-102.986,19.614],[-102.926,19.613],[-102.794,19.683],[-102.741,19.576],[-102.766,19.478],[-102.646,19.485],[-102.616,19.466]]],["Mascota",[[-104.544,20.686],[-104.552,20.653],[-104.582,20.644],[-104.61,20.596],[-104.615,20.538],[-104.647,20.539],[-104.662,20.472],[-104.63,20.399],[-104.661,20.326],[-104.736,20.3],[-104.782,20.362],[-104.772,20.384],[-104.9,20.555],[-104.93,20.545],[-104.934,20.516],[-104.959,20.518],[-104.965,20.496],[-105.068,20.529],[-105.065,20.588],[-105.084,20.595],[-105.094,20.63],[-105.075,20.663],[-105.105,20.718],[-105.06,20.706],[-105.021,20.771],[-104.924,20.708],[-104.838,20.708],[-104.79,20.729],[-104.702,20.716],[-104.653,20.749],[-104.652,20.787],[-104.615,20.784],[-104.544,20.686]]],["Mazamitla",[[-102.982,19.94],[-102.959,19.843],[-102.966,19.794],[-102.996,19.755],[-103.075,19.821],[-103.197,19.816],[-103.21,19.873],[-103.195,19.907],[-103.138,19.915],[-103.094,19.955],[-103.061,19.924],[-103.031,19.949],[-102.982,19.94]]],["Mexticacán",[[-102.822,21.136],[-102.869,21.203],[-102.735,21.301],[-102.754,21.223],[-102.7,21.193],[-102.711,21.175],[-102.73,21.193],[-102.737,21.163],[-102.778,21.167],[-102.796,21.14],[-102.822,21.136]]],["Mezquitic",[[-104.328,21.934],[-104.351,22.049],[-104.303,22.221],[-104.309,22.249],[-104.269,22.292],[-104.205,22.286],[-104.211,22.351],[-104.19,22.402],[-104.074,22.437],[-104.057,22.429],[-104.093,22.293],[-104.06,22.295],[-104.013,22.224],[-103.96,22.251],[-103.931,22.173],[-103.877,22.137],[-103.855,22.15],[-103.845,22.186],[-103.84,22.459],[-103.683,22.494],[-103.626,22.475],[-103.57,22.426],[-103.546,22.354],[-103.554,22.299],[-103.703,22.071],[-103.814,22.104],[-103.807,22.01],[-103.824,21.98],[-103.883,21.962],[-103.922,21.981],[-103.924,21.956],[-103.94,21.964],[-104,21.942],[-104.027,21.886],[-104.12,21.939],[-104.174,21.909],[-104.225,21.914],[-104.267,21.956],[-104.328,21.934]]],["Mixtlán",[[-104.209,20.422],[-104.216,20.393],[-104.388,20.356],[-104.41,20.369],[-104.421,20.338],[-104.447,20.326],[-104.463,20.396],[-104.532,20.486],[-104.574,20.455],[-104.568,20.405],[-104.632,20.432],[-104.662,20.472],[-104.647,20.539],[-104.615,20.538],[-104.61,20.596],[-104.582,20.644],[-104.552,20.653],[-104.544,20.686],[-104.522,20.64],[-104.445,20.587],[-104.442,20.5],[-104.403,20.473],[-104.367,20.476],[-104.302,20.42],[-104.279,20.456],[-104.209,20.422]]],["Ocotlán",[[-102.806,20.296],[-102.801,20.335],[-102.831,20.361],[-102.881,20.365],[-102.886,20.38],[-102.85,20.389],[-102.805,20.427],[-102.756,20.408],[-102.731,20.439],[-102.67,20.449],[-102.61,20.446],[-102.581,20.414],[-102.585,20.388],[-102.671,20.347],[-102.703,20.289],[-102.737,20.28],[-102.737,20.265],[-102.775,20.264],[-102.806,20.296]]],["Ojuelos de Jalisco",[[-101.809,22.005],[-101.642,21.888],[-101.547,21.851],[-101.596,21.797],[-101.565,21.768],[-101.614,21.718],[-101.66,21.518],[-101.694,21.523],[-101.74,21.584],[-101.783,21.6],[-101.836,21.66],[-101.818,21.69],[-101.859,21.703],[-101.931,21.801],[-101.964,21.815],[-101.966,21.863],[-101.896,21.89],[-101.974,21.97],[-101.975,22.052],[-101.809,22.005]]],["Pihuamo",[[-103.5,19.168],[-103.406,19.249],[-103.404,19.314],[-103.372,19.341],[-103.342,19.337],[-103.295,19.361],[-103.289,19.334],[-103.33,19.298],[-103.311,19.282],[-103.309,19.241],[-103.345,19.192],[-103.332,19.098],[-103.279,19.079],[-103.174,18.98],[-103.204,18.957],[-103.271,19.028],[-103.364,18.963],[-103.448,18.974],[-103.493,18.959],[-103.494,19.031],[-103.527,19.092],[-103.5,19.168]]],["Poncitlán",[[-103.124,20.378],[-103.063,20.375],[-103.047,20.393],[-102.931,20.352],[-102.855,20.365],[-102.797,20.326],[-102.806,20.296],[-102.873,20.276],[-103.022,20.304],[-103.135,20.295],[-103.113,20.354],[-103.124,20.378]]],["Puerto Vallarta",[[-105.307,20.527],[-105.258,20.558],[-105.232,20.618],[-105.242,20.657],[-105.297,20.693],[-105.147,20.882],[-105.107,20.911],[-104.995,20.774],[-105.027,20.768],[-105.06,20.706],[-105.105,20.718],[-105.075,20.663],[-105.094,20.63],[-105.084,20.595],[-105.065,20.588],[-105.062,20.545],[-105.083,20.541],[-105.116,20.571],[-105.221,20.51],[-105.263,20.532],[-105.296,20.51],[-105.307,20.527]]],["Quitupan",[[-102.981,19.616],[-102.937,19.67],[-102.943,19.801],[-102.899,19.854],[-102.883,19.917],[-102.81,19.898],[-102.767,19.811],[-102.78,19.763],[-102.817,19.741],[-102.794,19.683],[-102.926,19.613],[-102.981,19.616]]],["San Cristóbal de la Barranca",[[-103.375,20.884],[-103.437,20.838],[-103.431,20.881],[-103.482,20.892],[-103.539,20.934],[-103.618,20.926],[-103.603,20.975],[-103.667,20.994],[-103.628,21.074],[-103.613,21.091],[-103.562,21.052],[-103.472,21.06],[-103.35,21.001],[-103.342,20.977],[-103.374,20.922],[-103.358,20.921],[-103.375,20.884]]],["San Diego de Alejandría",[[-102.07,20.825],[-102.102,20.84],[-102.14,20.825],[-102.159,20.843],[-102.124,21.016],[-101.931,21.032],[-101.954,20.961],[-102.045,20.881],[-102.07,20.825]]],["San Juan de los Lagos",[[-102.545,21.298],[-102.489,21.369],[-102.462,21.377],[-102.421,21.353],[-102.398,21.404],[-102.277,21.371],[-102.262,21.401],[-102.249,21.374],[-102.191,21.379],[-102.196,21.282],[-102.166,21.284],[-102.151,21.252],[-102.251,21.201],[-102.282,21.146],[-102.187,21.086],[-102.227,21.059],[-102.312,21.104],[-102.336,21.11],[-102.384,21.084],[-102.386,21.116],[-102.463,21.122],[-102.468,21.233],[-102.514,21.219],[-102.482,21.264],[-102.537,21.279],[-102.545,21.298]]],["San Julián",[[-102.16,20.848],[-102.244,20.84],[-102.253,20.855],[-102.224,20.898],[-102.214,20.959],[-102.233,21.051],[-102.186,21.089],[-102.124,21.016],[-102.16,20.848]]],["San Marcos",[[-104.273,20.66],[-104.307,20.685],[-104.298,20.711],[-104.325,20.73],[-104.337,20.797],[-104.261,20.839],[-104.162,20.861],[-104.138,20.84],[-104.141,20.736],[-104.19,20.74],[-104.19,20.695],[-104.273,20.66]]],["San Martín de Bolaños",[[-103.64,21.364],[-103.656,21.343],[-103.78,21.322],[-103.817,21.288],[-103.804,21.485],[-103.877,21.561],[-103.935,21.72],[-103.866,21.733],[-103.847,21.703],[-103.694,21.647],[-103.639,21.657],[-103.683,21.593],[-103.689,21.549],[-103.724,21.536],[-103.684,21.401],[-103.64,21.364]]],["San Martín Hidalgo",[[-103.935,20.299],[-104.015,20.306],[-104.048,20.264],[-104.06,20.347],[-104.013,20.373],[-103.988,20.447],[-103.936,20.499],[-103.836,20.565],[-103.778,20.533],[-103.762,20.495],[-103.859,20.47],[-103.862,20.427],[-103.885,20.41],[-103.885,20.336],[-103.897,20.323],[-103.927,20.339],[-103.935,20.299]]],["San Miguel el Alto",[[-102.252,20.848],[-102.444,20.86],[-102.467,20.83],[-102.506,20.828],[-102.544,20.904],[-102.536,20.928],[-102.57,20.942],[-102.579,20.993],[-102.545,20.994],[-102.541,21.053],[-102.459,21.038],[-102.336,21.11],[-102.276,21.092],[-102.227,21.059],[-102.214,20.967],[-102.222,20.905],[-102.252,20.848]]],["San Sebastián del Oeste",[[-104.615,20.784],[-104.655,20.786],[-104.653,20.749],[-104.702,20.716],[-104.79,20.729],[-104.838,20.708],[-104.924,20.708],[-104.995,20.759],[-105.045,20.852],[-105.107,20.911],[-105.061,20.923],[-105.038,20.903],[-104.979,20.904],[-104.851,20.995],[-104.801,21.003],[-104.742,20.976],[-104.687,20.918],[-104.619,20.899],[-104.594,20.834],[-104.615,20.784]]],["Santa María de los Angeles",[[-103.09,22.17],[-103.139,22.009],[-103.196,22.051],[-103.267,22.066],[-103.256,22.086],[-103.305,22.096],[-103.345,22.171],[-103.312,22.164],[-103.266,22.192],[-103.175,22.126],[-103.09,22.17]]],["Sayula",[[-103.639,19.784],[-103.625,19.81],[-103.69,19.826],[-103.696,19.86],[-103.672,19.893],[-103.625,19.885],[-103.635,19.934],[-103.617,19.963],[-103.554,19.959],[-103.532,19.879],[-103.483,19.825],[-103.546,19.776],[-103.534,19.727],[-103.547,19.72],[-103.613,19.738],[-103.639,19.784]]],["Tala",[[-103.696,20.45],[-103.769,20.473],[-103.764,20.517],[-103.836,20.565],[-103.828,20.595],[-103.779,20.641],[-103.766,20.687],[-103.735,20.705],[-103.712,20.675],[-103.644,20.655],[-103.618,20.545],[-103.599,20.527],[-103.602,20.491],[-103.571,20.468],[-103.58,20.435],[-103.623,20.46],[-103.667,20.438],[-103.696,20.45]]],["Talpa de Allende",[[-104.747,20.214],[-104.76,20.167],[-104.802,20.114],[-104.865,20.077],[-104.926,20.079],[-105.063,20.191],[-105.193,20.26],[-105.172,20.372],[-105.218,20.418],[-105.221,20.51],[-105.116,20.571],[-105.067,20.528],[-104.965,20.496],[-104.959,20.518],[-104.934,20.516],[-104.93,20.545],[-104.9,20.555],[-104.772,20.384],[-104.782,20.362],[-104.736,20.3],[-104.747,20.214]]],["Tamazula de Gordiano",[[-103.106,19.44],[-103.14,19.402],[-103.192,19.416],[-103.224,19.398],[-103.223,19.425],[-103.276,19.463],[-103.273,19.506],[-103.311,19.547],[-103.304,19.579],[-103.323,19.588],[-103.339,19.639],[-103.348,19.735],[-103.424,19.694],[-103.455,19.763],[-103.389,19.798],[-103.328,19.788],[-103.308,19.81],[-103.277,19.804],[-103.257,19.829],[-103.263,19.857],[-103.23,19.876],[-103.21,19.873],[-103.197,19.816],[-103.081,19.822],[-103.018,19.786],[-102.993,19.594],[-103.03,19.514],[-103.07,19.492],[-103.106,19.44]]],["Tapalpa",[[-103.88,19.799],[-103.888,19.84],[-103.911,19.848],[-103.93,19.941],[-103.896,19.961],[-103.877,19.946],[-103.858,19.957],[-103.87,20.012],[-103.803,20.045],[-103.741,20.028],[-103.659,20.041],[-103.658,19.997],[-103.7,19.969],[-103.686,19.88],[-103.701,19.842],[-103.658,19.812],[-103.628,19.813],[-103.625,19.793],[-103.662,19.761],[-103.701,19.802],[-103.732,19.789],[-103.783,19.81],[-103.785,19.78],[-103.826,19.783],[-103.834,19.807],[-103.88,19.799]]],["Tecalitlán",[[-103.003,19.109],[-103.181,18.974],[-103.248,19.054],[-103.307,19.093],[-103.328,19.09],[-103.345,19.192],[-103.309,19.241],[-103.311,19.282],[-103.33,19.298],[-103.286,19.342],[-103.298,19.362],[-103.342,19.337],[-103.405,19.342],[-103.412,19.378],[-103.362,19.452],[-103.374,19.491],[-103.277,19.466],[-103.223,19.425],[-103.217,19.394],[-103.192,19.416],[-103.127,19.393],[-103.106,19.326],[-103.124,19.293],[-103.155,19.291],[-103.154,19.275],[-103.132,19.246],[-103.052,19.211],[-103.056,19.175],[-103.037,19.172],[-103.044,19.153],[-103.018,19.159],[-103.023,19.135],[-103.003,19.109]]],["Techaluta de Montenegro",[[-103.552,20.019],[-103.659,20.041],[-103.61,20.13],[-103.595,20.116],[-103.577,20.129],[-103.566,20.093],[-103.529,20.107],[-103.552,20.019]]],["Tecolotlán",[[-103.995,20.068],[-104.048,20.062],[-104.058,20.101],[-104.079,20.113],[-104.115,20.059],[-104.17,20.062],[-104.14,20.142],[-104.143,20.2],[-104.156,20.278],[-104.185,20.276],[-104.18,20.339],[-104.222,20.407],[-104.213,20.419],[-104.191,20.427],[-104.134,20.375],[-104.063,20.351],[-104.048,20.264],[-104.012,20.306],[-103.94,20.303],[-103.921,20.279],[-103.843,20.275],[-103.83,20.26],[-103.847,20.152],[-103.891,20.119],[-103.923,20.125],[-103.96,20.073],[-103.995,20.068]]],["Tenamaxtlán",[[-104.164,19.956],[-104.162,19.989],[-104.216,20.027],[-104.238,20.109],[-104.268,20.122],[-104.286,20.196],[-104.168,20.281],[-104.154,20.275],[-104.14,20.145],[-104.17,20.062],[-104.108,19.954],[-104.164,19.956]]],["Teocaltiche",[[-102.545,21.298],[-102.618,21.269],[-102.632,21.23],[-102.663,21.217],[-102.656,21.187],[-102.703,21.161],[-102.702,21.205],[-102.752,21.217],[-102.735,21.301],[-102.666,21.36],[-102.64,21.456],[-102.646,21.474],[-102.752,21.536],[-102.779,21.605],[-102.775,21.675],[-102.733,21.596],[-102.693,21.587],[-102.622,21.526],[-102.589,21.54],[-102.549,21.601],[-102.464,21.625],[-102.448,21.661],[-102.417,21.652],[-102.434,21.617],[-102.425,21.529],[-102.46,21.451],[-102.501,21.418],[-102.491,21.366],[-102.545,21.298]]],["Teocuitatlán de Corona",[[-103.337,19.96],[-103.376,19.964],[-103.421,20.034],[-103.44,20.012],[-103.485,20.086],[-103.505,20.078],[-103.482,20.1],[-103.477,20.166],[-103.403,20.138],[-103.383,20.151],[-103.367,20.128],[-103.332,20.131],[-103.286,20.103],[-103.211,20.104],[-103.299,20.002],[-103.299,19.973],[-103.337,19.96]]],["Tepatitlán de Morelos",[[-102.946,20.57],[-102.991,20.607],[-102.948,20.666],[-102.847,20.711],[-102.821,20.769],[-102.884,20.821],[-102.887,20.849],[-102.932,20.812],[-102.963,20.845],[-102.96,20.879],[-102.896,20.973],[-102.879,20.977],[-102.862,20.952],[-102.806,20.994],[-102.763,20.982],[-102.762,20.949],[-102.706,20.95],[-102.693,20.931],[-102.543,20.939],[-102.544,20.904],[-102.506,20.828],[-102.572,20.744],[-102.574,20.674],[-102.602,20.598],[-102.683,20.563],[-102.824,20.578],[-102.855,20.599],[-102.874,20.569],[-102.946,20.57]]],["Tequila",[[-103.618,20.926],[-103.662,20.856],[-103.753,20.866],[-103.755,20.823],[-103.785,20.769],[-103.861,20.78],[-103.883,20.791],[-103.877,20.866],[-103.914,20.866],[-103.925,20.886],[-103.88,20.974],[-103.871,21.031],[-103.941,21.032],[-104.006,21.088],[-104.041,21.088],[-104.079,21.137],[-103.991,21.198],[-103.912,21.211],[-103.849,21.244],[-103.78,21.322],[-103.656,21.343],[-103.601,21.381],[-103.568,21.377],[-103.554,21.34],[-103.573,21.292],[-103.766,21.212],[-103.759,21.188],[-103.659,21.165],[-103.629,21.135],[-103.613,21.091],[-103.667,20.994],[-103.603,20.975],[-103.618,20.926]]],["Teuchitlán",[[-103.836,20.565],[-103.865,20.545],[-103.907,20.583],[-103.885,20.677],[-103.859,20.681],[-103.849,20.653],[-103.773,20.747],[-103.727,20.75],[-103.759,20.72],[-103.74,20.697],[-103.766,20.687],[-103.779,20.641],[-103.828,20.595],[-103.836,20.565]]],["Tizapán el Alto",[[-103.168,20.051],[-103.172,20.136],[-102.995,20.152],[-103.006,20.131],[-102.995,20.114],[-103.053,20.114],[-103.059,20.053],[-103.108,20.016],[-103.144,20.022],[-103.168,20.051]]],["Tlajomulco de Zúñiga",[[-103.58,20.435],[-103.571,20.468],[-103.596,20.476],[-103.599,20.527],[-103.495,20.559],[-103.48,20.524],[-103.488,20.491],[-103.352,20.53],[-103.252,20.438],[-103.28,20.422],[-103.305,20.367],[-103.454,20.305],[-103.502,20.326],[-103.537,20.371],[-103.566,20.375],[-103.58,20.435]]],["Tlaquepaque",[[-103.48,20.524],[-103.428,20.576],[-103.387,20.546],[-103.348,20.579],[-103.311,20.546],[-103.485,20.49],[-103.48,20.524]]],["Tolimán",[[-103.913,19.4],[-104.007,19.414],[-104.06,19.394],[-104.054,19.456],[-104.094,19.539],[-104.042,19.566],[-103.973,19.547],[-103.952,19.605],[-103.846,19.64],[-103.833,19.613],[-103.773,19.629],[-103.727,19.599],[-103.731,19.57],[-103.808,19.569],[-103.841,19.538],[-103.883,19.528],[-103.876,19.496],[-103.831,19.469],[-103.824,19.414],[-103.913,19.4]]],["Tomatlán",[[-105.291,19.721],[-105.492,19.988],[-105.55,20.094],[-105.549,20.211],[-105.501,20.239],[-105.496,20.285],[-105.371,20.189],[-105.294,20.211],[-105.226,20.18],[-105.203,20.21],[-105.176,20.19],[-105.149,20.23],[-105.063,20.191],[-104.923,20.077],[-104.836,20.089],[-104.769,20.156],[-104.735,20.134],[-104.712,20.149],[-104.708,20.119],[-104.682,20.096],[-104.686,20.046],[-104.782,20.009],[-104.825,19.933],[-104.895,19.968],[-104.943,19.947],[-104.98,19.906],[-105.028,19.793],[-105.107,19.748],[-105.136,19.753],[-105.165,19.691],[-105.193,19.674],[-105.239,19.662],[-105.291,19.721]]],["Tonalá",[[-103.186,20.51],[-103.26,20.507],[-103.335,20.566],[-103.285,20.61],[-103.283,20.651],[-103.236,20.638],[-103.186,20.588],[-103.156,20.593],[-103.186,20.51]]],["Tonaya",[[-104.045,19.774],[-104.03,19.821],[-104.003,19.804],[-103.989,19.833],[-104.008,19.918],[-103.93,19.941],[-103.911,19.848],[-103.888,19.84],[-103.88,19.799],[-103.929,19.741],[-103.905,19.718],[-104.036,19.727],[-104.045,19.774]]],["Tonila",[[-103.584,19.525],[-103.485,19.447],[-103.465,19.378],[-103.486,19.329],[-103.527,19.343],[-103.539,19.376],[-103.575,19.399],[-103.584,19.525]]],["Totatiche",[[-103.425,21.822],[-103.562,21.725],[-103.628,21.8],[-103.539,21.852],[-103.539,21.883],[-103.488,21.967],[-103.501,22.042],[-103.45,22.074],[-103.382,22.025],[-103.369,21.986],[-103.343,21.996],[-103.331,21.961],[-103.329,21.89],[-103.425,21.822]]],["Tototlán",[[-102.8,20.427],[-102.815,20.48],[-102.93,20.511],[-102.946,20.57],[-102.874,20.569],[-102.855,20.599],[-102.824,20.578],[-102.691,20.572],[-102.681,20.544],[-102.654,20.542],[-102.635,20.492],[-102.644,20.471],[-102.688,20.477],[-102.683,20.447],[-102.731,20.439],[-102.756,20.408],[-102.8,20.427]]],["Tuxcacuesco",[[-104.158,19.683],[-104.125,19.708],[-104.112,19.765],[-104.054,19.723],[-103.874,19.727],[-103.835,19.685],[-103.856,19.633],[-103.952,19.605],[-103.969,19.549],[-104.042,19.566],[-104.094,19.539],[-104.179,19.619],[-104.158,19.683]]],["Tuxcueca",[[-103.383,20.151],[-103.374,20.195],[-103.338,20.173],[-103.288,20.172],[-103.194,20.12],[-103.172,20.136],[-103.168,20.051],[-103.193,20.014],[-103.219,20.016],[-103.264,20.045],[-103.211,20.104],[-103.286,20.103],[-103.332,20.131],[-103.367,20.128],[-103.383,20.151]]],["Tuxpan",[[-103.584,19.525],[-103.592,19.559],[-103.618,19.557],[-103.631,19.596],[-103.478,19.597],[-103.437,19.56],[-103.347,19.557],[-103.379,19.482],[-103.362,19.452],[-103.412,19.378],[-103.402,19.339],[-103.375,19.336],[-103.408,19.31],[-103.406,19.249],[-103.5,19.168],[-103.506,19.278],[-103.465,19.378],[-103.492,19.459],[-103.584,19.525]]],["Unión de San Antonio",[[-101.931,21.032],[-102.045,21.033],[-102.119,21.012],[-102.168,21.075],[-102.27,21.132],[-102.28,21.154],[-102.247,21.204],[-102.151,21.252],[-102.108,21.227],[-102.106,21.185],[-102.086,21.205],[-102.043,21.205],[-102.044,21.225],[-101.973,21.23],[-101.897,21.208],[-101.88,21.153],[-101.785,21.193],[-101.797,21.156],[-101.88,21.103],[-101.931,21.032]]],["Unión de Tula",[[-104.325,19.831],[-104.404,19.916],[-104.376,19.962],[-104.379,19.992],[-104.354,19.981],[-104.307,20.051],[-104.316,20.074],[-104.279,20.084],[-104.268,20.122],[-104.238,20.109],[-104.213,20.023],[-104.162,19.989],[-104.164,19.956],[-104.173,19.939],[-104.214,19.938],[-104.246,19.865],[-104.323,19.877],[-104.325,19.831]]],["Valle de Guadalupe",[[-102.572,20.947],[-102.693,20.931],[-102.706,20.95],[-102.762,20.949],[-102.763,20.982],[-102.826,20.999],[-102.836,21.021],[-102.807,21.054],[-102.768,21.044],[-102.686,21.089],[-102.628,21.097],[-102.641,21.063],[-102.604,21.054],[-102.572,20.947]]],["Valle de Juárez",[[-102.991,19.604],[-103.012,19.74],[-102.966,19.796],[-102.972,19.941],[-102.883,19.906],[-102.899,19.854],[-102.942,19.806],[-102.937,19.67],[-102.991,19.604]]],["Villa Corona",[[-103.62,20.321],[-103.647,20.264],[-103.666,20.271],[-103.676,20.224],[-103.709,20.275],[-103.781,20.258],[-103.779,20.326],[-103.754,20.36],[-103.773,20.38],[-103.757,20.42],[-103.783,20.435],[-103.775,20.481],[-103.696,20.45],[-103.696,20.391],[-103.67,20.382],[-103.662,20.354],[-103.62,20.321]]],["Villa Guerrero",[[-103.706,21.866],[-103.741,21.911],[-103.77,21.91],[-103.812,21.872],[-103.843,21.901],[-103.842,21.974],[-103.807,22.006],[-103.814,22.104],[-103.751,22.094],[-103.672,22.037],[-103.61,22.036],[-103.566,22.07],[-103.501,22.042],[-103.488,21.967],[-103.544,21.846],[-103.62,21.816],[-103.659,21.828],[-103.669,21.867],[-103.706,21.866]]],["Villa Hidalgo",[[-102.448,21.661],[-102.459,21.628],[-102.549,21.601],[-102.589,21.54],[-102.622,21.526],[-102.693,21.587],[-102.733,21.596],[-102.775,21.688],[-102.699,21.728],[-102.61,21.723],[-102.516,21.713],[-102.448,21.661]]],["Villa Purificación",[[-104.609,19.568],[-104.692,19.614],[-104.718,19.596],[-104.792,19.624],[-104.834,19.676],[-104.925,19.69],[-104.932,19.658],[-105.013,19.702],[-105.066,19.767],[-105.028,19.793],[-104.969,19.925],[-104.901,19.969],[-104.825,19.933],[-104.782,20.009],[-104.695,20.046],[-104.629,20.024],[-104.602,19.958],[-104.564,19.921],[-104.567,19.893],[-104.506,19.843],[-104.485,19.862],[-104.467,19.832],[-104.504,19.678],[-104.527,19.677],[-104.539,19.625],[-104.575,19.624],[-104.609,19.568]]],["Yahualica de González Gallo",[[-102.806,20.994],[-102.866,20.952],[-102.881,20.978],[-103.022,21.001],[-103.033,21.023],[-103.107,21.048],[-103.087,21.063],[-103.061,21.152],[-103.003,21.177],[-102.929,21.159],[-102.869,21.203],[-102.825,21.151],[-102.815,21.1],[-102.837,21.025],[-102.806,20.994]]],["Zacoalco de Torres",[[-103.529,20.102],[-103.566,20.093],[-103.577,20.129],[-103.601,20.119],[-103.651,20.198],[-103.679,20.213],[-103.666,20.271],[-103.647,20.264],[-103.62,20.321],[-103.574,20.312],[-103.562,20.281],[-103.515,20.256],[-103.487,20.216],[-103.482,20.1],[-103.529,20.102]]],["Zapopan",[[-103.682,20.663],[-103.602,20.733],[-103.647,20.748],[-103.633,20.817],[-103.668,20.854],[-103.618,20.926],[-103.539,20.934],[-103.482,20.892],[-103.431,20.881],[-103.437,20.838],[-103.375,20.884],[-103.324,20.713],[-103.37,20.703],[-103.403,20.659],[-103.45,20.657],[-103.462,20.617],[-103.428,20.576],[-103.476,20.527],[-103.495,20.559],[-103.605,20.529],[-103.643,20.653],[-103.682,20.663]]],["Zapotiltic",[[-103.277,19.466],[-103.366,19.494],[-103.348,19.561],[-103.437,19.56],[-103.478,19.597],[-103.483,19.627],[-103.463,19.662],[-103.356,19.739],[-103.325,19.592],[-103.304,19.579],[-103.311,19.547],[-103.271,19.502],[-103.277,19.466]]],["Zapotitlán de Vadillo",[[-103.824,19.414],[-103.831,19.469],[-103.876,19.496],[-103.883,19.528],[-103.841,19.538],[-103.808,19.569],[-103.731,19.57],[-103.672,19.617],[-103.631,19.596],[-103.618,19.557],[-103.661,19.516],[-103.728,19.46],[-103.824,19.414]]],["Zapotlán del Rey",[[-102.881,20.365],[-102.931,20.352],[-103.047,20.393],[-103.063,20.375],[-103.107,20.378],[-103.118,20.432],[-103.071,20.47],[-102.992,20.464],[-102.95,20.481],[-102.937,20.51],[-102.879,20.505],[-102.815,20.48],[-102.8,20.434],[-102.85,20.389],[-102.886,20.38],[-102.881,20.365]]],["Zapotlanejo",[[-102.93,20.511],[-102.964,20.473],[-103.071,20.47],[-103.079,20.451],[-103.132,20.438],[-103.135,20.494],[-103.162,20.522],[-103.156,20.593],[-103.186,20.588],[-103.236,20.638],[-103.283,20.651],[-103.287,20.682],[-103.1,20.729],[-102.946,20.57],[-102.93,20.511]]]];
 
   // usuarios por municipio (GA4) mapeados al nombre del shapefile
-  var SEED_SITIOS = {"startDate": "2026-08-03", "series": [{"n": "Sitio 2 · ciudadanoregister.broxel.com", "v": [11963, 9474, 10331, 8397, 7633, 4563, 5131, 13820, 13774, 14696, 13889, 12952, 6781, 7080, 14461, 14081, 12152, 10199, 10023, 10553, 8420, 12096, 11272, 11556, 10750, 8351, 5947, 6127]}, {"n": "Sitio 1 · mitarjetajalisco.com", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 604, 2102, 1862, 2069, 1984, 1999, 3509, 3842, 3890, 3834, 3711, 3741]}]};
+  var SEED_SITIOS = null;
 
 
 
@@ -796,88 +921,18 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
   // Medios de PAGO (dimensión "Medio de la sesión", GA4 3-30 ago). rebote = 100 - interacción
   // plan:true  = medio definido en el plan de UTMs de Broxel
 
-  var HALLAZGOS = [
-    {p:'P1', h:'El tráfico pagado rebota entre 72 % y 83 %, contra 16 % del portal del gobierno y 28 % del orgánico.',
-             a:'Auditar la landing contra el anuncio: velocidad de carga en móvil, correspondencia del mensaje creativo y calidad del tráfico comprado.'},
-    {p:'P1', h:'Buena parte del tráfico social nunca sale de la app: Android Webview engancha la mitad que Chrome (34.7 % contra 63.7 %).',
-             a:'Probar el flujo completo dentro del navegador embebido de Facebook. Si el formulario se rompe ahí, la pauta social está pagando clics imposibles de convertir.'},
-    {p:'P2', h:'El portal del gobierno aporta el 47 % de las sesiones con 16 % de rebote, mejor que toda la pauta junta.',
-             a:'Antes de escalar presupuesto, revisar qué del recorrido del portal se puede replicar en la campaña: expectativa previa, mensaje o intención de trámite.'},
-    {p:'P2', h:'La campaña FY26Q4 está partida en dos filas por diferencia de mayúsculas, repartiendo 20,871 sesiones.',
-             a:'Acordar un estándar único con Visa y la agencia, y forzar minúsculas en todos los parámetros. Mientras tanto ningún reporte de campaña cuadra.'},
-    {p:'P3', h:'Meta llega con cinco nomenclaturas distintas y cada una aparece como una campaña separada.',
-             a:'Aplicar el plan de UTMs corregido y validar los links cargados en cada plataforma antes del siguiente flight.'},
-    {p:'P3', h:'Campañas de abril siguen generando sesiones en agosto: Jalisco_traffic_Abril_2026, Jalisco_AW_Abril_2026 y Paid_Jalisco_2026.',
-             a:'Localizar las piezas vivas de campañas anteriores (posts, correos, banners sin caducar) y darlas de baja para que no contaminen la lectura actual.'}
-  ];
+  var HALLAZGOS = [{"p": "P1", "h": "De 46,534 usuarios que llegaron por pauta, <b>46,379 (99.67 %) no pasaron de la landing</b>: 1.25 vistas por persona y 4 segundos de permanencia.", "a": "La landing es el cuello de botella, no la compra. Auditar velocidad en móvil, correspondencia entre el mensaje del anuncio y el de la página, y visibilidad del botón de continuar arriba del pliegue."}, {"p": "P1", "h": "17,313 usuarios (15.1 %) están fuera de Jalisco. Ciudad de México aporta 6,921, más que Tlaquepaque. La tarjeta es un programa estatal y esas personas no pueden darse de alta.", "a": "En Meta, desactivar la expansión automática de audiencia. En Google Ads, cambiar la configuración de ubicación de «presencia o interés» a «presencia». Es el ahorro más rápido y menos discutible del plan."}, {"p": "P1", "h": "Ningún medio se despega del resto: <span class=\"mono\">paid_social</span> 20.0 %, <span class=\"mono\">PaidSocialVideo</span> 18.4 %, <span class=\"mono\">cpc</span> 14.6 % de interacción, contra 83.6 % del portal del gobierno.", "a": "Cuando plataformas, agencias y creativos distintos dan el mismo resultado, la variable común es el destino. Probar A/B mandando la mitad del tráfico pagado directo a <span class=\"mono\">/1.1 PreRegistro</span> y saltando la landing."}, {"p": "P2", "h": "La campaña FY26Q4 está partida en dos filas por diferencia de mayúsculas y reparte 28,515 sesiones entre dos registros que ningún reporte suma solo.", "a": "Acordar con Visa un estándar único en minúsculas y forzarlo en la plantilla de UTMs. Mientras siga así, las cifras que se presentan a cliente están partidas a la mitad."}, {"p": "P2", "h": "Del plan de UTMs solo dos medios tienen volumen. <span class=\"mono\">display</span> registra 6 sesiones y <span class=\"mono\">paid_video</span> 1, cuando el plan contempla nueve creativos de display y cuatro de video.", "a": "Los links del plan no se cargaron en DV360 ni en la plataforma de video: ese tráfico entra con los medios de la agencia. Auditar el trafficking pieza por pieza y validar los UTMs antes de publicar el siguiente flight."}, {"p": "P2", "h": "Aparecen fuentes con nombre de persona: <span class=\"mono\">Corona / MEDIA_JAL</span> y <span class=\"mono\">Karen / MEDIA_JAL</span>. También <span class=\"mono\">fb / META</span>, <span class=\"mono\">ig / META</span> y <span class=\"mono\">Jalisco_aw / META</span>.", "a": "Bloquear la creación libre de UTMs. Un solo generador de links, con valores cerrados de source y medium, y revisión obligatoria antes de cargar en plataforma."}, {"p": "P3", "h": "5,779 usuarios (5.04 %) entran por navegador embebido de app. Android Webview engancha 28.2 % contra 58.4 % de Chrome, y Safari in-app apenas 21.0 %.", "a": "Recorrer el flujo completo desde dentro de la app de Facebook e Instagram, incluyendo la validación de celular. Si algo se rompe ahí, la pauta social está comprando clics que no pueden convertir por diseño."}, {"p": "P3", "h": "Campañas de abril siguen generando sesiones: <span class=\"mono\">Jalisco_traffic_Abril_2026</span>, <span class=\"mono\">Jalisco_AW_Abril_2026</span> y <span class=\"mono\">Paid_Jalisco_2026</span>.", "a": "Localizar las piezas vivas de flights anteriores —posts orgánicos, correos, banners sin caducar— y darlas de baja para que no contaminen la lectura del flight actual."}];
 
 
-  var MEDIOS_PAGO = [
-    {n:'PaidSocialVideo',             s:10619, p:8.68, e:18.51, plan:false},
-    {n:'cpc',                         s:10261, p:8.39, e:15.90, plan:true},
-    {n:'PaidSocialDisplay',           s:4819,  p:3.94, e:27.54, plan:false},
-    {n:'paid_social',                 s:5868,  p:4.80, e:23.16, plan:true},
-    {n:'DigitalDisplayNonPaidSocial', s:56,    p:0.05, e:10.71, plan:false},
-    {n:'DigitalDisplay',              s:26,    p:0.02, e:7.69,  plan:false},
-    {n:'Search',                      s:9,     p:0.01, e:22.22, plan:false},
-    {n:'META',                        s:7,     p:0.01, e:42.86, plan:false},
-    {n:'display',                     s:3,     p:0.00, e:66.67, plan:true},
-    {n:'MEDIA_JAL',                   s:2,     p:0.00, e:0,     plan:false},
-    {n:'cpv',                         s:1,     p:0.00, e:100,   plan:false},
-    {n:'paid_video',                  s:1,     p:0.00, e:100,   plan:true}
-  ];
+  var MEDIOS_PAGO = [{"n": "paid_social", "s": 17650, "p": 11.12, "e": 20.01, "plan": true}, {"n": "cpc", "s": 16997, "p": 10.7, "e": 14.6, "plan": true}, {"n": "PaidSocialVideo", "s": 10663, "p": 6.72, "e": 18.43, "plan": false}, {"n": "PaidSocialDisplay", "s": 4822, "p": 3.04, "e": 27.58, "plan": false}, {"n": "DigitalDisplay", "s": 67, "p": 0.04, "e": 8.96, "plan": false}, {"n": "DigitalDisplayNonPaidSocial", "s": 56, "p": 0.04, "e": 10.71, "plan": false}, {"n": "Search", "s": 9, "p": 0.01, "e": 22.22, "plan": false}, {"n": "META", "s": 7, "p": 0.0, "e": 42.86, "plan": false}, {"n": "display", "s": 6, "p": 0.0, "e": 66.67, "plan": true}, {"n": "MEDIA_JAL", "s": 2, "p": 0.0, "e": 0.0, "plan": false}, {"n": "cpv", "s": 1, "p": 0.0, "e": 100.0, "plan": false}, {"n": "paid_video", "s": 1, "p": 0.0, "e": 100.0, "plan": true}];
 
-  var FM = [
-    {n:'tarjetaunica.jalisco.gob.mx / referral', s:57558, p:47.04, e:83.96},
-    {n:'(direct) / (none)', s:11447, p:9.35, e:64.65},
-    {n:'google / cpc', s:10261, p:8.39, e:15.90},
-    {n:'ciudadanoregister.broxel.com / referral', s:9325, p:7.62, e:40.59},
-    {n:'Facebook / PaidSocialVideo', s:9232, p:7.55, e:18.10},
-    {n:'google / organic', s:9029, p:7.38, e:72.30},
-    {n:'facebook / paid_social', s:5386, p:4.40, e:23.19},
-    {n:'Facebook / PaidSocialDisplay', s:4819, p:3.94, e:27.54},
-    {n:'mitarjetajalisco.com / referral', s:1926, p:1.57, e:88.58},
-    {n:'TikTok / PaidSocialVideo', s:1424, p:1.16, e:20.65},
-    {n:'saas-onboarding.incodesmile.com / referral', s:1237, p:1.01, e:32.17},
-    {n:'(data not available)', s:570, p:0.47, e:34.21},
-    {n:'tiktok / paid_social', s:538, p:0.44, e:20.26},
-    {n:'bing / organic', s:374, p:0.31, e:62.03},
-    {n:'(not set)', s:143, p:0.12, e:2.80},
-    {n:'mx.search.yahoo.com / referral', s:65, p:0.05, e:72.31},
-    {n:'chatgpt.com / ai-assistant', s:56, p:0.05, e:71.43},
-    {n:'(not set) / DigitalDisplayNonPaidSocial', s:38, p:0.03, e:5.26},
-    {n:'lm.facebook.com / referral', s:20, p:0.02, e:75.00},
-    {n:'DVRegion / DigitalDisplayNonPaidSocial', s:17, p:0.01, e:17.65}
-  ];
+  var FM = [{"n": "tarjetaunica.jalisco.gob.mx / referral", "s": 66191, "p": 41.69, "e": 83.59}, {"n": "google / cpc", "s": 16997, "p": 10.7, "e": 14.6}, {"n": "facebook / paid_social", "s": 15384, "p": 9.69, "e": 20.64}, {"n": "(direct) / (none)", "s": 13563, "p": 8.54, "e": 63.96}, {"n": "google / organic", "s": 10980, "p": 6.92, "e": 71.62}, {"n": "ciudadanoregister.broxel.com / referral", "s": 10622, "p": 6.69, "e": 40.51}, {"n": "Facebook / PaidSocialVideo", "s": 9232, "p": 5.81, "e": 18.1}, {"n": "Facebook / PaidSocialDisplay", "s": 4822, "p": 3.04, "e": 27.58}, {"n": "mitarjetajalisco.com / referral", "s": 2465, "p": 1.55, "e": 88.28}, {"n": "tiktok / paid_social", "s": 2266, "p": 1.43, "e": 15.75}, {"n": "(data not available)", "s": 1742, "p": 1.1, "e": 17.22}, {"n": "saas-onboarding.incodesmile.com / referral", "s": 1538, "p": 0.97, "e": 29.78}, {"n": "TikTok / PaidSocialVideo", "s": 1431, "p": 0.9, "e": 20.55}, {"n": "(not set)", "s": 1273, "p": 0.8, "e": 0.39}, {"n": "bing / organic", "s": 456, "p": 0.29, "e": 62.94}, {"n": "mx.search.yahoo.com / referral", "s": 72, "p": 0.05, "e": 72.22}, {"n": "chatgpt.com / ai-assistant", "s": 69, "p": 0.04, "e": 68.12}, {"n": "Gridmedia / DigitalDisplay", "s": 42, "p": 0.03, "e": 14.29}, {"n": "(not set) / DigitalDisplayNonPaidSocial", "s": 38, "p": 0.02, "e": 5.26}, {"n": "DV360 / DigitalDisplay", "s": 25, "p": 0.02, "e": 0.0}];
 
-  var CAMPS = [
-    {n:'mx-fy26-broxel-visa-unicajalisco-awareness', s:4233, i:973,  e:22.99, t:'4 s',  g:'plan'},
-    {n:'mx-fy26-broxel-visa-unicajalisco',           s:3,    i:1,    e:33.33, t:'0 s',  g:'plan-mal'},
-    {n:'…FY26Q4-FY26MXVIKBRXLTARJETAUNICAJALISCO',   s:17422,i:3604, e:20.69, t:'4 s',  g:'visa'},
-    {n:'…FY26Q4-fy26mxvikbrxltarjetaunicajalisco',   s:3449, i:565,  e:16.38, t:'4 s',  g:'visa-dup'},
-    {n:'…FY26Q9-FY26MXVIKBRXLTARJETAUNICAJALISCO',   s:2052, i:222,  e:10.82, t:'0 s',  g:'visa'},
-    {n:'…FY26Q8-FY26MXVIKBRXLTARJETAUNICAJALISCO',   s:694,  i:136,  e:19.60, t:'0 s',  g:'visa'},
-    {n:'…FY26Q11-FY26MXVIKBRXLTARJETAUNICAJALISCO',  s:532,  i:58,   e:10.90, t:'0 s',  g:'visa'},
-    {n:'…FY26Q7-FY26MXVIKBRXLTARJETAUNICAJALISCO',   s:166,  i:34,   e:20.48, t:'1 s',  g:'visa'},
-    {n:'…FY26Q6-FY26MXVIKBRXLTARJETAUNICAJALISCO',   s:113,  i:28,   e:24.78, t:'9 s',  g:'visa'},
-    {n:'…FY26Q5-FY26MXVIKBRXLTARJETAUNICAJALISCO',   s:15,   i:5,    e:33.33, t:'30 s', g:'visa'},
-    {n:'Jalisco_traffic_Abril_2026',                 s:6,    i:2,    e:33.33, t:'10 s', g:'viejo'},
-    {n:'Paid_Jalisco_2026',                          s:2,    i:0,    e:0,     t:'0 s',  g:'viejo'},
-    {n:'Jalisco_AW_Abril_2026',                      s:1,    i:1,    e:100,   t:'0 s',  g:'viejo'},
-    {n:'fy26-mx-vik-brxl-tarjeta-unica-jalisco',     s:1,    i:1,    e:100,   t:'14 s', g:'viejo'}
-  ];
+  var CAMPS = [{"n": "mx-fy26-broxel-visa-unicajalisco-awareness", "s": 17400, "i": 3530, "e": 20.29, "t": "4 s", "g": "plan"}, {"n": "Mexico-…-FY26Q4-FY26MXVIKBRXLTARJETAUNICAJALISCO", "s": 17493, "i": 3612, "e": 20.65, "t": "4 s", "g": "visa"}, {"n": "Mexico-…-FY26Q4-fy26mxvikbrxltarjetaunicajalisco", "s": 11022, "i": 1471, "e": 13.35, "t": "2 s", "g": "visa-dup"}, {"n": "Mexico-…-FY26Q9-FY26MXVIKBRXLTARJETAUNICAJALISCO", "s": 2245, "i": 236, "e": 10.51, "t": "0 s", "g": "visa"}, {"n": "Mexico-…-FY26Q8-FY26MXVIKBRXLTARJETAUNICAJALISCO", "s": 714, "i": 138, "e": 19.33, "t": "0 s", "g": "visa"}, {"n": "Mexico-…-FY26Q11-FY26MXVIKBRXLTARJETAUNICAJALISCO", "s": 587, "i": 66, "e": 11.24, "t": "0 s", "g": "visa"}, {"n": "Mexico-…-FY26Q7-FY26MXVIKBRXLTARJETAUNICAJALISCO", "s": 172, "i": 34, "e": 19.77, "t": "1 s", "g": "visa"}, {"n": "Mexico-…-FY26Q6-FY26MXVIKBRXLTARJETAUNICAJALISCO", "s": 122, "i": 28, "e": 22.95, "t": "9 s", "g": "visa"}, {"n": "Mexico-…-FY26Q5-FY26MXVIKBRXLTARJETAUNICAJALISCO", "s": 15, "i": 5, "e": 33.33, "t": "30 s", "g": "visa"}, {"n": "Jalisco_traffic_Abril_2026", "s": 6, "i": 2, "e": 33.33, "t": "10 s", "g": "viejo"}, {"n": "mx-fy26-broxel-visa-unicajalisco", "s": 3, "i": 2, "e": 66.67, "t": "1 s", "g": "plan-mal"}, {"n": "Paid_Jalisco_2026", "s": 2, "i": 0, "e": 0.0, "t": "0 s", "g": "viejo"}, {"n": "Jalisco_AW_Abril_2026", "s": 1, "i": 1, "e": 100.0, "t": "0 s", "g": "viejo"}, {"n": "fy26-mx-vik-brxl-tarjeta-unica-jalisco", "s": 1, "i": 1, "e": 100.0, "t": "14 s", "g": "viejo"}];
   var UTM_PLAN_URLS = 22;
 
-  var NAVEGADORES = [
-    {n:'Chrome',           u:66123, p:74.38, e:63.37, t:'3 m 47 s'},
-    {n:'Safari',           u:15377, p:17.30, e:55.29, t:'2 m 41 s'},
-    {n:'Android Webview',  u:3286,  p:3.70,  e:34.38, t:'55 s'},
-    {n:'Edge',             u:2050, p:2.31, e:74.06, t:'7 m 08 s'},
-    {n:'Samsung Internet', u:829, p:0.93, e:53.01, t:'3 m 39 s'},
-    {n:'Firefox',          u:439, p:0.49, e:79.82, t:'5 m 31 s'},
-    {n:'Opera',            u:220, p:0.25, e:51.58, t:'4 m 15 s'}
-  ];
-  var USUARIOS_TOT = 88902, USUARIOS_NUEVOS = 75084;
+  var NAVEGADORES = [{"n": "Chrome", "u": 84939, "p": 74.04, "e": 58.4, "t": "3 m 22 s"}, {"n": "Safari", "u": 19781, "p": 17.24, "e": 50.72, "t": "2 m 26 s"}, {"n": "Android Webview", "u": 5453, "p": 4.75, "e": 28.18, "t": "39 s"}, {"n": "Edge", "u": 2369, "p": 2.07, "e": 72.94, "t": "7 m 09 s"}, {"n": "Samsung Internet", "u": 1029, "p": 0.9, "e": 49.25, "t": "3 m 23 s"}, {"n": "Firefox", "u": 505, "p": 0.44, "e": 77.72, "t": "5 m 29 s"}, {"n": "Safari (in-app)", "u": 326, "p": 0.28, "e": 21.04, "t": "37 s"}, {"n": "Opera", "u": 260, "p": 0.23, "e": 49.93, "t": "4 m 20 s"}];
+  var USUARIOS_TOT = 114666, USUARIOS_NUEVOS = 100412;
 
   var MUNI_MAP = {
     'Guadalajara':'Guadalajara','Zapopan':'Zapopan','Tlaquepaque':'Tlaquepaque','Tonalá':'Tonalá',
@@ -889,43 +944,20 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
   };
 
   var JAL_CONTORNO = [[22.75,-103.72],[22.42,-103.05],[22.05,-102.55],[21.8,-102.05],[21.55,-101.62],[21.15,-101.52],[20.8,-101.6],[20.5,-101.78],[20.32,-102.05],[20.12,-102.2],[20.02,-102.55],[19.72,-102.68],[19.45,-102.85],[19.2,-103.05],[19.02,-103.42],[18.92,-103.78],[19.1,-104.18],[19.28,-104.62],[19.62,-104.98],[20.05,-105.22],[20.45,-105.38],[20.78,-105.48],[21.08,-105.32],[21.32,-105.05],[21.52,-104.62],[21.38,-104.22],[21.62,-103.95],[21.98,-103.88],[22.35,-103.68]];
-  var MUNI = [{"n": "Guadalajara", "u": 26079, "lat": 20.677, "lon": -103.347}, {"n": "Zapopan", "u": 14015, "lat": 20.721, "lon": -103.392, "nota": "incluye Tesistán"}, {"n": "Tlaquepaque", "u": 6133, "lat": 20.641, "lon": -103.312}, {"n": "Tonalá", "u": 6003, "lat": 20.624, "lon": -103.234, "nota": "incluye Coyula"}, {"n": "Tlajomulco de Zúñiga", "u": 4260, "lat": 20.474, "lon": -103.446, "nota": "incluye Hacienda Santa Fe, San Agustín, Lomas del Sur y San Sebastián el Grande"}, {"n": "El Salto", "u": 1613, "lat": 20.518, "lon": -103.18, "nota": "incluye San José del Castillo y San José el Quince"}, {"n": "Zapotlán el Grande", "u": 1053, "lat": 19.7, "lon": -103.462, "nota": "Ciudad Guzmán"}, {"n": "Puerto Vallarta", "u": 952, "lat": 20.653, "lon": -105.225}, {"n": "Tepatitlán de Morelos", "u": 719, "lat": 20.817, "lon": -102.765}, {"n": "Lagos de Moreno", "u": 603, "lat": 21.357, "lon": -101.928}, {"n": "Ocotlán", "u": 431, "lat": 20.35, "lon": -102.774}, {"n": "Arandas", "u": 301, "lat": 20.706, "lon": -102.335}, {"n": "San Juan de los Lagos", "u": 274, "lat": 21.248, "lon": -102.331}, {"n": "Degollado", "u": 249, "lat": 20.463, "lon": -102.15}, {"n": "Autlán de Navarro", "u": 213, "lat": 19.77, "lon": -104.367}];
-  var FUERA = [["Ciudad de México", 4969], ["Puebla", 1015], ["León", 622], ["Querétaro", 545], ["Acapulco", 426], ["Monterrey", 407], ["Morelia", 402], ["Cuernavaca", 395], ["García", 387], ["Calvillo", 357]];
+  var MUNI = [{"n": "Guadalajara", "u": 35368, "lat": 20.677, "lon": -103.347}, {"n": "Zapopan", "u": 18872, "lat": 20.721, "lon": -103.392, "nota": "incluye Tesistán"}, {"n": "Tlaquepaque", "u": 8265, "lat": 20.641, "lon": -103.312}, {"n": "Tonalá", "u": 8091, "lat": 20.624, "lon": -103.234, "nota": "incluye Coyula"}, {"n": "Tlajomulco de Zúñiga", "u": 5524, "lat": 20.474, "lon": -103.446, "nota": "incluye Hacienda Santa Fe, San Agustín y Lomas del Sur"}, {"n": "El Salto", "u": 2155, "lat": 20.518, "lon": -103.18, "nota": "incluye San José del Castillo y San José el Quince"}, {"n": "Zapotlán el Grande", "u": 1544, "lat": 19.7, "lon": -103.462, "nota": "Ciudad Guzmán"}, {"n": "Puerto Vallarta", "u": 1441, "lat": 20.653, "lon": -105.225}, {"n": "Tepatitlán de Morelos", "u": 995, "lat": 20.817, "lon": -102.765}, {"n": "Lagos de Moreno", "u": 905, "lat": 21.357, "lon": -101.928}, {"n": "Ocotlán", "u": 687, "lat": 20.35, "lon": -102.774}, {"n": "San Juan de los Lagos", "u": 477, "lat": 21.248, "lon": -102.331}, {"n": "Arandas", "u": 458, "lat": 20.706, "lon": -102.335}, {"n": "Degollado", "u": 330, "lat": 20.463, "lon": -102.15}, {"n": "Autlán de Navarro", "u": 322, "lat": 19.77, "lon": -104.367}];
+  var FUERA = [["Ciudad de México", 6921], ["Puebla", 1487], ["León", 968], ["Querétaro", 852], ["Monterrey", 672], ["Morelia", 608], ["Cuernavaca", 509], ["García (NL)", 509], ["Calvillo (Ags)", 475], ["Acapulco", 460]];
 
-  var PASOS = [
-    {ic:'🎯', l:'1 · Landing de campaña', u:29403, v:36314, t:'4 s', p:'/lp/campana-visa/', cls:'s1'},
-    {ic:'📝', l:'2 · Inicio de registro', u:43703, v:105987, t:'1 m 58 s', p:'/1.1 PreRegistro - Legales', cls:''},
-    {ic:'💳', l:'3 · Registro finalizado', u:18740, v:33469, t:'58 s', p:'/8.0 Finalizado - Inicio', cls:''},
-    {ic:'🔎', l:'4 · Validando información', u:2345, v:5250, t:'11 s', p:'/8.2 Finalizado - Validando', cls:'s4'}
-  ];
+  var PASOS = [{"ic": "🎯", "l": "1 · Landing de campaña", "u": 46583, "v": 58427, "t": "4 s", "p": "/lp/campana-visa/", "cls": "s1"}, {"ic": "📝", "l": "2 · Inicio de registro", "u": 49694, "v": 121671, "t": "1 m 58 s", "p": "/1.1 PreRegistro - Legales", "cls": ""}, {"ic": "💳", "l": "3 · Registro finalizado", "u": 21465, "v": 38550, "t": "58 s", "p": "/8.0 Finalizado - Inicio", "cls": ""}, {"ic": "🔎", "l": "4 · Validando información", "u": 2691, "v": 6003, "t": "11 s", "p": "/8.2 Finalizado - Validando", "cls": "s4"}];
 
-  var STEPS = [
-    {n:'/lp/campana-visa/', u:29403, v:36314, vu:'1.24', t:'4 s'},
-    {n:'/0.0 Redirect Intermedio', u:26271, v:108793, vu:'4.14', t:'28 s'},
-    {n:'/1.1 PreRegistro - Legales', u:43703, v:105987, vu:'2.43', t:'1 m 58 s'},
-    {n:'/3.1 Datos Personales', u:17363, v:21894, vu:'1.26', t:'2 m 01 s'},
-    {n:'/4.1 CURP - Completa', u:15145, v:36592, vu:'2.42', t:'1 m 30 s'},
-    {n:'/7.0 Dependientes - Inicio', u:8790, v:20535, vu:'2.34', t:'4 m 22 s'},
-    {n:'/7.1 Dependientes - Inicio', u:16667, v:25980, vu:'1.56', t:'33 s'},
-    {n:'/8.0 Finalizado - Inicio', u:18740, v:33469, vu:'1.79', t:'58 s'},
-    {n:'/8.2 Finalizado - Validando', u:2345, v:5250, vu:'2.24', t:'11 s'}
-  ];
+  var STEPS = [{"n": "/lp/campana-visa/", "u": 46583, "v": 58427, "vu": "1.25", "t": "4 s"}, {"n": "/1.1 PreRegistro - Legales", "u": 49694, "v": 121671, "vu": "2.45", "t": "1 m 58 s"}, {"n": "/0.0 Redirect Intermedio", "u": 29917, "v": 123044, "vu": "4.11", "t": "25 s"}, {"n": "/Modular/…/Login", "u": 26187, "v": 66387, "vu": "2.54", "t": "1 m 30 s"}, {"n": "/8.0 Finalizado - Inicio", "u": 21465, "v": 38550, "vu": "1.80", "t": "58 s"}, {"n": "/3.1 Datos Personales", "u": 20219, "v": 25643, "vu": "1.27", "t": "2 m 01 s"}, {"n": "/7.1 Dependientes - Inicio", "u": 19267, "v": 30544, "vu": "1.59", "t": "33 s"}, {"n": "/4.1 CURP - Completa", "u": 17652, "v": 42356, "vu": "2.40", "t": "1 m 29 s"}, {"n": "/5.1 Domicilio - Ingresar", "u": 15550, "v": 18585, "vu": "1.20", "t": "2 m 27 s"}, {"n": "/", "u": 13205, "v": 26058, "vu": "1.97", "t": "37 s"}, {"n": "/7.3 Dependientes - Guardado", "u": 10475, "v": 14045, "vu": "1.34", "t": "4 s"}, {"n": "/7.0 Dependientes - Inicio", "u": 10206, "v": 23813, "vu": "2.33", "t": "4 m 20 s"}, {"n": "/1.0 PreRegistro - Inicio", "u": 10157, "v": 16554, "vu": "1.63", "t": "39 s"}, {"n": "/8.2 Finalizado - Validando", "u": 2691, "v": 6003, "vu": "2.23", "t": "11 s"}, {"n": "/8.3 Finalizado - Exito", "u": 1404, "v": 2718, "vu": "1.94", "t": "11 s"}];
 
-  var CHANS = [
-    {n:'Referral', s:70936, p:57.97, e:77.28, t:'4 m 05 s', c:'#1D2332', g:'direct'},
-    {n:'Paid Social', s:21632, p:17.68, e:21.83, t:'4 s', c:'#FF8300', g:'paid'},
-    {n:'Direct', s:11447, p:9.35, e:64.65, t:'1 m 21 s', c:'#6B7280', g:'direct'},
-    {n:'Paid Search', s:10261, p:8.39, e:15.90, t:'2 s', c:'#FFB547', g:'paid'},
-    {n:'Organic Search', s:9487, p:7.75, e:72.29, t:'29 s', c:'#0F766E', g:'organic'},
-    {n:'Unassigned', s:237, p:0.19, e:6.33, t:'16 m 32 s', c:'#DC2626', g:'direct'},
-    {n:'Cross-network', s:570, p:0.47, e:34.21, t:'1 s', c:'#9A3412', g:'paid'}
-  ];
+  var CHANS = [{"n": "Referral", "s": 82762, "p": 52.17, "e": 76.32, "t": "4 m 00 s", "c": "#1D2332", "g": "direct"}, {"n": "Paid Social", "s": 33463, "p": 21.09, "e": 20.62, "t": "4 s", "c": "#FF8300", "g": "paid"}, {"n": "Paid Search", "s": 16996, "p": 10.71, "e": 14.6, "t": "2 s", "c": "#FFB547", "g": "paid"}, {"n": "Direct", "s": 13561, "p": 8.55, "e": 63.97, "t": "1 m 18 s", "c": "#6B7280", "g": "direct"}, {"n": "Organic Search", "s": 11477, "p": 7.23, "e": 71.64, "t": "29 s", "c": "#0F766E", "g": "organic"}, {"n": "Cross-network", "s": 1722, "p": 1.09, "e": 17.42, "t": "1 s", "c": "#9A3412", "g": "paid"}, {"n": "Unassigned", "s": 1392, "p": 0.88, "e": 1.44, "t": "3 m 56 s", "c": "#DC2626", "g": "direct"}, {"n": "AI Assistant", "s": 76, "p": 0.05, "e": 67.11, "t": "21 s", "c": "#7C3AED", "g": "organic"}, {"n": "Organic Social", "s": 69, "p": 0.04, "e": 57.97, "t": "1 m 44 s", "c": "#14B8A6", "g": "organic"}, {"n": "Organic Video", "s": 8, "p": 0.01, "e": 100.0, "t": "21 s", "c": "#0891B2", "g": "organic"}, {"n": "Display", "s": 6, "p": 0.0, "e": 66.67, "t": "12 s", "c": "#F59E0B", "g": "paid"}];
 
   var GRUPOS = {
     all:{label:'todo el tráfico'}, paid:{label:'tráfico pagado'},
     organic:{label:'tráfico orgánico'}, direct:{label:'directo y referido'}
   };
-  var filtro = 'all', TOTAL_GA4 = 122368;
+  var filtro = 'all', TOTAL_GA4 = 158778;
 
   function grupoDe(nombre){
     var p = String(nombre).split('/');
@@ -959,9 +991,11 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
   })();
 
   // ---------- pantallas ----------
-  var maxU = Math.max.apply(null, STEPS.map(function(s){ return s.u; }));
-  var tbs = document.getElementById('steps');
-  (function(){
+  function pintaSteps(){
+    var maxU = Math.max.apply(null, STEPS.map(function(s){ return s.u; }));
+    var tbs = document.getElementById('steps');
+    if (!tbs) return;
+    tbs.innerHTML = '';
     var RE_EMB = /campana-visa|1\.1 PreRegistro|8\.0 Finalizado|8\.2 Finalizado/;
     var embudo = STEPS.filter(function(s){ return RE_EMB.test(s.n); });
     var resto  = STEPS.filter(function(s){ return !RE_EMB.test(s.n); });
@@ -984,13 +1018,14 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
       tbs.appendChild(tr);
     }
 
-    grupo('Pasos del embudo principal');
-    embudo.forEach(function(s){ fila(s, true); });
-    grupo('Otras pantallas del flujo');
-    resto.forEach(function(s){ fila(s, false); });
-  })();
+    if (embudo.length){ grupo('Pasos del embudo principal'); embudo.forEach(function(s){ fila(s, true); }); }
+    if (resto.length){ grupo(embudo.length ? 'Otras pantallas del flujo' : 'Páginas del sitio'); resto.forEach(function(s){ fila(s, false); }); }
+  }
+  pintaSteps();
 
   // ---------- canales, bloque oscuro y dona ----------
+  var META_ACT = null;
+
   function visibles(){
     return filtro === 'all' ? CHANS : CHANS.filter(function(c){ return c.g === filtro; });
   }
@@ -1032,16 +1067,18 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
 
     document.getElementById('kpi-ses').textContent = nf(tot);
     document.getElementById('kpi-ses-d').textContent = filtro === 'all'
-      ? '61.96 % con interacción · 2 m 35 s de media'
+      ? (META_ACT ? META_ACT.inter + ' con interacción · ' + META_ACT.tiempo + ' de media'
+                  : '56.94 % con interacción · 2 m 17 s de media')
       : vis.length + (vis.length === 1 ? ' canal' : ' canales') + ' · ' + pf(tot/TOTAL_GA4*100) + ' del total';
 
     // rebote ponderado por sesiones del grupo filtrado
     var kr = document.getElementById('kpi-reb'), krd = document.getElementById('kpi-reb-d');
     if (kr){
       if (filtro === 'all'){
-        kr.textContent = '38,04%';
+        kr.textContent = META_ACT ? META_ACT.rebote : '43.06 %';
         kr.style.color = '';
-        krd.textContent = 'Complemento del 61.96 % de interacción · dato de GA4';
+        krd.textContent = 'Complemento del ' + (META_ACT ? META_ACT.inter : '56.94 %') +
+          ' de interacción · dato de GA4';
       } else {
         var ss = vis.reduce(function(t,c){ return t + c.s; }, 0);
         var reb = ss ? vis.reduce(function(t,c){ return t + (100-c.e)*c.s; }, 0) / ss : 0;
@@ -1052,7 +1089,7 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
     }
 
     document.getElementById('fb-state').textContent =
-      nf(tot) + ' sesiones · ' + (filtro === 'all' ? '7 canales' :
+      nf(tot) + ' sesiones · ' + (filtro === 'all' ? CHANS.length + ' canales' :
         vis.length + (vis.length === 1 ? ' canal' : ' canales') + ' · ' + GRUPOS[filtro].label);
     var dbe = document.getElementById('db-eye');
     if (dbe) dbe.textContent =
@@ -1849,9 +1886,11 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
 
 
   // ---------- deep dive de medios de pago ----------
-  (function renderPago(){
+  function renderPago(){
     var tb = document.getElementById('pgtbl');
     if (!tb || typeof MEDIOS_PAGO === 'undefined') return;
+    var tb2pre = document.getElementById('pgtbl2');
+    tb.innerHTML = ''; if (tb2pre) tb2pre.innerHTML = '';
     var tot = MEDIOS_PAGO.reduce(function(t,m){ return t + m.s; }, 0);
     var reb = MEDIOS_PAGO.reduce(function(t,m){ return t + (100-m.e)*m.s; }, 0) / tot;
     var plan = MEDIOS_PAGO.filter(function(m){ return m.plan; });
@@ -1859,7 +1898,7 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
 
     var set=function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
     set('pg-ses', nf(tot));
-    set('pg-ses-d', pf(tot/122368*100)+' del total de sesiones del sitio');
+    set('pg-ses-d', pf(tot/TOTAL_GA4*100)+' del total de sesiones del sitio');
     set('pg-reb', pf(reb));
     set('pg-plan', plan.length + ' de ' + MEDIOS_PAGO.length);
     set('pg-plan-d', nf(planSes)+' sesiones con los medios de tu plan');
@@ -1879,13 +1918,15 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
         '<td class="lft"><span class="pbar" style="width:130px"><i style="width:'+(m.s/mx*100).toFixed(1)+'%;background:'+col+'"></i></span></td>';
       (m.plan ? tb : tb2).appendChild(tr);
     });
-  })();
+  }
+  renderPago();
 
 
   // ---------- hallazgos ----------
-  (function renderHall(){
+  function renderHall(){
     var tb = document.getElementById('hall');
     if (!tb || typeof HALLAZGOS === 'undefined') return;
+    tb.innerHTML = '';
     var COL = {P1:'#DC2626', P2:'#FF8300', P3:'#9CA3AF'};
     HALLAZGOS.forEach(function(x){
       var tr = document.createElement('tr');
@@ -1895,7 +1936,10 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
         '<td class="lft" style="color:var(--gray);">'+x.a+'</td>';
       tb.appendChild(tr);
     });
-  })();
+  }
+  renderHall();
+
+  var pintaMedios = renderPago, pintaHallazgos = renderHall;
 
   renderCanales();
   drawSankey();
@@ -1915,6 +1959,96 @@ var SEED = {startDate:'2026-08-01', bounce:[30.88, 29.18, 23.79, 26.46, 26.55, 2
     buildBR();
     renderDaily();
   }
+
+  /* ═══════ switcher de propiedad ═══════ */
+  var VISTA = 'boom';
+  var DATOS_PROP = {
+    boom:   { chans: [{"n": "Referral", "s": 82762, "p": 52.12, "e": 76.32, "t": "4 m 00 s", "c": "#1D2332", "g": "direct"}, {"n": "Paid Social", "s": 33463, "p": 21.08, "e": 20.62, "t": "4 s", "c": "#FF8300", "g": "paid"}, {"n": "Paid Search", "s": 16996, "p": 10.7, "e": 14.6, "t": "2 s", "c": "#FFB547", "g": "paid"}, {"n": "Direct", "s": 13561, "p": 8.54, "e": 63.97, "t": "1 m 18 s", "c": "#6B7280", "g": "direct"}, {"n": "Organic Search", "s": 11477, "p": 7.23, "e": 71.64, "t": "29 s", "c": "#0F766E", "g": "organic"}, {"n": "Cross-network", "s": 1722, "p": 1.08, "e": 17.42, "t": "1 s", "c": "#9A3412", "g": "paid"}, {"n": "Unassigned", "s": 1392, "p": 0.88, "e": 1.44, "t": "3 m 56 s", "c": "#DC2626", "g": "direct"}, {"n": "AI Assistant", "s": 76, "p": 0.05, "e": 67.11, "t": "21 s", "c": "#7C3AED", "g": "organic"}, {"n": "Organic Social", "s": 69, "p": 0.04, "e": 57.97, "t": "1 m 44 s", "c": "#14B8A6", "g": "organic"}, {"n": "Organic Video", "s": 8, "p": 0.01, "e": 100.0, "t": "21 s", "c": "#0891B2", "g": "organic"}, {"n": "Display", "s": 6, "p": 0.0, "e": 66.67, "t": "12 s", "c": "#F59E0B", "g": "paid"}],
+               seed: {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26.68, 28.14, 26.89, 28.82, 27.95, 23.85, 23.34, 23.06, 24.47, 25.2, 26.21, 25.01, 23.08, 23.04, 29.5, 44.59, 44.04, 42.73, 47.1, 41.74, 51.44, 50.5, 52.64, 56.13, 60.22, 59.64, 48.5, 54.59, 55.06, 52.55, 56.84, 66.6], "series": [{"n": "Referral", "v": [1796, 1363, 2944, 2452, 2580, 2226, 1812, 963, 1026, 2757, 2702, 2748, 2697, 2473, 1350, 1466, 2855, 2718, 2817, 2418, 2310, 2509, 1899, 2898, 2566, 2558, 2456, 2030, 1485, 1380, 2705, 2049, 2137, 2332, 1904, 1172]}, {"n": "Paid Social", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 529, 1914, 1682, 1860, 1817, 1807, 1835, 1691, 1574, 1609, 1598, 1756, 1699, 1881, 2062, 1997, 1962, 2191]}, {"n": "Paid Search", "v": [4, 5, 6, 14, 6, 5, 10, 7, 3, 5, 9, 7, 9, 7, 11, 4, 7, 8, 4, 9, 0, 6, 0, 7, 1152, 1535, 1691, 1650, 1552, 1411, 1091, 1077, 1121, 1113, 1242, 1813]}, {"n": "Direct", "v": [246, 231, 470, 413, 442, 360, 316, 182, 216, 431, 417, 495, 391, 454, 213, 206, 487, 411, 420, 389, 359, 293, 230, 429, 457, 426, 424, 353, 228, 241, 394, 367, 417, 461, 410, 268]}, {"n": "Organic Search", "v": [224, 176, 371, 322, 336, 283, 261, 114, 147, 408, 352, 351, 365, 356, 159, 219, 421, 413, 431, 429, 341, 235, 162, 450, 447, 458, 398, 323, 187, 184, 389, 384, 370, 436, 417, 193]}, {"n": "Cross-network", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 73, 92, 87, 99, 92, 73, 53, 60, 57, 76, 69, 102]}, {"n": "Unassigned", "v": [3, 0, 6, 5, 6, 4, 3, 4, 0, 5, 4, 7, 8, 7, 3, 0, 0, 5, 3, 6, 4, 0, 0, 8, 37, 22, 26, 16, 22, 14, 13, 16, 11, 15, 8, 22]}]},
+               steps: [{"n": "/lp/campana-visa/", "u": 46583, "v": 58427, "vu": "1,25", "t": "4 s"}, {"n": "/1.1 PreRegistro - Legales", "u": 49694, "v": 121671, "vu": "2,45", "t": "1 m 58 s"}, {"n": "/0.0 Redirect Intermedio", "u": 29917, "v": 123044, "vu": "4,11", "t": "25 s"}, {"n": "/Modular/…/Login", "u": 26187, "v": 66387, "vu": "2,54", "t": "1 m 30 s"}, {"n": "/8.0 Finalizado - Inicio", "u": 21465, "v": 38550, "vu": "1,80", "t": "58 s"}, {"n": "/3.1 Datos Personales", "u": 20219, "v": 25643, "vu": "1,27", "t": "2 m 01 s"}, {"n": "/7.1 Dependientes - Inicio", "u": 19267, "v": 30544, "vu": "1,59", "t": "33 s"}, {"n": "/4.1 CURP - Completa", "u": 17652, "v": 42356, "vu": "2,40", "t": "1 m 29 s"}, {"n": "/5.1 Domicilio - Ingresar", "u": 15550, "v": 18585, "vu": "1,20", "t": "2 m 27 s"}, {"n": "/", "u": 13205, "v": 26058, "vu": "1,97", "t": "37 s"}, {"n": "/7.3 Dependientes - Guardado", "u": 10475, "v": 14045, "vu": "1,34", "t": "4 s"}, {"n": "/7.0 Dependientes - Inicio", "u": 10206, "v": 23813, "vu": "2,33", "t": "4 m 20 s"}, {"n": "/1.0 PreRegistro - Inicio", "u": 10157, "v": 16554, "vu": "1,63", "t": "39 s"}, {"n": "/8.2 Finalizado - Validando", "u": 2691, "v": 6003, "vu": "2,23", "t": "11 s"}, {"n": "/8.3 Finalizado - Exito", "u": 1404, "v": 2718, "vu": "1,94", "t": "11 s"}],
+               medios: [{"n": "paid_social", "s": 17650, "p": 11.12, "e": 20.01, "plan": true}, {"n": "cpc", "s": 16997, "p": 10.7, "e": 14.6, "plan": true}, {"n": "PaidSocialVideo", "s": 10663, "p": 6.72, "e": 18.43, "plan": false}, {"n": "PaidSocialDisplay", "s": 4822, "p": 3.04, "e": 27.58, "plan": false}, {"n": "DigitalDisplay", "s": 67, "p": 0.04, "e": 8.96, "plan": false}, {"n": "DigitalDisplayNonPaidSocial", "s": 56, "p": 0.04, "e": 10.71, "plan": false}, {"n": "Search", "s": 9, "p": 0.01, "e": 22.22, "plan": false}, {"n": "META", "s": 7, "p": 0.0, "e": 42.86, "plan": false}, {"n": "display", "s": 6, "p": 0.0, "e": 66.67, "plan": true}, {"n": "MEDIA_JAL", "s": 2, "p": 0.0, "e": 0.0, "plan": false}, {"n": "cpv", "s": 1, "p": 0.0, "e": 100.0, "plan": false}, {"n": "paid_video", "s": 1, "p": 0.0, "e": 100.0, "plan": true}],
+               hall: HALLAZGOS,
+               pasosTag: 'Totales · todo el tráfico' },
+    mtj:    { chans: [{"n": "Direct", "s": 9897, "p": 88.16, "e": 65.78, "t": "32 s", "c": "#6B7280", "g": "direct"}, {"n": "Organic Search", "s": 448, "p": 3.99, "e": 48.21, "t": "24 s", "c": "#0F766E", "g": "organic"}, {"n": "Paid Search", "s": 352, "p": 3.14, "e": 28.41, "t": "8 s", "c": "#FFB547", "g": "paid"}, {"n": "Referral", "s": 342, "p": 3.05, "e": 84.8, "t": "20 s", "c": "#1D2332", "g": "direct"}, {"n": "Unassigned", "s": 84, "p": 0.75, "e": 1.19, "t": "20 s", "c": "#DC2626", "g": "direct"}, {"n": "Email", "s": 36, "p": 0.32, "e": 75.0, "t": "10 s", "c": "#7C3AED", "g": "direct"}, {"n": "Organic Social", "s": 18, "p": 0.16, "e": 38.89, "t": "1 s", "c": "#14B8A6", "g": "organic"}, {"n": "Paid Social", "s": 11, "p": 0.1, "e": 45.45, "t": "0 s", "c": "#FF8300", "g": "paid"}, {"n": "Cross-network", "s": 7, "p": 0.06, "e": 0.0, "t": "0 s", "c": "#9A3412", "g": "paid"}, {"n": "AI Assistant", "s": 1, "p": 0.01, "e": 0.0, "t": "0 s", "c": "#7C3AED", "g": "organic"}],
+               seed: {"startDate": "2026-08-01", "bounce": [36.24, 37.31, 34.69, 44.82, 34.32, 35.42, 39.55, 39.5, 39.23, 33.99, 34.34, 31.66, 33.33, 33.55, 27.27, 30.39, 31.25, 28.65, 36.26, 35.88, 31.8, 25.11, 28.95, 31.56, 46.27, 41.41, 37.87, 35.67, 31.88, 30.77, 31.79, 40.48, 30.99, 34.67, 33.44, 33.94], "series": [{"n": "Direct", "v": [126, 111, 327, 370, 300, 254, 221, 109, 111, 352, 327, 343, 324, 273, 134, 166, 382, 347, 408, 310, 241, 205, 143, 346, 496, 448, 331, 280, 148, 142, 283, 303, 281, 383, 291, 143]}, {"n": "Organic Search", "v": [11, 10, 14, 25, 16, 8, 19, 1, 7, 26, 24, 25, 16, 15, 4, 4, 25, 17, 13, 14, 8, 5, 4, 16, 16, 22, 6, 9, 3, 3, 15, 9, 2, 15, 11, 6]}, {"n": "Paid Search", "v": [9, 13, 23, 18, 15, 10, 21, 6, 7, 15, 4, 8, 17, 15, 9, 6, 10, 8, 11, 9, 5, 2, 3, 6, 7, 9, 16, 10, 6, 3, 8, 9, 8, 7, 10, 7]}, {"n": "Referral", "v": [3, 0, 6, 1, 6, 5, 7, 2, 5, 10, 9, 21, 18, 10, 6, 5, 15, 10, 11, 5, 7, 6, 2, 8, 15, 15, 13, 15, 3, 7, 17, 13, 21, 19, 14, 7]}, {"n": "Email", "v": [0, 0, 19, 1, 0, 11, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]}, {"n": "Unassigned", "v": [0, 0, 3, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 2, 1, 2, 0, 1, 0, 0, 2, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 2]}]},
+               steps: [{"n": "/ayuda/", "u": 4982, "v": 10423, "vu": "2,09", "t": "1 m 03 s"}, {"n": "/legales/avisodeprivacidad.html", "u": 2443, "v": 5085, "vu": "2,08", "t": "0 s"}, {"n": "/aviso-de-privacidad/", "u": 2706, "v": 3851, "vu": "1,42", "t": "6 s"}, {"n": "/aviso-de-privacidad/broxel/", "u": 522, "v": 676, "vu": "1,30", "t": "21 s"}, {"n": "/lp/mkt/", "u": 35, "v": 259, "vu": "7,40", "t": "0 s"}, {"n": "/iniciar-chat/", "u": 136, "v": 236, "vu": "1,74", "t": "39 s"}, {"n": "/", "u": 31, "v": 76, "vu": "2,45", "t": "4 s"}, {"n": "/comenzar/", "u": 3, "v": 20, "vu": "6,67", "t": "14 s"}, {"n": "/folio/", "u": 1, "v": 1, "vu": "1,00", "t": "9 s"}, {"n": "/usos/", "u": 1, "v": 1, "vu": "1,00", "t": "2 s"}],
+               medios: [{"n": "cpc", "s": 352, "p": 3.14, "e": 28.41, "plan": true}, {"n": "paid_social", "s": 7, "p": 0.06, "e": 42.86, "plan": true}, {"n": "PaidSocialDisplay", "s": 2, "p": 0.02, "e": 100.0, "plan": false}, {"n": "PaidSocialVideo", "s": 2, "p": 0.02, "e": 0.0, "plan": false}, {"n": "DigitalDisplay", "s": 2, "p": 0.02, "e": 0.0, "plan": false}],
+               hall: [{"p": "P1", "h": "352 sesiones de <span class=\"mono\">google / cpc</span> llegan a un sitio de soporte, con 28.41 % de interacción y 8 segundos de permanencia.", "a": "Revisar si son términos de marca. Si lo son, medir cuánto de ese tráfico habría llegado por directo antes de seguir pagándolo: es el caso clásico de canibalización de marca."}, {"p": "P2", "h": "El 75 % de las vistas del sitio son <span class=\"mono\">/ayuda/</span> y avisos de privacidad. Nadie llega aquí a sacar una tarjeta.", "a": "No pautar adquisición contra este dominio. Si aparece en un plan de medios, es un error de trafficking: el destino correcto es la landing de campaña."}, {"p": "P3", "h": "El UTM <span class=\"mono\">vafvefe / email</span> sigue vivo con 11 sesiones y ensucia el reporte de correo.", "a": "Localizar la pieza que lo trae y corregir el enlace. Mismo remedio que en la otra propiedad: un solo generador de UTMs con valores cerrados."}],
+               pasosTag: 'Páginas del sitio de soporte' },
+    juntos: { chans: [{"n": "Referral", "s": 83104, "p": 48.88, "e": 76.35, "t": "3 m 59 s", "c": "#1D2332", "g": "direct"}, {"n": "Paid Social", "s": 33474, "p": 19.69, "e": 20.63, "t": "4 s", "c": "#FF8300", "g": "paid"}, {"n": "Direct", "s": 23458, "p": 13.8, "e": 64.73, "t": "59 s", "c": "#6B7280", "g": "direct"}, {"n": "Paid Search", "s": 17348, "p": 10.2, "e": 14.88, "t": "2 s", "c": "#FFB547", "g": "paid"}, {"n": "Organic Search", "s": 11925, "p": 7.01, "e": 70.76, "t": "29 s", "c": "#0F766E", "g": "organic"}, {"n": "Cross-network", "s": 1729, "p": 1.02, "e": 17.35, "t": "1 s", "c": "#9A3412", "g": "paid"}, {"n": "Unassigned", "s": 1476, "p": 0.87, "e": 1.43, "t": "3 m 44 s", "c": "#DC2626", "g": "direct"}, {"n": "Organic Social", "s": 87, "p": 0.05, "e": 54.02, "t": "1 m 23 s", "c": "#14B8A6", "g": "organic"}, {"n": "AI Assistant", "s": 77, "p": 0.05, "e": 66.24, "t": "21 s", "c": "#7C3AED", "g": "organic"}, {"n": "Email", "s": 36, "p": 0.02, "e": 75.0, "t": "10 s", "c": "#7C3AED", "g": "direct"}, {"n": "Organic Video", "s": 8, "p": 0.0, "e": 100.0, "t": "21 s", "c": "#0891B2", "g": "organic"}, {"n": "Display", "s": 6, "p": 0.0, "e": 66.67, "t": "12 s", "c": "#F59E0B", "g": "paid"}],
+               seed: {"startDate": "2026-08-01", "bounce": [31.26, 29.75, 24.92, 28.64, 27.37, 28.81, 28.16, 29.73, 28.91, 24.88, 24.38, 23.91, 25.33, 25.93, 26.3, 25.48, 23.92, 23.58, 30.14, 44.05, 43.39, 41.98, 46.46, 41.1, 51.05, 49.88, 51.87, 55.13, 59.37, 58.77, 47.69, 53.82, 53.9, 51.44, 55.63, 65.69], "series": [{"n": "Referral", "v": [1799, 1363, 2950, 2453, 2586, 2231, 1819, 965, 1031, 2767, 2711, 2769, 2715, 2483, 1356, 1471, 2870, 2728, 2828, 2423, 2317, 2515, 1901, 2906, 2581, 2573, 2469, 2045, 1488, 1387, 2722, 2062, 2158, 2351, 1918, 1179]}, {"n": "Paid Social", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 529, 1914, 1682, 1860, 1817, 1807, 1835, 1691, 1574, 1609, 1598, 1756, 1699, 1881, 2062, 1997, 1962, 2191]}, {"n": "Paid Search", "v": [13, 18, 29, 32, 21, 15, 31, 13, 10, 20, 13, 15, 26, 22, 20, 10, 17, 16, 15, 18, 5, 8, 3, 13, 1159, 1544, 1707, 1660, 1558, 1414, 1099, 1086, 1129, 1120, 1252, 1820]}, {"n": "Direct", "v": [372, 342, 797, 783, 742, 614, 537, 291, 327, 783, 744, 838, 715, 727, 347, 372, 869, 758, 828, 699, 600, 498, 373, 775, 953, 874, 755, 633, 376, 383, 677, 670, 698, 844, 701, 411]}, {"n": "Organic Search", "v": [235, 186, 385, 347, 352, 291, 280, 115, 154, 434, 376, 376, 381, 371, 163, 223, 446, 430, 444, 443, 349, 240, 166, 466, 463, 480, 404, 332, 190, 187, 404, 393, 372, 451, 428, 199]}, {"n": "Cross-network", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 73, 92, 87, 99, 92, 73, 53, 60, 57, 76, 69, 102]}, {"n": "Unassigned", "v": [3, 0, 9, 5, 7, 4, 3, 5, 0, 6, 4, 8, 8, 7, 4, 0, 0, 7, 4, 8, 4, 1, 0, 8, 39, 23, 27, 16, 22, 15, 13, 17, 12, 15, 8, 24]}, {"n": "Email", "v": [0, 0, 19, 1, 0, 11, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]}]},
+               steps: [{"n": "/1.1 PreRegistro - Legales", "u": 49694, "v": 121671, "vu": "2,45", "t": "1 m 58 s"}, {"n": "/lp/campana-visa/", "u": 46583, "v": 58427, "vu": "1,25", "t": "4 s"}, {"n": "/0.0 Redirect Intermedio", "u": 29917, "v": 123044, "vu": "4,11", "t": "25 s"}, {"n": "/Modular/…/Login", "u": 26187, "v": 66387, "vu": "2,54", "t": "1 m 30 s"}, {"n": "/8.0 Finalizado - Inicio", "u": 21465, "v": 38550, "vu": "1,80", "t": "58 s"}, {"n": "/3.1 Datos Personales", "u": 20219, "v": 25643, "vu": "1,27", "t": "2 m 01 s"}, {"n": "/7.1 Dependientes - Inicio", "u": 19267, "v": 30544, "vu": "1,59", "t": "33 s"}, {"n": "/4.1 CURP - Completa", "u": 17652, "v": 42356, "vu": "2,40", "t": "1 m 29 s"}, {"n": "/5.1 Domicilio - Ingresar", "u": 15550, "v": 18585, "vu": "1,20", "t": "2 m 27 s"}, {"n": "/", "u": 13205, "v": 26058, "vu": "1,97", "t": "37 s"}, {"n": "/7.3 Dependientes - Guardado", "u": 10475, "v": 14045, "vu": "1,34", "t": "4 s"}, {"n": "/7.0 Dependientes - Inicio", "u": 10206, "v": 23813, "vu": "2,33", "t": "4 m 20 s"}, {"n": "/1.0 PreRegistro - Inicio", "u": 10157, "v": 16554, "vu": "1,63", "t": "39 s"}, {"n": "/ayuda/", "u": 4982, "v": 10423, "vu": "2,09", "t": "1 m 03 s"}, {"n": "/aviso-de-privacidad/", "u": 2706, "v": 3851, "vu": "1,42", "t": "6 s"}, {"n": "/8.2 Finalizado - Validando", "u": 2691, "v": 6003, "vu": "2,23", "t": "11 s"}, {"n": "/legales/avisodeprivacidad.html", "u": 2443, "v": 5085, "vu": "2,08", "t": "0 s"}, {"n": "/8.3 Finalizado - Exito", "u": 1404, "v": 2718, "vu": "1,94", "t": "11 s"}, {"n": "/aviso-de-privacidad/broxel/", "u": 522, "v": 676, "vu": "1,30", "t": "21 s"}, {"n": "/iniciar-chat/", "u": 136, "v": 236, "vu": "1,74", "t": "39 s"}, {"n": "/lp/mkt/", "u": 35, "v": 259, "vu": "7,40", "t": "0 s"}, {"n": "/", "u": 31, "v": 76, "vu": "2,45", "t": "4 s"}, {"n": "/comenzar/", "u": 3, "v": 20, "vu": "6,67", "t": "14 s"}, {"n": "/folio/", "u": 1, "v": 1, "vu": "1,00", "t": "9 s"}, {"n": "/usos/", "u": 1, "v": 1, "vu": "1,00", "t": "2 s"}],
+               medios: [{"n": "paid_social", "s": 17657, "p": 34.86, "e": 20.02, "plan": true}, {"n": "cpc", "s": 17349, "p": 34.26, "e": 14.88, "plan": true}, {"n": "PaidSocialVideo", "s": 10665, "p": 21.06, "e": 18.43, "plan": false}, {"n": "PaidSocialDisplay", "s": 4824, "p": 9.52, "e": 27.61, "plan": false}, {"n": "DigitalDisplay", "s": 69, "p": 0.14, "e": 8.7, "plan": false}, {"n": "DigitalDisplayNonPaidSocial", "s": 56, "p": 0.11, "e": 10.71, "plan": false}, {"n": "Search", "s": 9, "p": 0.02, "e": 22.22, "plan": false}, {"n": "META", "s": 7, "p": 0.01, "e": 42.86, "plan": false}, {"n": "display", "s": 6, "p": 0.01, "e": 66.67, "plan": true}, {"n": "MEDIA_JAL", "s": 2, "p": 0.0, "e": 0.0, "plan": false}, {"n": "cpv", "s": 1, "p": 0.0, "e": 100.0, "plan": false}, {"n": "paid_video", "s": 1, "p": 0.0, "e": 100.0, "plan": true}],
+               hall: null,
+               pasosTag: 'Las dos propiedades sumadas' }
+  };
+  DATOS_PROP.juntos.hall = DATOS_PROP.boom.hall.concat(DATOS_PROP.mtj.hall);
+  var META_PROP = {"boom": {"nombre": "Boom_Jalisco", "id": "511675384", "total": 158778, "usuarios": "114,666", "vistas": "649,835", "vpu": "5,67", "inter": "56.94 %", "tiempo": "2 m 17 s", "rebote": "43.06 %", "sub": "Propiedad <b>Boom_Jalisco</b> (511675384) · landing de campaña y flujo de enrolamiento · 649,835 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["46,534", "Usuarios de pauta"], ["2", "De ellos, llegaron al final"], ["21,465", "Registros finalizados"], ["15.1 %", "Usuarios fuera de Jalisco"]], "banda": "La pauta arrancó el <b>19 de agosto</b> · desde entonces el rebote del sitio pasó de <b>25.9 % a 55.4 %</b> y el <b>99.67 %</b> del tráfico comprado no pasa de la landing"}, "mtj": {"nombre": "Mi tarjeta Jalisco", "id": "511676885", "total": 11226, "usuarios": "7,839", "vistas": "20,628", "vpu": "2,63", "inter": "64.15 %", "tiempo": "31 s", "rebote": "35.85 %", "sub": "Propiedad <b>Mi tarjeta Jalisco</b> (511676885) · sitio de soporte al tarjetahabiente · 20,628 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["11,226", "Sesiones"], ["88.16 %", "Tráfico directo"], ["10,423", "Vistas en /ayuda/"], ["352", "Sesiones de google / cpc"]], "banda": "Sitio de <b>soporte al tarjetahabiente</b>, no de adquisición · el <b>88.16 %</b> entra directo y la mitad de las vistas se va a <b>/ayuda/</b>"}, "juntos": {"nombre": "Las dos propiedades", "id": "511675384 + 511676885", "total": 170004, "usuarios": "122,505", "vistas": "670,463", "vpu": "5,47", "inter": "57.42 %", "tiempo": "2 m 10 s", "rebote": "42.58 %", "sub": "Propiedades <b>Boom_Jalisco</b> (511675384) y <b>Mi tarjeta Jalisco</b> (511676885) sumadas · 670,463 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["170,004", "Sesiones sumadas"], ["122,505", "Usuarios"], ["57.42 %", "Interacción"], ["31.7 %", "Del tráfico viene de pauta"]], "banda": "Las dos propiedades juntas: <b>170,004 sesiones</b> · Mi tarjeta Jalisco aporta apenas el <b>6.6 %</b> del volumen y no recibe adquisición"}};
+
+  function cargarSerie(sd){
+    if (!sd || !sd.series || !sd.series.length) return;
+    var sp = sd.startDate.split('-');
+    startDate = new Date(+sp[0], +sp[1]-1, +sp[2]);
+    days = sd.series[0].v.length;
+    series = sd.series.map(function(s){ return {n:s.n, v:s.v.slice()}; });
+    series.sort(function(a,b){ return sum(b.v) - sum(a.v); });
+    BR = (sd.bounce && sd.bounce.length === days) ? sd.bounce.slice() : new Array(days).fill(null);
+    oculta = {};
+    var e;
+    if ((e = document.getElementById('dz-block'))) e.classList.add('hidden');
+    if ((e = document.getElementById('daily'))) e.classList.remove('hidden');
+    if ((e = document.getElementById('reset'))) e.classList.remove('hidden');
+    buildBR(); renderDaily();
+  }
+
+  function pintaProp(p){
+    VISTA = p;
+    var m = META_PROP[p], dp = DATOS_PROP[p];
+    META_ACT = m;
+
+    document.querySelectorAll('#propsw .propbtn').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-p') === p);
+    });
+    document.querySelectorAll('.section[data-solo="boom"]').forEach(function(s){
+      s.classList.toggle('atenuada', p !== 'boom');
+    });
+
+    var ds = document.getElementById('doc-sub'); if (ds) ds.innerHTML = m.sub;
+    var hk = document.querySelectorAll('.hero-kpis .hk');
+    m.heroKpis.forEach(function(k, i){
+      if (!hk[i]) return;
+      hk[i].querySelector('.hk-v').textContent = k[0];
+      hk[i].querySelector('.hk-l').textContent = k[1];
+    });
+    var hb = document.querySelector('.hero-band-in'); if (hb) hb.innerHTML = m.banda;
+
+    var kr = document.querySelector('.krow');
+    if (kr){
+      var kv = kr.querySelectorAll('.k-v'), kd = kr.querySelectorAll('.k-d');
+      if (kv[0]) { kv[0].textContent = m.usuarios; kd[0].textContent = m.vistas + ' vistas · ' + m.vpu + ' vistas por usuario'; }
+    }
+
+    CHANS = dp.chans; TOTAL_GA4 = m.total;
+    filtro = 'all';
+    document.querySelectorAll('.fchip').forEach(function(b){
+      b.classList.toggle('act', b.getAttribute('data-g') === 'all');
+    });
+    renderCanales();
+
+    STEPS = dp.steps; pintaSteps();
+    MEDIOS_PAGO = dp.medios; pintaMedios();
+    HALLAZGOS = dp.hall; pintaHallazgos();
+
+    var ft = document.getElementById('funnel-tag'); if (ft) ft.textContent = dp.pasosTag;
+    cargarSerie(dp.seed);
+    try { window.scrollTo({top:0, behavior:'smooth'}); } catch(e){}
+  }
+
+  document.querySelectorAll('#propsw .propbtn').forEach(function(b){
+    b.addEventListener('click', function(){ pintaProp(b.getAttribute('data-p')); });
+  });
+  pintaProp('boom');
+
 })();
 </script>
 </body>
