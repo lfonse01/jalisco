@@ -133,7 +133,7 @@ box-shadow:var(--sh);padding:18px 20px;transition:box-shadow .2s,border-color .2
 .card:hover{box-shadow:var(--sh-md);border-color:rgba(255,131,0,.3);}
 
 /* embudo */
-.funnel{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);
+.funnel{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--border);
 border-radius:var(--r12);overflow:hidden;background:var(--white);box-shadow:var(--sh);}
 .fstep{padding:17px 19px;border-right:1px solid var(--border);position:relative;transition:background .18s;}
 .fstep:last-child{border-right:none;}
@@ -150,7 +150,18 @@ font-weight:700;margin-top:4px;}
 .fbar i{display:block;height:100%;border-radius:3px;background:var(--orange);
 transition:width .5s cubic-bezier(.4,0,.2,1);}
 .fstep.s1 .fbar i{background:var(--ink);}
-.fstep.s4 .fbar i{background:var(--grad);}
+.fstep.s5 .fbar i{background:linear-gradient(90deg,#0F766E,#14B8A6);}
+.fstep.s5{background:linear-gradient(180deg,rgba(15,118,110,.07),rgba(15,118,110,.02));
+box-shadow:inset 3px 0 0 #0F766E;}
+.fstep.s5:hover{background:rgba(15,118,110,.11);}
+.fstep.s5 .fstep-v{color:#0F766E;}
+.fstep.s5 .fstep-l{color:#0F766E;}
+.fstep.s5 .fstep-p{background:rgba(15,118,110,.10);border-color:rgba(15,118,110,.28);color:#115E59;}
+.fstep-n{font-size:9.5px;font-weight:800;letter-spacing:.2px;color:var(--gray-l);margin-top:6px;
+line-height:1.4;text-align:center;}
+.fstep.s5 .fstep-n{color:#0F766E;}
+.fstep-fin{display:inline-block;margin-top:8px;background:#0F766E;color:#fff;font-size:8.5px;
+font-weight:800;letter-spacing:1.1px;text-transform:uppercase;padding:3px 10px;border-radius:var(--r20);}
 .drop{position:absolute;right:-1px;top:50%;transform:translate(50%,-50%);z-index:2;background:var(--white);
 border:1.5px solid var(--border);border-radius:var(--r20);font-size:9.5px;font-weight:800;
 padding:2px 9px;white-space:nowrap;}
@@ -231,14 +242,15 @@ cursor:pointer;transition:background .14s;}
 /* leyenda de la gráfica centrada */
 .lg{justify-content:center;}
 /* tarjetas del embudo con más presencia */
-.fstep{padding:20px 18px 18px;}
-.fstep-ic{font-size:24px;}
-.fstep-h{flex-direction:column;gap:6px;margin-bottom:10px;}
-.fstep-l{font-size:9px;letter-spacing:1.4px;line-height:1.35;}
-.fstep-v{font-size:34px;letter-spacing:-1.5px;margin-top:2px;}
-.fstep-d{font-size:10.5px;min-height:38px;color:var(--gray-l);}
+.fstep{padding:16px 11px 15px;}
+.fstep-ic{font-size:21px;}
+.fstep-h{flex-direction:column;gap:5px;margin-bottom:8px;}
+.fstep-l{font-size:8.6px;letter-spacing:1.1px;line-height:1.35;}
+.fstep-v{font-size:26px;letter-spacing:-1.2px;margin-top:2px;}
+.fstep-d{font-size:9.6px;min-height:40px;color:var(--gray-l);}
 .fstep-p{display:inline-block;background:var(--orange-bg);border:1px solid var(--orange-bg2);
-color:var(--orange-t);font-size:9.5px;padding:3px 10px;border-radius:var(--r20);margin-top:2px;}
+color:var(--orange-t);font-size:8.4px;padding:3px 7px;border-radius:var(--r20);margin-top:2px;
+max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .fstep.s1 .fstep-p{background:#EEF0F3;border-color:#E0E3E8;color:#4B5563;}
 .fbar{height:7px;margin-top:14px;}
 /* tooltips más legibles */
@@ -320,6 +332,39 @@ color:rgba(255,255,255,.5);margin-bottom:3px;}
 .card-d b{color:var(--ink);font-weight:700;}
 
 /* gráfica */
+code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:.88em;
+background:var(--surface);border:1px solid var(--border);border-radius:5px;
+padding:1px 5px;color:var(--orange-t);white-space:nowrap;}
+
+/* panel de conversión bajo el embudo */
+.convp{margin-top:16px;border:1px solid var(--border);border-radius:var(--r12);
+padding:15px 17px 16px;background:var(--surface);}
+.convp-hd{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.convp-t{font-size:9.5px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;color:var(--gray-l);}
+.convp-s{font-size:10px;font-weight:600;color:#B0B7C3;line-height:1.45;}
+.convp-body{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;margin-top:13px;}
+.cseg{background:var(--white);border:1px solid var(--border);border-radius:var(--r8);padding:14px 15px 13px;}
+.cseg-h{display:flex;align-items:center;gap:8px;}
+.cseg-dot{width:10px;height:10px;border-radius:3px;flex:none;}
+.cseg-n{font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ink);}
+.cseg-b{font-size:10px;font-weight:600;color:var(--gray-l);margin-top:5px;line-height:1.5;}
+.cmet{margin-top:13px;}
+.cm-l{font-size:9.4px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+color:var(--gray-l);line-height:1.35;}
+.cm-v{font-size:34px;font-weight:800;letter-spacing:-1.6px;line-height:1;margin-top:6px;}
+.cm-u{font-size:10px;font-weight:700;color:var(--gray-l);margin-top:5px;line-height:1.45;}
+.cbar{height:7px;border-radius:4px;background:#E8EBEF;margin-top:10px;overflow:hidden;}
+.cbar i{display:block;height:100%;border-radius:4px;min-width:3px;}
+.cref{margin-top:11px;padding-top:10px;border-top:1px dashed var(--border);
+font-size:9.6px;font-weight:600;color:var(--gray-l);line-height:1.6;}
+.cref b{color:var(--gray);font-weight:800;}
+.cest{font-weight:700;color:#C3C9D2;font-style:italic;letter-spacing:0;text-transform:none;}
+.convp-w{margin-top:14px;padding:11px 13px;background:#FEF3E7;border:1px solid #FBD9B5;
+border-radius:var(--r8);font-size:10.5px;line-height:1.6;color:#8A4B12;}
+.convp-w b{color:#7C2D12;font-weight:800;}
+@media (max-width:900px){.convp-body{grid-template-columns:1fr;}}
+@media (max-width:560px){.cmet{grid-template-columns:1fr;}}
+
 .chart-wrap{position:relative;}
 svg.chart{width:100%;height:auto;display:block;overflow:visible;}
 svg.chart rect.bar{transition:opacity .16s;cursor:pointer;}
@@ -376,9 +421,12 @@ border-top:1px solid var(--border);font-size:11px;color:var(--gray-l);font-weigh
 .fnote{font-size:10.5px;color:var(--gray-l);line-height:1.6;margin-top:16px;
 display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--border);padding-top:12px;}
 
-@media (max-width:1000px){.funnel{grid-template-columns:1fr 1fr;}
-.fstep:nth-child(2){border-right:none;}
-.fstep:nth-child(1),.fstep:nth-child(2){border-bottom:1px solid var(--border);}
+@media (max-width:1200px){.funnel{grid-template-columns:repeat(4,minmax(0,1fr));}
+.fstep{border-bottom:1px solid var(--border);}
+.fstep:nth-child(4n){border-right:none;}}
+@media (max-width:1000px){.funnel{grid-template-columns:repeat(2,minmax(0,1fr));}
+.fstep{border-bottom:1px solid var(--border);}
+.fstep:nth-child(2n){border-right:none;}
 .drop{display:none;} .brgrid{grid-template-columns:repeat(8,1fr);}}
 @media (max-width:900px){:root{--pad-x:28px;--doc-pad:24px;}
 .krow{grid-template-columns:1fr;}
@@ -398,7 +446,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
   .topbar,.filterbar{position:static;}
   .doc{max-width:none;padding:0;}
   .drop-zone,.btn{display:none;}
-  .card,.kpi,.callout,.dark-block,.krow,.funnel,.fstep{break-inside:avoid;page-break-inside:avoid;}
+  .card,.kpi,.callout,.dark-block,.krow,.funnel,.fstep,.convp,.cseg{break-inside:avoid;page-break-inside:avoid;}
   .sechdr{break-after:avoid;page-break-after:avoid;}
   .stbl thead{display:table-header-group;}
   .stbl tbody tr{break-inside:avoid;page-break-inside:avoid;}
@@ -438,7 +486,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
     <div class="hero-kpis">
       <div class="hk"><div class="hk-v">46,534</div><div class="hk-l">Usuarios de pauta</div></div>
       <div class="hk"><div class="hk-v">2</div><div class="hk-l">De ellos, llegaron al final</div></div>
-      <div class="hk"><div class="hk-v">21,465</div><div class="hk-l">Registros finalizados</div></div>
+      <div class="hk"><div class="hk-v">1,404</div><div class="hk-l">Registros exitosos (cierre real)</div></div>
       <div class="hk"><div class="hk-v">15.1 %</div><div class="hk-l">Usuarios fuera de Jalisco</div></div>
     </div>
   </div>
@@ -562,35 +610,105 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
 
     <div class="card" style="margin-bottom:12px;">
       <div class="chart-wrap">
-        <svg class="chart" id="sankey" viewBox="0 0 1000 390" preserveAspectRatio="xMidYMid meet"></svg>
+        <svg class="chart" id="sankey" viewBox="0 0 1200 452" preserveAspectRatio="xMidYMid meet"></svg>
         <div class="tip" id="tip-sk"></div>
       </div>
+
+      <div class="convp">
+        <div class="convp-hd">
+          <div class="convp-t">Conversión al paso final por tipo de tráfico</div>
+          <div class="convp-s">Usuarios en <span class="mono">/8.3 Registro exitoso</span> ÷ usuarios totales llegados por el canal · GA4 Boom_Jalisco · escala de barras compartida</div>
+        </div>
+
+        <div class="convp-body">
+          <div class="cseg">
+            <div class="cseg-h"><span class="cseg-dot" style="background:#FF8300"></span>
+              <span class="cseg-n">Pagado</span></div>
+            <div class="cseg-b">46,534 usuarios llegados por el canal · 40.58 % del sitio</div>
+            <div class="cmet">
+              <div class="cm-l">Conversión al paso 7 · Registro exitoso</div>
+              <div class="cm-v" style="color:#B45309">≈ 0 %</div>
+              <div class="cm-u">entre 0 y 2 de 46,534 usuarios · tope medido <b>0.004 %</b></div>
+              <div class="cbar"><i style="width:0.2%;background:#FF8300"></i></div>
+            </div>
+            <div class="cref">
+              <b>Cómo se obtiene:</b> GA4 no desglosa <span class="mono">/8.3</span> por canal. El único dato duro
+              de pauta en la sección 8.x son <b>2 usuarios</b> en <span class="mono">/8.0 Finalizado</span>.
+              Aun suponiendo que esos 2 cerraran, el techo es 0.004 %.
+            </div>
+          </div>
+
+          <div class="cseg">
+            <div class="cseg-h"><span class="cseg-dot" style="background:#0F766E"></span>
+              <span class="cseg-n">No pagado</span></div>
+            <div class="cseg-b">68,132 usuarios llegados por el canal · orgánico + directo + referido interno</div>
+            <div class="cmet">
+              <div class="cm-l">Conversión al paso 7 · Registro exitoso</div>
+              <div class="cm-v" style="color:#0F766E">2.06 %</div>
+              <div class="cm-u">1,404 de 68,132 usuarios</div>
+              <div class="cbar"><i style="width:100%;background:#0F766E"></i></div>
+            </div>
+            <div class="cref">
+              <b>Cómo se obtiene:</b> se atribuyen al no pagado los <b>1,404</b> registros exitosos completos,
+              porque la aportación de pauta en la sección 8.x es de 2 usuarios como máximo.
+              Como referencia, <b>21,463</b> de este grupo llegaron a <span class="mono">/8.0</span> (31.50 %).
+            </div>
+          </div>
+        </div>
+
+        <div class="convp-w">
+          <b>Es una brecha medida, no una brecha real.</b>
+          La landing vive en <span class="mono">mitarjetajalisco.com</span> y el registro en
+          <span class="mono">ciudadanoregister.broxel.com</span>. Quien da clic en la pauta y avanza
+          pierde su campaña en el salto y reaparece dentro del «no pagado» como referral interno.
+          El orgánico puro no se puede aislar por la misma razón. Léelo como calidad del clic, no como el resultado de la campaña.
+        </div>
+      </div>
+
       <div class="leer">
         <div class="leer-t">Qué dice este embudo</div>
         <div class="leer-list">
           <div class="leer-p">
             <span class="leer-n2">1</span>
-            <div><b>La landing no es la puerta de entrada.</b>
-            De las 49,694 personas que inician el registro, prácticamente ninguna viene de la landing: el 99.67 % de quien la vio llegó por pauta y no avanzó. Quien sí se registra entra directo desde el portal del gobierno.</div>
+            <div><b>Por qué son siete pasos y no catorce.</b>
+            El flujo tiene 14 pantallas medidas, pero dibujarlas todas produce un embudo que <b>sube tres veces</b>: a <code>/1.1 Legales</code> entran 39,537 que nunca vieron <code>/1.0 Inicio</code>; a <code>/7.1</code>, 9,061 que no vieron <code>/7.0</code>; y a <code>/8.0 Finalizado</code>, 10,990 que no vieron <code>/7.3 Guardado</code>. Esas pantallas son ramas del flujo, no pasos obligatorios, y quedan fuera.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">2</span>
-            <div><b>La fuga grande no está en la campaña, está dentro del registro.</b>
-            Entre iniciar y finalizar se pierden <b>28,229 personas</b>, el 56.8 % de las que empezaron. Es la caída más costosa del flujo porque ya habían decidido registrarse.</div>
+            <div><b>La landing tampoco es un paso del trámite.</b>
+            De las 49,694 personas que inician el registro, prácticamente ninguna viene de la landing: el 99.67 % de quien la vio llegó por pauta y no avanzó. Quien sí se registra entra directo desde el portal del gobierno, así que el embudo arranca en <code>/1.1</code>.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">3</span>
-            <div><b>Cuatro de cada diez terminan el registro.</b>
-            21,465 de 49,694 llegan a Finalizado, el 43.2 %. Para un trámite de gobierno no es malo, pero mide el trámite, no el anuncio.</div>
+            <div><b>La primera fuga es el login: −47.3 %.</b>
+            De 49,694 que aceptan legales solo 26,187 llegan a autenticarse. Es la caída más grande en volumen absoluto del trámite —23,507 personas— y ocurre antes de que nadie haya llenado un solo campo.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">4</span>
-            <div><b>El último paso está sin explicar.</b>
-            Solo 2,691 llegan a Validando información y 1,404 a Éxito. Falta confirmar con producto si esa pantalla la ven todos los que terminan o solo los expedientes que entran a revisión manual: la diferencia cambia por completo la lectura.</div>
+            <div><b>El formulario en sí retiene bien.</b>
+            De Datos personales a Domicilio se pierde poco: −22.8 %, −12.7 % y −11.9 % por pantalla. Quien llega a llenar datos, en general los termina. El problema no está en el formulario.</div>
+          </div>
+          <div class="leer-p">
+            <span class="leer-n2">5</span>
+            <div><b>El derrumbe está entre Domicilio y Validación: −82.72 %.</b>
+            De 15,550 que terminan el domicilio solo 2,691 aparecen en <code>/8.2</code>. Son <b>12,859 personas</b> y es, con diferencia, la caída más costosa del flujo. Antes quedaba tapada porque <code>/8.0 Finalizado</code> se dibujaba justo en medio con 21,465 usuarios.</div>
+          </div>
+          <div class="leer-p">
+            <span class="leer-n2">6</span>
+            <div><b>El cierre real son 1,404 cuentas: 2.83 %.</b>
+            De cada 100 personas que inician el registro, menos de 3 terminan con cuenta activa. Ese es el número que debe gobernar el CPA, no los 21,465 de <code>/8.0</code> que se citan como «registros finalizados» y que inflan el resultado 15 veces.</div>
           </div>
         </div>
         <div class="leer-n">
-          <b>Un límite del dato:</b> los flujos son diferencias entre etapas, no recorridos individuales. GA4 no entrega en estos informes qué usuario concreto pasó de una pantalla a la siguiente.
+          <b>Dos límites del dato.</b> Primero: los flujos son diferencias entre etapas, no recorridos
+          individuales. GA4 no entrega en estos informes qué usuario concreto pasó de una pantalla a la
+          siguiente, así que depurar la cadena la vuelve legible pero no la convierte en un embudo real
+          de personas. Segundo: sacar <code>/8.0 Finalizado</code> es una decisión de lectura, no un dato.
+          Se apoya en que supera en volumen a pantallas anteriores del formulario, lo que sugiere entradas
+          laterales, reingresos o disparos duplicados, pero <b>falta confirmarlo con producto</b> —junto con
+          la pregunta de si <code>/8.2</code> la ven todos los que terminan o solo los expedientes que entran
+          a revisión manual. Antes de fijar metas sobre estos números conviene reconstruir el embudo con
+          eventos secuenciados, no con vistas de pantalla.
         </div>
       </div>
     </div>
@@ -947,7 +1065,33 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
   var MUNI = [{"n": "Guadalajara", "u": 35368, "lat": 20.677, "lon": -103.347}, {"n": "Zapopan", "u": 18872, "lat": 20.721, "lon": -103.392, "nota": "incluye Tesistán"}, {"n": "Tlaquepaque", "u": 8265, "lat": 20.641, "lon": -103.312}, {"n": "Tonalá", "u": 8091, "lat": 20.624, "lon": -103.234, "nota": "incluye Coyula"}, {"n": "Tlajomulco de Zúñiga", "u": 5524, "lat": 20.474, "lon": -103.446, "nota": "incluye Hacienda Santa Fe, San Agustín y Lomas del Sur"}, {"n": "El Salto", "u": 2155, "lat": 20.518, "lon": -103.18, "nota": "incluye San José del Castillo y San José el Quince"}, {"n": "Zapotlán el Grande", "u": 1544, "lat": 19.7, "lon": -103.462, "nota": "Ciudad Guzmán"}, {"n": "Puerto Vallarta", "u": 1441, "lat": 20.653, "lon": -105.225}, {"n": "Tepatitlán de Morelos", "u": 995, "lat": 20.817, "lon": -102.765}, {"n": "Lagos de Moreno", "u": 905, "lat": 21.357, "lon": -101.928}, {"n": "Ocotlán", "u": 687, "lat": 20.35, "lon": -102.774}, {"n": "San Juan de los Lagos", "u": 477, "lat": 21.248, "lon": -102.331}, {"n": "Arandas", "u": 458, "lat": 20.706, "lon": -102.335}, {"n": "Degollado", "u": 330, "lat": 20.463, "lon": -102.15}, {"n": "Autlán de Navarro", "u": 322, "lat": 19.77, "lon": -104.367}];
   var FUERA = [["Ciudad de México", 6921], ["Puebla", 1487], ["León", 968], ["Querétaro", 852], ["Monterrey", 672], ["Morelia", 608], ["Cuernavaca", 509], ["García (NL)", 509], ["Calvillo (Ags)", 475], ["Acapulco", 460]];
 
-  var PASOS = [{"ic": "🎯", "l": "1 · Landing de campaña", "u": 46583, "v": 58427, "t": "4 s", "p": "/lp/campana-visa/", "cls": "s1"}, {"ic": "📝", "l": "2 · Inicio de registro", "u": 49694, "v": 121671, "t": "1 m 58 s", "p": "/1.1 PreRegistro - Legales", "cls": ""}, {"ic": "💳", "l": "3 · Registro finalizado", "u": 21465, "v": 38550, "t": "58 s", "p": "/8.0 Finalizado - Inicio", "cls": ""}, {"ic": "🔎", "l": "4 · Validando información", "u": 2691, "v": 6003, "t": "11 s", "p": "/8.2 Finalizado - Validando", "cls": "s4"}];
+  // OBSOLETO · embudo de 5 pasos, sustituido por la cadena depurada de 7. Se conserva solo como
+  // referencia histórica; no lo usa nada. El embudo vigente es el PASOS de abajo.
+  var PASOS_5_OBSOLETO = [{"ic": "🎯", "l": "1 · Landing de campaña", "u": 46583, "v": 58427, "t": "4 s", "p": "/lp/campana-visa/", "cls": "s1", "nota": "Entrada de la pauta"}, {"ic": "📝", "l": "2 · Inicio de registro", "u": 49694, "v": 121671, "t": "1 m 58 s", "p": "/1.1 PreRegistro - Legales", "cls": "", "nota": "Arranca el enrolamiento"}, {"ic": "📝", "l": "3 · Termina el formulario", "u": 21465, "v": 38550, "t": "58 s", "p": "/8.0 Finalizado - Inicio", "cls": "", "nota": "No es el final: abre la secci\u00f3n 8.x"}, {"ic": "🔎", "l": "4 · Validando información", "u": 2691, "v": 6003, "t": "11 s", "p": "/8.2 Finalizado - Validando", "cls": "", "nota": "Revisi\u00f3n del expediente"}, {"ic": "✅", "l": "5 · Registro exitoso", "u": 1404, "v": 2718, "t": "11 s", "p": "/8.3 Finalizado - Exito", "cls": "s5", "nota": "Cierre real del enrolamiento"}];
+
+  // ─── El embudo es la cadena depurada de 7 pasos ───────────────────────────────
+  // Solo las pantallas que descienden. Quedan fuera la landing, /0.0 Redirect,
+  // /1.0 PreRegistro, las tres de Dependientes y /8.0 Finalizado: con ellas el gráfico
+  // sube tres veces, señal de que son ramas del flujo y no pasos obligatorios.
+  var PASOS = [
+    {"ic":"📝","l":"1 · Inicio de registro",    "u":49694,"v":121671,"t":"1 m 58 s","p":"/1.1 PreRegistro - Legales",  "cls":"s1","c":"#FF8300","nota":"Arranque real del trámite"},
+    {"ic":"🔐","l":"2 · Login",                 "u":26187,"v":66387, "t":"1 m 30 s","p":"/Modular/…/Login",            "cls":"",  "c":"#FFB547","nota":"Autenticación"},
+    {"ic":"👤","l":"3 · Datos personales",      "u":20219,"v":25643, "t":"2 m 01 s","p":"/3.1 Datos Personales",       "cls":"",  "c":"#FFB547","nota":"Llenado del formulario"},
+    {"ic":"🪪","l":"4 · CURP",                  "u":17652,"v":42356, "t":"1 m 29 s","p":"/4.1 CURP - Completa",        "cls":"",  "c":"#FFB547","nota":"Llenado del formulario"},
+    {"ic":"🏠","l":"5 · Domicilio",             "u":15550,"v":18585, "t":"2 m 27 s","p":"/5.1 Domicilio - Ingresar",   "cls":"",  "c":"#FFB547","nota":"Última pantalla del formulario"},
+    {"ic":"🔎","l":"6 · Validando información", "u":2691, "v":6003,  "t":"11 s",    "p":"/8.2 Finalizado - Validando", "cls":"",  "c":"#2E9189","nota":"Revisión del expediente"},
+    {"ic":"✅","l":"7 · Registro exitoso",      "u":1404, "v":2718,  "t":"11 s",    "p":"/8.3 Finalizado - Exito",     "cls":"s5","c":"#0F766E","nota":"Cierre real del enrolamiento"}
+  ];
+
+  var OPTS_EMBUDO = {
+    dominios: false,
+    banda: ['SITIO 2 · ciudadanoregister.broxel.com',
+            'Solo el flujo de enrolamiento · la landing queda fuera porque no es un paso del trámite'],
+    zona8: 5,
+    zona8txt: 'SECCIÓN 8.x · VALIDACIÓN Y CIERRE',
+    remate: ' de quien inicia el registro',
+    pie: 'Cadena monotónica: cada paso es menor que el anterior. Quedan fuera la landing, /0.0 Redirect, /1.0 PreRegistro, las tres pantallas de Dependientes y /8.0 Finalizado, que rompen la secuencia.'
+  };
 
   var STEPS = [{"n": "/lp/campana-visa/", "u": 46583, "v": 58427, "vu": "1.25", "t": "4 s"}, {"n": "/1.1 PreRegistro - Legales", "u": 49694, "v": 121671, "vu": "2.45", "t": "1 m 58 s"}, {"n": "/0.0 Redirect Intermedio", "u": 29917, "v": 123044, "vu": "4.11", "t": "25 s"}, {"n": "/Modular/…/Login", "u": 26187, "v": 66387, "vu": "2.54", "t": "1 m 30 s"}, {"n": "/8.0 Finalizado - Inicio", "u": 21465, "v": 38550, "vu": "1.80", "t": "58 s"}, {"n": "/3.1 Datos Personales", "u": 20219, "v": 25643, "vu": "1.27", "t": "2 m 01 s"}, {"n": "/7.1 Dependientes - Inicio", "u": 19267, "v": 30544, "vu": "1.59", "t": "33 s"}, {"n": "/4.1 CURP - Completa", "u": 17652, "v": 42356, "vu": "2.40", "t": "1 m 29 s"}, {"n": "/5.1 Domicilio - Ingresar", "u": 15550, "v": 18585, "vu": "1.20", "t": "2 m 27 s"}, {"n": "/", "u": 13205, "v": 26058, "vu": "1.97", "t": "37 s"}, {"n": "/7.3 Dependientes - Guardado", "u": 10475, "v": 14045, "vu": "1.34", "t": "4 s"}, {"n": "/7.0 Dependientes - Inicio", "u": 10206, "v": 23813, "vu": "2.33", "t": "4 m 20 s"}, {"n": "/1.0 PreRegistro - Inicio", "u": 10157, "v": 16554, "vu": "1.63", "t": "39 s"}, {"n": "/8.2 Finalizado - Validando", "u": 2691, "v": 6003, "vu": "2.23", "t": "11 s"}, {"n": "/8.3 Finalizado - Exito", "u": 1404, "v": 2718, "vu": "1.94", "t": "11 s"}];
 
@@ -985,6 +1129,8 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
         '<div class="fstep-v">'+nf(p.u)+'</div>'+
         '<div class="fstep-d">'+nf(p.v)+' vistas · '+p.t+' de interacción media</div>'+
         '<div class="fstep-p">'+p.p+'</div>'+
+        (p.nota ? '<div class="fstep-n">'+p.nota+'</div>' : '')+
+        (p.cls === 's5' ? '<div class="fstep-fin">Paso final</div>' : '')+
         '<div class="fbar"><i style="width:'+(p.u/mx*100).toFixed(1)+'%"></i></div>'+ dropHtml;
       cont.appendChild(div);
     });
@@ -996,7 +1142,7 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
     var tbs = document.getElementById('steps');
     if (!tbs) return;
     tbs.innerHTML = '';
-    var RE_EMB = /campana-visa|1\.1 PreRegistro|8\.0 Finalizado|8\.2 Finalizado/;
+    var RE_EMB = /1\.1 PreRegistro|Login|3\.1 Datos|4\.1 CURP|5\.1 Domicilio|8\.2 Finalizado|8\.3 Finalizado/;
     var embudo = STEPS.filter(function(s){ return RE_EMB.test(s.n); });
     var resto  = STEPS.filter(function(s){ return !RE_EMB.test(s.n); });
 
@@ -1514,38 +1660,38 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
   }
 
   // ---------- Sankey del embudo ----------
-  function drawSankey(){
-    var svg = document.getElementById('sankey');
+  function drawSankey(svgId, DATOS, Wp, Hp, opts){
+    svgId = svgId || 'sankey';
+    DATOS = DATOS || PASOS;
+    opts  = opts  || {};
+    var svg = document.getElementById(svgId);
     if (!svg) return;
     while (svg.firstChild) svg.removeChild(svg.firstChild);
 
-    var W = 1000, H = 390;
-    var ml = 26, mr = 26;
+    var N = DATOS.length;
+    var W = Wp || 1200, H = Hp || 452;
+    var ml = 24, mr = 24;
     var yBanda = 6, hBanda = 44;      // franja de dominios
-    var yHead  = 62;                  // encabezados de paso
-    var yFlujo = 132;                 // arranque de los nodos
-    var hFlujo = 168;                 // alto máximo del flujo
-    var yFuga  = 330;                 // barras de abandono
+    var yHead  = 78;                  // encabezados de paso
+    var yFlujo = 166;                 // arranque de los nodos
+    var hFlujo = 150;                 // alto maximo del flujo
+    var yFuga  = 356;                 // barras de abandono
+    var yMarco = yFuga + 54;          // borde inferior de los marcos: encierra el remate final
 
-    var iw = W-ml-mr, nw = 13;
-    var colW = iw / 4;
-    var maxU = Math.max.apply(null, PASOS.map(function(p){ return p.u; }));
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+    var iw = W-ml-mr, nw = 12;
+    var colW = iw / N;
+    var maxU = Math.max.apply(null, DATOS.map(function(p){ return p.u; }));
     var esc = hFlujo / maxU;
-    var tip = document.getElementById('tip-sk'), wrap = svg.parentNode;
-    var COL = ['#1D2332','#FF8300','#FFB547','#0F766E'];
+    var tip = document.getElementById(opts.tip || 'tip-sk'), wrap = svg.parentNode;
+    var COL = opts.col || ['#1D2332','#FF8300','#FFB547','#F59E0B','#0F766E'];
+    var FIN = N-1;
 
-    var nodos = PASOS.map(function(p, i){
-      return {x: ml + i*colW, y: yFlujo, h: Math.max(p.u*esc, 4), u:p.u, l:p.l, p:p.p, c:COL[i]};
+    var nodos = DATOS.map(function(p, i){
+      return {x: ml + i*colW, y: yFlujo, h: Math.max(p.u*esc, 4), u:p.u, l:p.l, p:p.p,
+              c: p.c || COL[i] || '#0F766E', nota: p.nota || ''};
     });
-
-    // ---------- franjas por dominio ----------
-    var xCorte = nodos[1].x - colW*0.28;
-    svg.appendChild(el('rect',{x:4, y:yBanda, width:(xCorte-10).toFixed(0), height:hBanda,
-      fill:'#1D2332', opacity:.055, rx:8}));
-    svg.appendChild(el('rect',{x:(xCorte+6).toFixed(0), y:yBanda, width:(W-xCorte-10).toFixed(0), height:hBanda,
-      fill:'#FF8300', opacity:.07, rx:8}));
-    svg.appendChild(el('line',{x1:xCorte, y1:yBanda, x2:xCorte, y2:yFuga+26,
-      stroke:'#CBD5E1','stroke-width':1.5,'stroke-dasharray':'5 5'}));
 
     function txt(x,y,s,fill,size,weight,anchor){
       var t = el('text',{x:x, y:y, fill:fill,'font-size':size,'font-weight':weight,
@@ -1553,17 +1699,51 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
       if (anchor) t.setAttribute('text-anchor', anchor);
       t.textContent = s; svg.appendChild(t); return t;
     }
-    txt(16, yBanda+18, 'SITIO 1 · mitarjetajalisco.com', '#374151', 9.5, 800);
-    txt(16, yBanda+32, 'Landing de campaña', '#9CA3AF', 8.4, 600);
-    txt(xCorte+18, yBanda+18, 'SITIO 2 · ciudadanoregister.broxel.com', '#9A3412', 9.5, 800);
-    txt(xCorte+18, yBanda+32, 'Flujo de enrolamiento · aquí se pierde la atribución al cruzar de dominio', '#C2703F', 8.4, 600);
 
-    // ---------- encabezados de cada paso, en su propia franja ----------
+    // ---------- franjas por dominio ----------
+    if (opts.dominios !== false){
+      var xCorte = nodos[1].x - colW*0.26;
+      svg.appendChild(el('rect',{x:4, y:yBanda, width:(xCorte-10).toFixed(0), height:hBanda,
+        fill:'#1D2332', opacity:.055, rx:8}));
+      svg.appendChild(el('rect',{x:(xCorte+6).toFixed(0), y:yBanda, width:(W-xCorte-10).toFixed(0), height:hBanda,
+        fill:'#FF8300', opacity:.07, rx:8}));
+      svg.appendChild(el('line',{x1:xCorte, y1:yBanda, x2:xCorte, y2:yMarco,
+        stroke:'#CBD5E1','stroke-width':1.5,'stroke-dasharray':'5 5'}));
+      txt(14, yBanda+18, 'SITIO 1 · mitarjetajalisco.com', '#374151', 9.5, 800);
+      txt(14, yBanda+32, 'Landing de campaña', '#9CA3AF', 8.4, 600);
+      txt(xCorte+16, yBanda+18, 'SITIO 2 · ciudadanoregister.broxel.com', '#9A3412', 9.5, 800);
+      txt(xCorte+16, yBanda+32, 'Flujo de enrolamiento · aquí se pierde la atribución al cruzar de dominio', '#C2703F', 8.4, 600);
+    } else if (opts.banda){
+      svg.appendChild(el('rect',{x:4, y:yBanda, width:(W-8).toFixed(0), height:hBanda,
+        fill:'#FF8300', opacity:.07, rx:8}));
+      txt(16, yBanda+18, opts.banda[0], '#9A3412', 9.5, 800);
+      txt(16, yBanda+32, opts.banda[1], '#C2703F', 8.4, 600);
+    }
+
+    // ---------- zona 8.x: una sola seccion del producto ----------
+    var i8 = (opts.zona8 === undefined) ? 2 : opts.zona8;
+    if (i8 >= 0 && i8 < nodos.length){
+      var x8a = nodos[i8].x - 16, x8b = W - 8, y8 = yBanda + hBanda + 8;
+      svg.appendChild(el('rect',{x:x8a, y:y8, width:(x8b-x8a).toFixed(0), height:(yMarco-y8).toFixed(0),
+        fill:'#0F766E', opacity:.035, rx:10}));
+      svg.appendChild(el('rect',{x:x8a, y:y8, width:(x8b-x8a).toFixed(0), height:(yMarco-y8).toFixed(0),
+        fill:'none', stroke:'#99D3CD','stroke-width':1,'stroke-dasharray':'4 4', rx:10}));
+      txt(x8a+10, y8+14, opts.zona8txt || 'SECCIÓN 8.x · EL REGISTRO NO TERMINA AQUÍ, APENAS ENTRA A VALIDACIÓN', '#0F766E', 8.2, 800);
+    }
+
+    // ---------- encabezados de cada paso ----------
     nodos.forEach(function(n, i){
-      txt(n.x, yHead, 'PASO '+(i+1), '#9CA3AF', 8.4, 700);
-      txt(n.x, yHead+22, nf(n.u), '#1D2332', 20, 800);
-      txt(n.x, yHead+38, n.l.replace(/^\d+ · /,'').toUpperCase(), '#4B5563', 8.4, 700);
-      if (i > 0) txt(n.x, yHead+51, pf(n.u/nodos[0].u*100)+' del paso 1', '#9CA3AF', 8.2, 600);
+      var esFin = (i === FIN);
+      if (esFin){
+        svg.appendChild(el('rect',{x:n.x-5, y:yHead-11, width:132, height:16, rx:8, fill:'#0F766E'}));
+        txt(n.x+3, yHead+1, 'PASO ' + (i+1) + ' · PASO FINAL', '#FFFFFF', 8.4, 800);
+      } else {
+        txt(n.x, yHead, 'PASO '+(i+1), '#9CA3AF', 8.4, 700);
+      }
+      txt(n.x, yHead+24, nf(n.u), esFin ? '#0F766E' : '#1D2332', esFin ? 21 : 19, 800);
+      txt(n.x, yHead+40, n.l.replace(/^\d+ · /,'').toUpperCase(), esFin ? '#0F766E' : '#4B5563', 8.4, 700);
+      if (i > 0) txt(n.x, yHead+53, pf(n.u/nodos[0].u*100)+' del paso 1', '#9CA3AF', 8.2, 600);
+      if (n.nota) txt(n.x, yHead+66, n.nota, esFin ? '#0F766E' : '#B0B7C3', 8.0, 600);
     });
 
     function cinta(x0,y0,h0,x1,y1,h1,fill,op){
@@ -1576,7 +1756,7 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
     for (var i = 0; i < nodos.length-1; i++){
       (function(idx){
         var a = nodos[idx], b = nodos[idx+1];
-        var pasa = Math.min(a.u, b.u), hp = pasa*esc, dif = b.u - a.u;
+        var pasa = Math.min(a.u, b.u), hp = Math.max(pasa*esc, 2), dif = b.u - a.u;
 
         var rb = cinta(a.x+nw, a.y, hp, b.x, b.y, hp, a.c, .30);
         rb.style.cursor='pointer';
@@ -1589,7 +1769,7 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
 
         if (dif < 0){
           var hf = (-dif)*esc, hTerm = Math.max(hf*0.5, 6);
-          var xTerm = b.x - colW*0.34;
+          var xTerm = b.x - colW*0.42;
           var fu = cinta(a.x+nw, a.y+hp, hf, xTerm, yFuga, hTerm, '#DC2626', .20);
           fu.style.cursor='pointer';
           fu.addEventListener('mousemove', function(ev){
@@ -1599,12 +1779,12 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
           svg.appendChild(fu);
           svg.appendChild(el('rect',{x:xTerm, y:yFuga, width:5, height:hTerm.toFixed(1),
             fill:'#DC2626', opacity:.6, rx:2.5}));
-          txt(xTerm+11, yFuga+11, '−'+nf(-dif), '#991B1B', 10.5, 800);
-          txt(xTerm+11, yFuga+23, 'abandonan', '#B91C1C', 8.4, 600);
+          txt(xTerm+10, yFuga+11, '−'+nf(-dif), '#991B1B', 10.5, 800);
+          txt(xTerm+10, yFuga+23, 'abandonan', '#B91C1C', 8.4, 600);
         } else if (dif > 0){
           var he = dif*esc, hOrig = Math.max(he*0.5, 6);
-          var yOrig = yFlujo - 46;
-          var xOrig = a.x + colW*0.42;
+          var yOrig = yFlujo - 44;
+          var xOrig = a.x + colW*0.44;
           var en = cinta(xOrig+5, yOrig, hOrig, b.x, b.y+hp, he, '#0F766E', .22);
           en.style.cursor='pointer';
           en.addEventListener('mousemove', function(ev){
@@ -1621,7 +1801,13 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
       })(i);
     }
 
-    nodos.forEach(function(n){
+    nodos.forEach(function(n, i){
+      var esFin = (i === FIN);
+      if (esFin){
+        // halo para que el nodo final se encuentre a simple vista pese a su escala real
+        svg.appendChild(el('rect',{x:n.x-5, y:(n.y-5).toFixed(1), width:nw+10,
+          height:(n.h+10).toFixed(1), rx:7, fill:'none', stroke:'#0F766E','stroke-width':1.4, opacity:.55}));
+      }
       var r = el('rect',{x:n.x, y:n.y, width:nw, height:n.h.toFixed(1), fill:n.c, rx:3});
       r.style.cursor='pointer';
       r.addEventListener('mousemove', function(ev){
@@ -1630,6 +1816,18 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
       r.addEventListener('mouseleave', function(){ tip.style.opacity=0; });
       svg.appendChild(r);
     });
+
+    // ---------- remate del paso final ----------
+    var nf_ = nodos[FIN];
+    svg.appendChild(el('line',{x1:(nf_.x+nw/2).toFixed(1), y1:(nf_.y+nf_.h+10).toFixed(1),
+      x2:(nf_.x+nw/2).toFixed(1), y2:yFuga+2, stroke:'#0F766E','stroke-width':1.2,'stroke-dasharray':'3 3', opacity:.6}));
+    svg.appendChild(el('rect',{x:nf_.x-5, y:yFuga+6, width:150, height:34, rx:9, fill:'#0F766E', opacity:.10}));
+    txt(nf_.x+5, yFuga+20, nf(nf_.u) + ' cuentas activadas', '#115E59', 10, 800);
+    txt(nf_.x+5, yFuga+32, pf(nf_.u/nodos[0].u*100) + (opts.remate || ' de quien vio la landing'), '#0F766E', 8.2, 600);
+
+    // ---------- nota de lectura del dato ----------
+    txt(ml, yMarco+26, opts.pie || 'Cada barra son usuarios únicos por pantalla en GA4, no un recorrido cerrado: por eso un paso puede superar a otro anterior. Sirve para ver magnitudes y caídas, no para sumar personas.',
+      '#9CA3AF', 8.4, 600);
   }
 
   function showTipEl(ev, wrap, tip, html){
@@ -1796,7 +1994,7 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
     });
   });
 
-  window.addEventListener('resize', function(){ if (lastTop) drawChart(); drawSankey(); drawMapa(); });
+  window.addEventListener('resize', function(){ if (lastTop) drawChart(); drawSankey('sankey', PASOS, 1200, 452, OPTS_EMBUDO); drawMapa(); });
 
 
   // ---------- audiencia ----------
@@ -1942,7 +2140,7 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
   var pintaMedios = renderPago, pintaHallazgos = renderHall;
 
   renderCanales();
-  drawSankey();
+  drawSankey('sankey', PASOS, 1200, 452, OPTS_EMBUDO);
   drawMapa();
 
   // precarga de la serie diaria ya extraída de GA4
@@ -1983,7 +2181,7 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
                pasosTag: 'Las dos propiedades sumadas' }
   };
   DATOS_PROP.juntos.hall = DATOS_PROP.boom.hall.concat(DATOS_PROP.mtj.hall);
-  var META_PROP = {"boom": {"nombre": "Boom_Jalisco", "id": "511675384", "total": 158778, "usuarios": "114,666", "vistas": "649,835", "vpu": "5,67", "inter": "56.94 %", "tiempo": "2 m 17 s", "rebote": "43.06 %", "sub": "Propiedad <b>Boom_Jalisco</b> (511675384) · landing de campaña y flujo de enrolamiento · 649,835 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["46,534", "Usuarios de pauta"], ["2", "De ellos, llegaron al final"], ["21,465", "Registros finalizados"], ["15.1 %", "Usuarios fuera de Jalisco"]], "banda": "La pauta arrancó el <b>19 de agosto</b> · desde entonces el rebote del sitio pasó de <b>25.9 % a 55.4 %</b> y el <b>99.67 %</b> del tráfico comprado no pasa de la landing"}, "mtj": {"nombre": "Mi tarjeta Jalisco", "id": "511676885", "total": 11226, "usuarios": "7,839", "vistas": "20,628", "vpu": "2,63", "inter": "64.15 %", "tiempo": "31 s", "rebote": "35.85 %", "sub": "Propiedad <b>Mi tarjeta Jalisco</b> (511676885) · sitio de soporte al tarjetahabiente · 20,628 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["11,226", "Sesiones"], ["88.16 %", "Tráfico directo"], ["10,423", "Vistas en /ayuda/"], ["352", "Sesiones de google / cpc"]], "banda": "Sitio de <b>soporte al tarjetahabiente</b>, no de adquisición · el <b>88.16 %</b> entra directo y la mitad de las vistas se va a <b>/ayuda/</b>"}, "juntos": {"nombre": "Las dos propiedades", "id": "511675384 + 511676885", "total": 170004, "usuarios": "122,505", "vistas": "670,463", "vpu": "5,47", "inter": "57.42 %", "tiempo": "2 m 10 s", "rebote": "42.58 %", "sub": "Propiedades <b>Boom_Jalisco</b> (511675384) y <b>Mi tarjeta Jalisco</b> (511676885) sumadas · 670,463 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["170,004", "Sesiones sumadas"], ["122,505", "Usuarios"], ["57.42 %", "Interacción"], ["31.7 %", "Del tráfico viene de pauta"]], "banda": "Las dos propiedades juntas: <b>170,004 sesiones</b> · Mi tarjeta Jalisco aporta apenas el <b>6.6 %</b> del volumen y no recibe adquisición"}};
+  var META_PROP = {"boom": {"nombre": "Boom_Jalisco", "id": "511675384", "total": 158778, "usuarios": "114,666", "vistas": "649,835", "vpu": "5,67", "inter": "56.94 %", "tiempo": "2 m 17 s", "rebote": "43.06 %", "sub": "Propiedad <b>Boom_Jalisco</b> (511675384) · landing de campaña y flujo de enrolamiento · 649,835 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["46,534", "Usuarios de pauta"], ["2", "De ellos, llegaron al final"], ["1,404", "Registros exitosos (cierre real)"], ["15.1 %", "Usuarios fuera de Jalisco"]], "banda": "La pauta arrancó el <b>19 de agosto</b> · desde entonces el rebote del sitio pasó de <b>25.9 % a 55.4 %</b> y el <b>99.67 %</b> del tráfico comprado no pasa de la landing"}, "mtj": {"nombre": "Mi tarjeta Jalisco", "id": "511676885", "total": 11226, "usuarios": "7,839", "vistas": "20,628", "vpu": "2,63", "inter": "64.15 %", "tiempo": "31 s", "rebote": "35.85 %", "sub": "Propiedad <b>Mi tarjeta Jalisco</b> (511676885) · sitio de soporte al tarjetahabiente · 20,628 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["11,226", "Sesiones"], ["88.16 %", "Tráfico directo"], ["10,423", "Vistas en /ayuda/"], ["352", "Sesiones de google / cpc"]], "banda": "Sitio de <b>soporte al tarjetahabiente</b>, no de adquisición · el <b>88.16 %</b> entra directo y la mitad de las vistas se va a <b>/ayuda/</b>"}, "juntos": {"nombre": "Las dos propiedades", "id": "511675384 + 511676885", "total": 170004, "usuarios": "122,505", "vistas": "670,463", "vpu": "5,47", "inter": "57.42 %", "tiempo": "2 m 10 s", "rebote": "42.58 %", "sub": "Propiedades <b>Boom_Jalisco</b> (511675384) y <b>Mi tarjeta Jalisco</b> (511676885) sumadas · 670,463 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["170,004", "Sesiones sumadas"], ["122,505", "Usuarios"], ["57.42 %", "Interacción"], ["31.7 %", "Del tráfico viene de pauta"]], "banda": "Las dos propiedades juntas: <b>170,004 sesiones</b> · Mi tarjeta Jalisco aporta apenas el <b>6.6 %</b> del volumen y no recibe adquisición"}};
 
   function cargarSerie(sd){
     if (!sd || !sd.series || !sd.series.length) return;
