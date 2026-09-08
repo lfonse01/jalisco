@@ -332,6 +332,59 @@ color:rgba(255,255,255,.5);margin-bottom:3px;}
 .card-d b{color:var(--ink);font-weight:700;}
 
 /* gráfica */
+/* secciones plegables */
+.section.plegable > .sechdr{cursor:pointer;user-select:none;position:relative;padding-right:112px;
+transition:border-color .18s;}
+.section.plegable > .sechdr:hover{border-bottom-color:var(--orange);}
+.section.plegable > .sechdr:focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+.sec-tog{position:absolute;right:0;top:50%;transform:translateY(-50%);
+display:inline-flex;align-items:center;gap:7px;flex:none;
+font-size:9.5px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;
+color:var(--gray-l);background:var(--surface);border:1px solid var(--border);
+border-radius:var(--r20);padding:5px 11px;white-space:nowrap;transition:color .18s,border-color .18s;}
+.section.plegable > .sechdr:hover .sec-tog{color:var(--orange-t);border-color:var(--orange-bg2);}
+.sec-tog i{font-style:normal;font-size:11px;line-height:1;transition:transform .22s ease;}
+.section.abierta > .sechdr .sec-tog i{transform:rotate(180deg);}
+.sec-body{display:none;padding-top:2px;}
+.section.abierta > .sec-body{display:block;}
+@media (max-width:640px){
+  .section.plegable > .sechdr{padding-right:0;padding-bottom:44px;}
+  .sec-tog{right:auto;left:0;top:auto;bottom:8px;transform:none;}
+}
+@media print{
+  .sec-body{display:block !important;}
+  .sec-tog{display:none !important;}
+}
+
+/* sección 10 · respuestas a medios */
+.qa-intro{font-size:12.5px;color:var(--gray);line-height:1.7;margin:0 0 18px;max-width:900px;}
+.qa-intro b{color:var(--ink);font-weight:800;}
+.qa{display:flex;flex-direction:column;gap:12px;}
+.qa-i{display:flex;gap:14px;align-items:flex-start;background:var(--white);
+border:1px solid var(--border);border-radius:var(--r12);box-shadow:var(--sh);padding:16px 18px;}
+.qa-n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;
+font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.qa-c{min-width:0;flex:1;}
+.qa-q{font-size:13px;font-weight:800;letter-spacing:-.2px;color:var(--ink);line-height:1.45;
+padding-bottom:8px;margin-bottom:9px;border-bottom:1px solid var(--border);}
+.qa-a{font-size:12px;color:var(--gray);line-height:1.75;}
+.qa-a b{color:var(--ink);font-weight:800;}
+.qa-nb{margin-top:11px;padding:10px 12px;background:var(--surface);border-radius:var(--r8);
+font-size:11.5px;line-height:1.65;}
+.qa-pend{display:block;margin-top:6px;font-size:11.5px;color:var(--amber-t);font-weight:600;}
+.qa-m{font-size:10.5px;color:var(--gray-l);}
+.qa-tbl-w{margin-top:12px;overflow-x:auto;border:1px solid var(--border);border-radius:var(--r8);}
+.qa-tbl{width:100%;border-collapse:collapse;font-size:11.5px;}
+.qa-tbl thead th{background:var(--surface);text-align:right;padding:8px 12px;
+font-size:9.5px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;color:var(--gray-l);
+white-space:nowrap;}
+.qa-tbl thead th.lft{text-align:left;}
+.qa-tbl td{padding:7px 12px;border-top:1px solid var(--border);text-align:right;
+font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.qa-tbl td.lft{text-align:left;font-weight:600;color:var(--gray);}
+.qa-tbl tbody tr:hover{background:var(--orange-bg);}
+@media (max-width:640px){.qa-i{flex-direction:column;gap:9px;}}
+
 code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:.88em;
 background:var(--surface);border:1px solid var(--border);border-radius:5px;
 padding:1px 5px;color:var(--orange-t);white-space:nowrap;}
@@ -482,17 +535,17 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
   <div class="hero-in">
     <span class="hero-eye">◆ Lectura para el equipo de medios</span>
     <h1 class="hero-t">Tarjeta Única<br>Al Estilo Jalisco</h1>
-    <p class="hero-s"><b>Broxel × Visa × Gobierno de Jalisco</b> · 1 de agosto al 6 de septiembre de 2026 · propiedades GA4 Boom_Jalisco y Mi tarjeta Jalisco</p>
+    <p class="hero-s"><b>Broxel × Visa × Gobierno de Jalisco</b> · 1 de agosto al 7 de septiembre de 2026 · propiedades GA4 Boom_Jalisco y Mi tarjeta Jalisco</p>
     <div class="hero-kpis">
-      <div class="hk"><div class="hk-v">46,534</div><div class="hk-l">Usuarios de pauta</div></div>
-      <div class="hk"><div class="hk-v">2</div><div class="hk-l">De ellos, llegaron al final</div></div>
-      <div class="hk"><div class="hk-v">1,404</div><div class="hk-l">Registros exitosos (cierre real)</div></div>
-      <div class="hk"><div class="hk-v">15.1 %</div><div class="hk-l">Usuarios fuera de Jalisco</div></div>
+      <div class="hk"><div class="hk-v">121,364</div><div class="hk-l">Usuarios activos</div></div>
+      <div class="hk"><div class="hk-v">51,393</div><div class="hk-l">Inician el registro</div></div>
+      <div class="hk"><div class="hk-v">1,442</div><div class="hk-l">Registros exitosos (cierre real)</div></div>
+      <div class="hk"><div class="hk-v">2.81 %</div><div class="hk-l">Conversión al paso final</div></div>
     </div>
   </div>
 </div>
 <div class="hero-band">
-  <div class="hero-band-in">La pauta arrancó el <b>19 de agosto</b> · desde entonces el rebote del sitio pasó de <b>25.9 % a 55.4 %</b> y el <b>99.67 %</b> del tráfico comprado no pasa de la landing</div>
+  <div class="hero-band-in">Del 1 de agosto al 7 de septiembre: <b>166,864 sesiones</b> y <b>55.42 %</b> de interacción · de cada 100 personas que inician el registro, <b>menos de 3</b> terminan con la cuenta activa</div>
 </div>
 
 <div class="topbar">
@@ -517,7 +570,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
 
 <div class="doc">
 
-  <p class="doc-sub" id="doc-sub" style="margin-top:4px;">Propiedades <b>Boom_Jalisco</b> (511675384) y <b>Mi tarjeta Jalisco</b> (511676885) · 649,835 vistas · 128 rutas medidas · datos leídos directamente de GA4 el 6 de septiembre</p>
+  <p class="doc-sub" id="doc-sub" style="margin-top:4px;">Propiedades <b>Boom_Jalisco</b> (511675384) y <b>Mi tarjeta Jalisco</b> (511676885) · 674,515 vistas · 130 rutas medidas · datos leídos directamente de GA4 el 8 de septiembre</p>
 
   <!-- FILTRO -->
   <div class="filterbar">
@@ -528,7 +581,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
       <button class="fchip" data-g="organic"><span class="fdot" style="background:#0F766E"></span>Orgánico</button>
       <button class="fchip" data-g="direct"><span class="fdot" style="background:#1D2332"></span>Directo / Referido</button>
     </div>
-    <div class="fb-state" id="fb-state">158,778 sesiones · 12 canales</div>
+    <div class="fb-state" id="fb-state">166,864 sesiones · 10 canales</div>
   </div>
 
   <!-- 1 · TRÁFICO DIARIO (arriba) -->
@@ -564,7 +617,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
         </div>
         <div class="lg" id="legend"></div>
         <div style="font-size:10.5px;color:var(--gray-l);margin-top:10px;">
-          Haz clic en la leyenda para aislar una serie · pasa el cursor sobre un día para ver el desglose completo. La serie va del 1 de agosto al 5 de septiembre: el 6 de septiembre se excluye de la gráfica porque GA4 todavía lo estaba procesando cuando se leyó el dato, aunque sí está incluido en los totales.
+          Haz clic en la leyenda para aislar una serie · pasa el cursor sobre un día para ver el desglose completo. <b>La serie diaria no se actualizó en esta pasada y sigue cubriendo del 1 de agosto al 5 de septiembre;</b> se alimenta de un CSV que hay que volver a exportar desde GA4. Los totales y el embudo de arriba sí van al 7 de septiembre.
         </div>
 </div>
 
@@ -582,18 +635,18 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
   <div class="krow">
     <div class="kpi">
       <div class="k-l">Usuarios activos</div>
-      <div class="k-v">114,666</div>
-      <div class="k-d">649,835 vistas · 5.67 vistas por usuario</div>
+      <div class="k-v">121,364</div>
+      <div class="k-d">674,515 vistas · 5.56 vistas por usuario</div>
     </div>
     <div class="kpi">
       <div class="k-l">Sesiones</div>
-      <div class="k-v" id="kpi-ses">158,778</div>
-      <div class="k-d" id="kpi-ses-d">56.94 % con interacción · 2 m 17 s de media</div>
+      <div class="k-v" id="kpi-ses">166,864</div>
+      <div class="k-d" id="kpi-ses-d">55.42 % con interacción · 3 m 05 s de media</div>
     </div>
     <div class="kpi">
       <div class="k-l">% de rebote</div>
-      <div class="k-v" id="kpi-reb">43.06 %</div>
-      <div class="k-d" id="kpi-reb-d">Complemento del 56.94 % de interacción · dato de GA4</div>
+      <div class="k-v" id="kpi-reb">44.58 %</div>
+      <div class="k-d" id="kpi-reb-d">Complemento del 55.42 % de interacción · dato de GA4</div>
     </div>
   </div>
 
@@ -616,8 +669,16 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
 
       <div class="convp">
         <div class="convp-hd">
-          <div class="convp-t">Conversión al paso final por tipo de tráfico</div>
+          <div class="convp-t">Conversión al paso final por tipo de tráfico
+            <span class="chip c-amber" style="margin-left:8px;vertical-align:2px;">Cifras al 6 de septiembre</span></div>
           <div class="convp-s">Usuarios en <span class="mono">/8.3 Registro exitoso</span> ÷ usuarios totales llegados por el canal · GA4 Boom_Jalisco · escala de barras compartida</div>
+        </div>
+
+        <div class="callout amber" style="margin:12px 0 0;padding:11px 13px;background:#FEF3C7;border-left:4px solid #F59E0B;border-radius:0 var(--r8) var(--r8) 0;font-size:11.5px;line-height:1.6;color:#92400E;">
+          <b>Este bloque es el único que no se actualizó.</b> El resto del dashboard va al
+          <b>7 de septiembre</b>; estas cifras siguen siendo del corte al 6. El desglose pagado / no pagado
+          requiere aplicar el segmento «Tráfico de pago» de GA4, que no se pudo leer en esta pasada.
+          Los datos de embudo, canales y totales sí están al día.
         </div>
 
         <div class="convp-body">
@@ -671,32 +732,32 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
           <div class="leer-p">
             <span class="leer-n2">1</span>
             <div><b>Por qué son siete pasos y no catorce.</b>
-            El flujo tiene 14 pantallas medidas, pero dibujarlas todas produce un embudo que <b>sube tres veces</b>: a <code>/1.1 Legales</code> entran 39,537 que nunca vieron <code>/1.0 Inicio</code>; a <code>/7.1</code>, 9,061 que no vieron <code>/7.0</code>; y a <code>/8.0 Finalizado</code>, 10,990 que no vieron <code>/7.3 Guardado</code>. Esas pantallas son ramas del flujo, no pasos obligatorios, y quedan fuera.</div>
+            El flujo tiene 14 pantallas medidas, pero dibujarlas todas produce un embudo que <b>sube tres veces</b>: a <code>/1.1 Legales</code> entran 40,814 que nunca vieron <code>/1.0 Inicio</code>; a <code>/7.1</code>, 9,469 que no vieron <code>/7.0</code>; y a <code>/8.0 Finalizado</code>, 11,366 que no vieron <code>/7.3 Guardado</code>. Esas pantallas son ramas del flujo, no pasos obligatorios, y quedan fuera.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">2</span>
             <div><b>La landing tampoco es un paso del trámite.</b>
-            De las 49,694 personas que inician el registro, prácticamente ninguna viene de la landing: el 99.67 % de quien la vio llegó por pauta y no avanzó. Quien sí se registra entra directo desde el portal del gobierno, así que el embudo arranca en <code>/1.1</code>.</div>
+            <code>/lp/campana-visa/</code> acumula 50,929 usuarios pero con <b>4 segundos</b> de interacción media y 1.26 vistas por usuario: se ve y se abandona. En <code>/1.1</code>, con 51,393 usuarios, la interacción media es de <b>1 m 58 s</b>. Quien sí se registra entra directo desde el portal del gobierno, así que el embudo arranca en <code>/1.1</code>.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">3</span>
-            <div><b>La primera fuga es el login: −47.3 %.</b>
-            De 49,694 que aceptan legales solo 26,187 llegan a autenticarse. Es la caída más grande en volumen absoluto del trámite —23,507 personas— y ocurre antes de que nadie haya llenado un solo campo.</div>
+            <div><b>La primera fuga es el login: −47.4 %.</b>
+            De 51,393 que aceptan legales solo 27,033 llegan a autenticarse. Es la caída más grande en volumen absoluto del trámite, 24,360 personas, y ocurre antes de que nadie haya llenado un solo campo.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">4</span>
             <div><b>El formulario en sí retiene bien.</b>
-            De Datos personales a Domicilio se pierde poco: −22.8 %, −12.7 % y −11.9 % por pantalla. Quien llega a llenar datos, en general los termina. El problema no está en el formulario.</div>
+            De Datos personales a Domicilio se pierde poco: −22.5 %, −12.3 % y −12.2 % por pantalla. Quien llega a llenar datos, en general los termina. El problema no está en el formulario.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">5</span>
-            <div><b>El derrumbe está entre Domicilio y Validación: −82.72 %.</b>
-            De 15,550 que terminan el domicilio solo 2,691 aparecen en <code>/8.2</code>. Son <b>12,859 personas</b> y es, con diferencia, la caída más costosa del flujo. Antes quedaba tapada porque <code>/8.0 Finalizado</code> se dibujaba justo en medio con 21,465 usuarios.</div>
+            <div><b>El derrumbe está entre Domicilio y Validación: −82.85 %.</b>
+            De 16,128 que terminan el domicilio solo 2,766 aparecen en <code>/8.2</code>. Son <b>13,362 personas</b> y es, con diferencia, la caída más costosa del flujo. Antes quedaba tapada porque <code>/8.0 Finalizado</code> se dibujaba justo en medio con 22,203 usuarios.</div>
           </div>
           <div class="leer-p">
             <span class="leer-n2">6</span>
-            <div><b>El cierre real son 1,404 cuentas: 2.83 %.</b>
-            De cada 100 personas que inician el registro, menos de 3 terminan con cuenta activa. Ese es el número que debe gobernar el CPA, no los 21,465 de <code>/8.0</code> que se citan como «registros finalizados» y que inflan el resultado 15 veces.</div>
+            <div><b>El cierre real son 1,442 cuentas: 2.81 %.</b>
+            De cada 100 personas que inician el registro, menos de 3 terminan con cuenta activa. Ese es el número que debe gobernar el CPA, no los 22,203 de <code>/8.0</code> que se citan como «registros finalizados» y que inflan el resultado 15 veces.</div>
           </div>
         </div>
         <div class="leer-n">
@@ -705,7 +766,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
           siguiente, así que depurar la cadena la vuelve legible pero no la convierte en un embudo real
           de personas. Segundo: sacar <code>/8.0 Finalizado</code> es una decisión de lectura, no un dato.
           Se apoya en que supera en volumen a pantallas anteriores del formulario, lo que sugiere entradas
-          laterales, reingresos o disparos duplicados, pero <b>falta confirmarlo con producto</b> —junto con
+          laterales, reingresos o disparos duplicados, pero <b>falta confirmarlo con producto</b>, junto con
           la pregunta de si <code>/8.2</code> la ven todos los que terminan o solo los expedientes que entran
           a revisión manual. Antes de fijar metas sobre estos números conviene reconstruir el embudo con
           eventos secuenciados, no con vistas de pantalla.
@@ -886,7 +947,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
     <div class="sechdr">
       <div class="secn">7</div>
       <div class="sect">Qué hace el tráfico pagado al llegar</div>
-      <div class="secflag"><span class="chip c-red">Evidencia para afinar la pauta</span></div>
+      <div class="secflag"><span class="chip c-red">Evidencia para afinar la pauta</span> <span class="chip c-amber">Cifras al 6 de septiembre</span></div>
     <div class="solo-nota">Solo Boom_Jalisco · El análisis del embudo pagado corresponde a Boom_Jalisco, que es la propiedad que recibe la pauta.</div>
     </div>
 
@@ -913,7 +974,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
       y avanza <b>pierde su campaña de origen en el salto</b> y reaparece como referencia interna: son las
       10,622 sesiones de <span class="mono">ciudadanoregister.broxel.com / referral</span>.
       Las dos cosas son ciertas a la vez: la mayor parte del tráfico pagado efectivamente no engancha
-      —eso sí es accionable desde la pauta— y la parte que sí avanza no se puede acreditar todavía.
+      (eso sí es accionable desde la pauta) y la parte que sí avanza no se puede acreditar todavía.
       Lee esta tabla como señal de calidad del clic, no como el resultado final de la campaña.
     </div>
 
@@ -943,7 +1004,7 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
 
     <div class="krow" style="margin-bottom:14px;">
       <div class="kpi"><div class="k-l">Sesiones</div><div class="k-v">11,226</div>
-        <div class="k-d">Contra 158,778 de Boom_Jalisco</div></div>
+        <div class="k-d">Contra 166,864 de Boom_Jalisco</div></div>
       <div class="kpi"><div class="k-l">Usuarios activos</div><div class="k-v">7,839</div>
         <div class="k-d">20,628 vistas · 2.63 por usuario</div></div>
       <div class="kpi"><div class="k-l">Interacción</div><div class="k-v">64.15 %</div>
@@ -1012,9 +1073,160 @@ display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--b
     </div>
   </div>
 
+  <!-- 10 · Respuestas a medios -->
+  <div class="section">
+    <div class="sechdr">
+      <div class="secn">10</div>
+      <div class="sect">Respuestas a las preguntas de medios</div>
+      <div class="secflag"><span class="chip c-teal">Datos al 7 de septiembre</span></div>
+    </div>
+
+    <p class="qa-intro">Respuestas a las ocho preguntas que llegaron sobre los hallazgos del reporte anterior.
+    Salvo donde se indica, las cifras se releyeron de GA4 el 8 de septiembre sobre la ventana
+    <b>1 de agosto – 7 de septiembre de 2026</b>.</p>
+
+    <div class="qa">
+
+      <div class="qa-i">
+        <div class="qa-n">1</div>
+        <div class="qa-c">
+          <div class="qa-q">¿Cuáles son el resto de fuentes de campaña? ¿Hay campañas fuera de Starcom?</div>
+          <div class="qa-a">
+            GA4 ve <b>~57,900 sesiones pagadas</b> en el periodo, contra las 14,488 visitas de su plataforma.
+            Y <b>sí hay compra fuera del naming de Starcom</b>: Gridmedia, DV360 y DVRegion, con medios
+            <code>DigitalDisplay</code> y <code>DigitalDisplayNonPaidSocial</code>, 125 sesiones entre las tres.
+            Poco volumen, pero confirman que hay más de un equipo trafficando.
+            <div class="qa-tbl-w">
+              <table class="qa-tbl">
+                <thead><tr><th class="lft">Fuente / medio</th><th>Sesiones</th></tr></thead>
+                <tbody>
+                  <tr><td class="lft"><code>google / cpc</code></td><td>19,422</td></tr>
+                  <tr><td class="lft"><code>facebook / paid_social</code></td><td>17,881</td></tr>
+                  <tr><td class="lft"><code>Facebook / PaidSocialVideo</code></td><td>9,232</td></tr>
+                  <tr><td class="lft"><code>Facebook / PaidSocialDisplay</code></td><td>4,822</td></tr>
+                  <tr><td class="lft"><code>tiktok / paid_social</code></td><td>2,626</td></tr>
+                  <tr><td class="lft">Cross-network <span class="qa-m">(data not available)</span></td><td>2,321</td></tr>
+                  <tr><td class="lft"><code>TikTok / PaidSocialVideo</code></td><td>1,434</td></tr>
+                  <tr><td class="lft"><code>Gridmedia / DigitalDisplay</code></td><td>45</td></tr>
+                  <tr><td class="lft"><code>(not set) / DigitalDisplayNonPaidSocial</code></td><td>38</td></tr>
+                  <tr><td class="lft"><code>DV360 / DigitalDisplay</code></td><td>25</td></tr>
+                  <tr><td class="lft"><code>DVRegion / DigitalDisplayNonPaidSocial</code></td><td>17</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="qa-nb"><b>Antes de concluir que falta inventario:</b> buena parte de la brecha
+            14,488 vs 57,900 no son campañas extra, son unidades distintas. Su plataforma cuenta visitas;
+            GA4 cuenta sesiones, y una misma persona genera varias. Conviene cuadrar la unidad de medida primero.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-i">
+        <div class="qa-n">2</div>
+        <div class="qa-c">
+          <div class="qa-q">Los puntos de 1.25 vistas / 4 s y de 14.6 %–27.6 % de interacción, ¿se refieren a la landing y no al formulario?</div>
+          <div class="qa-a">
+            Mitad y mitad. <b>Las 1.26 vistas y 4 segundos sí son exclusivamente de</b> <code>/lp/campana-visa/</code>.
+            <b>El 14.6 %–27.6 % no:</b> es la tasa de interacción de sesión de cada canal en toda la propiedad.
+            Lo que pasa es que como el tráfico comprado no sale de la landing, en la práctica termina describiéndola.
+            Al 7 de septiembre: <code>google/cpc</code> 13.98 %, <code>tiktok/paid_social</code> 15.73 %,
+            <code>Facebook/PaidSocialVideo</code> 18.10 %, <code>facebook/paid_social</code> 20.21 %,
+            <code>Facebook/PaidSocialDisplay</code> 27.58 %.
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-i">
+        <div class="qa-n">3</div>
+        <div class="qa-c">
+          <div class="qa-q">El portal del gobierno con 83.6 % de interacción, ¿nos referimos a tarjetaunica.jalisco.gob.mx?</div>
+          <div class="qa-a">
+            Sí, exactamente ese. <code>tarjetaunica.jalisco.gob.mx / referral</code>:
+            <b>67,335 sesiones</b> (40.35 % del total), <b>83.44 % de interacción</b> y <b>4 m 41 s</b>.
+            Es la primera fuente del sitio, por encima de cualquier medio comprado.
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-i">
+        <div class="qa-n">4</div>
+        <div class="qa-c">
+          <div class="qa-q">En plataforma no identificamos usuarios fuera de Jalisco en pauta. ¿El 15.1 % se refiere a tráfico general?</div>
+          <div class="qa-a">
+            Sí, es sobre usuarios totales de la propiedad, no sobre pauta. Es consistente con lo que ven:
+            <b>la segmentación geográfica está bien puesta</b>. Ese 15 % entra por orgánico, directo
+            y el portal del gobierno, no por los medios comprados.
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-i">
+        <div class="qa-n">5</div>
+        <div class="qa-c">
+          <div class="qa-q">La campaña FY26Q4 partida en dos filas por mayúsculas, ¿es constante o aparece desde alguna fecha?</div>
+          <div class="qa-a">
+            El problema es <b>sistémico, no de esa campaña</b>: conviven dos convenciones de nomenclatura
+            en paralelo: <code>facebook / paid_social</code> con <code>Facebook / PaidSocialVideo</code>,
+            y <code>tiktok / paid_social</code> con <code>TikTok / PaidSocialVideo</code>.
+            No es un error puntual sino dos formas de etiquetar corriendo al mismo tiempo.
+            <span class="qa-pend">La fecha exacta en que aparece cada variante queda pendiente de aislar.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-i">
+        <div class="qa-n">6</div>
+        <div class="qa-c">
+          <div class="qa-q">Las fuentes con nombre de persona (Corona / MEDIA_JAL, Karen / MEDIA_JAL): ¿es actividad total o fechas específicas?</div>
+          <div class="qa-a">
+            Fechas específicas, y ya quedó resuelto. En la ventana 1 ago – 7 sep <b>no aparecen entre las
+            30 primeras fuentes de 68</b>, y de la 31 en adelante ninguna pasa de 10 sesiones.
+            <b>El ajuste de UTMs funcionó</b>; lo que se vio venía del corte que incluía abril.
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-i">
+        <div class="qa-n">7</div>
+        <div class="qa-c">
+          <div class="qa-q">Sobre el 99.67 % que no pasa de la landing: queremos entrar a fondo al journey.</div>
+          <div class="qa-a">
+            De acuerdo, con una precisión: <b>ese dato es del corte al 6 de septiembre y hay que refrescarlo</b>
+            porque requiere el segmento «Tráfico de pago» de GA4, que no se pudo leer en esta pasada.
+            Y una sugerencia de orden: <b>empezar por el login, no por la landing</b>. Es la primera fuga real
+            del trámite: <b>−47.4 %, 24,360 personas</b> que se caen antes de llenar un solo campo.
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-i">
+        <div class="qa-n">8</div>
+        <div class="qa-c">
+          <div class="qa-q">Campañas de abril que siguen vivas: ¿hay alguna acción por tomar?</div>
+          <div class="qa-a">
+            Pendiente de confirmar. En la ventana actual no se detectaron fuentes con naming de abril
+            entre las 30 primeras, pero para responderlo bien hace falta el reporte de
+            <b>Campaña de la sesión</b> comparando abril–julio contra agosto–septiembre.
+            Si siguen activas, la acción es apagarlas o re-etiquetarlas: mientras corran,
+            contaminan la atribución del periodo Visa.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout amber" style="margin-top:16px;">
+      <b>Dos cosas quedaron pendientes de leer en GA4:</b> el segmento «Tráfico de pago», que es lo que
+      sostiene el 99.67 % y los 46,534 usuarios de pauta, y el reporte de Campaña mes a mes, que contesta
+      las preguntas 5 y 8. Ambas se resuelven en una sesión de análisis y no cambian el diagnóstico de fondo:
+      del embudo real, que arranca en <code>/1.1</code> con 51,393 usuarios,
+      solo <b>1,442 terminan con cuenta activa</b>.
+    </div>
+  </div>
+
   <div class="fnote">
     <div><b>Growth B2C</b>, datos leídos directamente de GA4, propiedades Boom_Jalisco (511675384) y Mi tarjeta Jalisco (511676885).</div>
-    <div>Periodo 1 ago – 6 sep 2026 · Paleta tomada de mitarjetajalisco.com</div>
+    <div>Periodo 1 ago – 7 sep 2026 · Paleta tomada de mitarjetajalisco.com</div>
   </div>
 
 </div>
@@ -1039,7 +1251,7 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
   // Medios de PAGO (dimensión "Medio de la sesión", GA4 3-30 ago). rebote = 100 - interacción
   // plan:true  = medio definido en el plan de UTMs de Broxel
 
-  var HALLAZGOS = [{"p": "P1", "h": "De 46,534 usuarios que llegaron por pauta, <b>46,379 (99.67 %) no pasaron de la landing</b>: 1.25 vistas por persona y 4 segundos de permanencia.", "a": "La landing es el cuello de botella, no la compra. Auditar velocidad en móvil, correspondencia entre el mensaje del anuncio y el de la página, y visibilidad del botón de continuar arriba del pliegue."}, {"p": "P1", "h": "17,313 usuarios (15.1 %) están fuera de Jalisco. Ciudad de México aporta 6,921, más que Tlaquepaque. La tarjeta es un programa estatal y esas personas no pueden darse de alta.", "a": "En Meta, desactivar la expansión automática de audiencia. En Google Ads, cambiar la configuración de ubicación de «presencia o interés» a «presencia». Es el ahorro más rápido y menos discutible del plan."}, {"p": "P1", "h": "Ningún medio se despega del resto: <span class=\"mono\">paid_social</span> 20.0 %, <span class=\"mono\">PaidSocialVideo</span> 18.4 %, <span class=\"mono\">cpc</span> 14.6 % de interacción, contra 83.6 % del portal del gobierno.", "a": "Cuando plataformas, agencias y creativos distintos dan el mismo resultado, la variable común es el destino. Probar A/B mandando la mitad del tráfico pagado directo a <span class=\"mono\">/1.1 PreRegistro</span> y saltando la landing."}, {"p": "P2", "h": "La campaña FY26Q4 está partida en dos filas por diferencia de mayúsculas y reparte 28,515 sesiones entre dos registros que ningún reporte suma solo.", "a": "Acordar con Visa un estándar único en minúsculas y forzarlo en la plantilla de UTMs. Mientras siga así, las cifras que se presentan a cliente están partidas a la mitad."}, {"p": "P2", "h": "Del plan de UTMs solo dos medios tienen volumen. <span class=\"mono\">display</span> registra 6 sesiones y <span class=\"mono\">paid_video</span> 1, cuando el plan contempla nueve creativos de display y cuatro de video.", "a": "Los links del plan no se cargaron en DV360 ni en la plataforma de video: ese tráfico entra con los medios de la agencia. Auditar el trafficking pieza por pieza y validar los UTMs antes de publicar el siguiente flight."}, {"p": "P2", "h": "Aparecen fuentes con nombre de persona: <span class=\"mono\">Corona / MEDIA_JAL</span> y <span class=\"mono\">Karen / MEDIA_JAL</span>. También <span class=\"mono\">fb / META</span>, <span class=\"mono\">ig / META</span> y <span class=\"mono\">Jalisco_aw / META</span>.", "a": "Bloquear la creación libre de UTMs. Un solo generador de links, con valores cerrados de source y medium, y revisión obligatoria antes de cargar en plataforma."}, {"p": "P3", "h": "5,779 usuarios (5.04 %) entran por navegador embebido de app. Android Webview engancha 28.2 % contra 58.4 % de Chrome, y Safari in-app apenas 21.0 %.", "a": "Recorrer el flujo completo desde dentro de la app de Facebook e Instagram, incluyendo la validación de celular. Si algo se rompe ahí, la pauta social está comprando clics que no pueden convertir por diseño."}, {"p": "P3", "h": "Campañas de abril siguen generando sesiones: <span class=\"mono\">Jalisco_traffic_Abril_2026</span>, <span class=\"mono\">Jalisco_AW_Abril_2026</span> y <span class=\"mono\">Paid_Jalisco_2026</span>.", "a": "Localizar las piezas vivas de flights anteriores —posts orgánicos, correos, banners sin caducar— y darlas de baja para que no contaminen la lectura del flight actual."}];
+  var HALLAZGOS = [{"p": "P1", "h": "De 46,534 usuarios que llegaron por pauta, <b>46,379 (99.67 %) no pasaron de la landing</b>: 1.25 vistas por persona y 4 segundos de permanencia.", "a": "La landing es el cuello de botella, no la compra. Auditar velocidad en móvil, correspondencia entre el mensaje del anuncio y el de la página, y visibilidad del botón de continuar arriba del pliegue."}, {"p": "P1", "h": "17,313 usuarios (15.1 %) están fuera de Jalisco. Ciudad de México aporta 6,921, más que Tlaquepaque. La tarjeta es un programa estatal y esas personas no pueden darse de alta.", "a": "En Meta, desactivar la expansión automática de audiencia. En Google Ads, cambiar la configuración de ubicación de «presencia o interés» a «presencia». Es el ahorro más rápido y menos discutible del plan."}, {"p": "P1", "h": "Ningún medio se despega del resto: <span class=\"mono\">paid_social</span> 20.0 %, <span class=\"mono\">PaidSocialVideo</span> 18.4 %, <span class=\"mono\">cpc</span> 14.6 % de interacción, contra 83.6 % del portal del gobierno.", "a": "Cuando plataformas, agencias y creativos distintos dan el mismo resultado, la variable común es el destino. Probar A/B mandando la mitad del tráfico pagado directo a <span class=\"mono\">/1.1 PreRegistro</span> y saltando la landing."}, {"p": "P2", "h": "La campaña FY26Q4 está partida en dos filas por diferencia de mayúsculas y reparte 28,515 sesiones entre dos registros que ningún reporte suma solo.", "a": "Acordar con Visa un estándar único en minúsculas y forzarlo en la plantilla de UTMs. Mientras siga así, las cifras que se presentan a cliente están partidas a la mitad."}, {"p": "P2", "h": "Del plan de UTMs solo dos medios tienen volumen. <span class=\"mono\">display</span> registra 6 sesiones y <span class=\"mono\">paid_video</span> 1, cuando el plan contempla nueve creativos de display y cuatro de video.", "a": "Los links del plan no se cargaron en DV360 ni en la plataforma de video: ese tráfico entra con los medios de la agencia. Auditar el trafficking pieza por pieza y validar los UTMs antes de publicar el siguiente flight."}, {"p": "P2", "h": "Aparecen fuentes con nombre de persona: <span class=\"mono\">Corona / MEDIA_JAL</span> y <span class=\"mono\">Karen / MEDIA_JAL</span>. También <span class=\"mono\">fb / META</span>, <span class=\"mono\">ig / META</span> y <span class=\"mono\">Jalisco_aw / META</span>.", "a": "Bloquear la creación libre de UTMs. Un solo generador de links, con valores cerrados de source y medium, y revisión obligatoria antes de cargar en plataforma."}, {"p": "P3", "h": "5,779 usuarios (5.04 %) entran por navegador embebido de app. Android Webview engancha 28.2 % contra 58.4 % de Chrome, y Safari in-app apenas 21.0 %.", "a": "Recorrer el flujo completo desde dentro de la app de Facebook e Instagram, incluyendo la validación de celular. Si algo se rompe ahí, la pauta social está comprando clics que no pueden convertir por diseño."}, {"p": "P3", "h": "Campañas de abril siguen generando sesiones: <span class=\"mono\">Jalisco_traffic_Abril_2026</span>, <span class=\"mono\">Jalisco_AW_Abril_2026</span> y <span class=\"mono\">Paid_Jalisco_2026</span>.", "a": "Localizar las piezas vivas de flights anteriores (posts orgánicos, correos, banners sin caducar) y darlas de baja para que no contaminen la lectura del flight actual."}];
 
 
   var MEDIOS_PAGO = [{"n": "paid_social", "s": 17650, "p": 11.12, "e": 20.01, "plan": true}, {"n": "cpc", "s": 16997, "p": 10.7, "e": 14.6, "plan": true}, {"n": "PaidSocialVideo", "s": 10663, "p": 6.72, "e": 18.43, "plan": false}, {"n": "PaidSocialDisplay", "s": 4822, "p": 3.04, "e": 27.58, "plan": false}, {"n": "DigitalDisplay", "s": 67, "p": 0.04, "e": 8.96, "plan": false}, {"n": "DigitalDisplayNonPaidSocial", "s": 56, "p": 0.04, "e": 10.71, "plan": false}, {"n": "Search", "s": 9, "p": 0.01, "e": 22.22, "plan": false}, {"n": "META", "s": 7, "p": 0.0, "e": 42.86, "plan": false}, {"n": "display", "s": 6, "p": 0.0, "e": 66.67, "plan": true}, {"n": "MEDIA_JAL", "s": 2, "p": 0.0, "e": 0.0, "plan": false}, {"n": "cpv", "s": 1, "p": 0.0, "e": 100.0, "plan": false}, {"n": "paid_video", "s": 1, "p": 0.0, "e": 100.0, "plan": true}];
@@ -1074,13 +1286,13 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
   // /1.0 PreRegistro, las tres de Dependientes y /8.0 Finalizado: con ellas el gráfico
   // sube tres veces, señal de que son ramas del flujo y no pasos obligatorios.
   var PASOS = [
-    {"ic":"📝","l":"1 · Inicio de registro",    "u":49694,"v":121671,"t":"1 m 58 s","p":"/1.1 PreRegistro - Legales",  "cls":"s1","c":"#FF8300","nota":"Arranque real del trámite"},
-    {"ic":"🔐","l":"2 · Login",                 "u":26187,"v":66387, "t":"1 m 30 s","p":"/Modular/…/Login",            "cls":"",  "c":"#FFB547","nota":"Autenticación"},
-    {"ic":"👤","l":"3 · Datos personales",      "u":20219,"v":25643, "t":"2 m 01 s","p":"/3.1 Datos Personales",       "cls":"",  "c":"#FFB547","nota":"Llenado del formulario"},
-    {"ic":"🪪","l":"4 · CURP",                  "u":17652,"v":42356, "t":"1 m 29 s","p":"/4.1 CURP - Completa",        "cls":"",  "c":"#FFB547","nota":"Llenado del formulario"},
-    {"ic":"🏠","l":"5 · Domicilio",             "u":15550,"v":18585, "t":"2 m 27 s","p":"/5.1 Domicilio - Ingresar",   "cls":"",  "c":"#FFB547","nota":"Última pantalla del formulario"},
-    {"ic":"🔎","l":"6 · Validando información", "u":2691, "v":6003,  "t":"11 s",    "p":"/8.2 Finalizado - Validando", "cls":"",  "c":"#2E9189","nota":"Revisión del expediente"},
-    {"ic":"✅","l":"7 · Registro exitoso",      "u":1404, "v":2718,  "t":"11 s",    "p":"/8.3 Finalizado - Exito",     "cls":"s5","c":"#0F766E","nota":"Cierre real del enrolamiento"}
+    {"ic":"📝","l":"1 · Inicio de registro",    "u":51393,"v":125779,"t":"1 m 58 s","p":"/1.1 PreRegistro - Legales",  "cls":"s1","c":"#FF8300","nota":"Arranque real del trámite"},
+    {"ic":"🔐","l":"2 · Login",                 "u":27033,"v":68411, "t":"1 m 30 s","p":"/Modular/…/Login",            "cls":"",  "c":"#FFB547","nota":"Autenticación"},
+    {"ic":"👤","l":"3 · Datos personales",      "u":20956,"v":26515, "t":"2 m 01 s","p":"/3.1 Datos Personales",       "cls":"",  "c":"#FFB547","nota":"Llenado del formulario"},
+    {"ic":"🪪","l":"4 · CURP",                  "u":18371,"v":43666, "t":"1 m 28 s","p":"/4.1 CURP - Completa",        "cls":"",  "c":"#FFB547","nota":"Llenado del formulario"},
+    {"ic":"🏠","l":"5 · Domicilio",             "u":16128,"v":19205, "t":"2 m 26 s","p":"/5.1 Domicilio - Ingresar",   "cls":"",  "c":"#FFB547","nota":"Última pantalla del formulario"},
+    {"ic":"🔎","l":"6 · Validando información", "u":2766, "v":6168,  "t":"10 s",    "p":"/8.2 Finalizado - Validando", "cls":"",  "c":"#2E9189","nota":"Revisión del expediente"},
+    {"ic":"✅","l":"7 · Registro exitoso",      "u":1442, "v":2791,  "t":"11 s",    "p":"/8.3 Finalizado - Exito",     "cls":"s5","c":"#0F766E","nota":"Cierre real del enrolamiento"}
   ];
 
   var OPTS_EMBUDO = {
@@ -1093,15 +1305,15 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
     pie: 'Cadena monotónica: cada paso es menor que el anterior. Quedan fuera la landing, /0.0 Redirect, /1.0 PreRegistro, las tres pantallas de Dependientes y /8.0 Finalizado, que rompen la secuencia.'
   };
 
-  var STEPS = [{"n": "/lp/campana-visa/", "u": 46583, "v": 58427, "vu": "1.25", "t": "4 s"}, {"n": "/1.1 PreRegistro - Legales", "u": 49694, "v": 121671, "vu": "2.45", "t": "1 m 58 s"}, {"n": "/0.0 Redirect Intermedio", "u": 29917, "v": 123044, "vu": "4.11", "t": "25 s"}, {"n": "/Modular/…/Login", "u": 26187, "v": 66387, "vu": "2.54", "t": "1 m 30 s"}, {"n": "/8.0 Finalizado - Inicio", "u": 21465, "v": 38550, "vu": "1.80", "t": "58 s"}, {"n": "/3.1 Datos Personales", "u": 20219, "v": 25643, "vu": "1.27", "t": "2 m 01 s"}, {"n": "/7.1 Dependientes - Inicio", "u": 19267, "v": 30544, "vu": "1.59", "t": "33 s"}, {"n": "/4.1 CURP - Completa", "u": 17652, "v": 42356, "vu": "2.40", "t": "1 m 29 s"}, {"n": "/5.1 Domicilio - Ingresar", "u": 15550, "v": 18585, "vu": "1.20", "t": "2 m 27 s"}, {"n": "/", "u": 13205, "v": 26058, "vu": "1.97", "t": "37 s"}, {"n": "/7.3 Dependientes - Guardado", "u": 10475, "v": 14045, "vu": "1.34", "t": "4 s"}, {"n": "/7.0 Dependientes - Inicio", "u": 10206, "v": 23813, "vu": "2.33", "t": "4 m 20 s"}, {"n": "/1.0 PreRegistro - Inicio", "u": 10157, "v": 16554, "vu": "1.63", "t": "39 s"}, {"n": "/8.2 Finalizado - Validando", "u": 2691, "v": 6003, "vu": "2.23", "t": "11 s"}, {"n": "/8.3 Finalizado - Exito", "u": 1404, "v": 2718, "vu": "1.94", "t": "11 s"}];
+  var STEPS = [{"n": "/lp/campana-visa/", "u": 50929, "v": 64198, "vu": "1.26", "t": "4 s"}, {"n": "/1.1 PreRegistro - Legales", "u": 51393, "v": 125779, "vu": "2.45", "t": "1 m 58 s"}, {"n": "/0.0 Redirect Intermedio", "u": 30918, "v": 126423, "vu": "4.09", "t": "24 s"}, {"n": "/Modular/…/Login", "u": 27033, "v": 68411, "vu": "2.53", "t": "1 m 30 s"}, {"n": "/8.0 Finalizado - Inicio", "u": 22203, "v": 39783, "vu": "1.79", "t": "58 s"}, {"n": "/3.1 Datos Personales", "u": 20956, "v": 26515, "vu": "1.27", "t": "2 m 01 s"}, {"n": "/7.1 Dependientes - Inicio", "u": 20060, "v": 31622, "vu": "1.58", "t": "32 s"}, {"n": "/4.1 CURP - Completa", "u": 18371, "v": 43666, "vu": "2.38", "t": "1 m 28 s"}, {"n": "/5.1 Domicilio - Ingresar", "u": 16128, "v": 19205, "vu": "1.19", "t": "2 m 26 s"}, {"n": "/", "u": 13679, "v": 27035, "vu": "1.98", "t": "38 s"}, {"n": "/7.3 Dependientes - Guardado", "u": 10837, "v": 14557, "vu": "1.34", "t": "4 s"}, {"n": "/7.0 Dependientes - Inicio", "u": 10591, "v": 24593, "vu": "2.32", "t": "4 m 19 s"}, {"n": "/1.0 PreRegistro - Inicio", "u": 10579, "v": 17185, "vu": "1.62", "t": "39 s"}, {"n": "/8.2 Finalizado - Validando", "u": 2766, "v": 6168, "vu": "2.23", "t": "10 s"}, {"n": "/8.3 Finalizado - Exito", "u": 1442, "v": 2791, "vu": "1.94", "t": "11 s"}];
 
-  var CHANS = [{"n": "Referral", "s": 82762, "p": 52.17, "e": 76.32, "t": "4 m 00 s", "c": "#1D2332", "g": "direct"}, {"n": "Paid Social", "s": 33463, "p": 21.09, "e": 20.62, "t": "4 s", "c": "#FF8300", "g": "paid"}, {"n": "Paid Search", "s": 16996, "p": 10.71, "e": 14.6, "t": "2 s", "c": "#FFB547", "g": "paid"}, {"n": "Direct", "s": 13561, "p": 8.55, "e": 63.97, "t": "1 m 18 s", "c": "#6B7280", "g": "direct"}, {"n": "Organic Search", "s": 11477, "p": 7.23, "e": 71.64, "t": "29 s", "c": "#0F766E", "g": "organic"}, {"n": "Cross-network", "s": 1722, "p": 1.09, "e": 17.42, "t": "1 s", "c": "#9A3412", "g": "paid"}, {"n": "Unassigned", "s": 1392, "p": 0.88, "e": 1.44, "t": "3 m 56 s", "c": "#DC2626", "g": "direct"}, {"n": "AI Assistant", "s": 76, "p": 0.05, "e": 67.11, "t": "21 s", "c": "#7C3AED", "g": "organic"}, {"n": "Organic Social", "s": 69, "p": 0.04, "e": 57.97, "t": "1 m 44 s", "c": "#14B8A6", "g": "organic"}, {"n": "Organic Video", "s": 8, "p": 0.01, "e": 100.0, "t": "21 s", "c": "#0891B2", "g": "organic"}, {"n": "Display", "s": 6, "p": 0.0, "e": 66.67, "t": "12 s", "c": "#F59E0B", "g": "paid"}];
+  var CHANS = [{"n": "Referral", "s": 84350, "p": 50.55, "e": 76.25, "t": "4 m 00 s", "c": "#1D2332", "g": "direct"}, {"n": "Paid Social", "s": 35858, "p": 21.49, "e": 20.62, "t": "4 s", "c": "#FF8300", "g": "paid"}, {"n": "Paid Search", "s": 19422, "p": 11.64, "e": 13.98, "t": "2 s", "c": "#FFB547", "g": "paid"}, {"n": "Direct", "s": 14053, "p": 8.42, "e": 62.78, "t": "1 m 18 s", "c": "#6B7280", "g": "direct"}, {"n": "Organic Search", "s": 11806, "p": 7.08, "e": 70.7, "t": "29 s", "c": "#0F766E", "g": "organic"}, {"n": "Unassigned", "s": 3135, "p": 1.88, "e": 0.67, "t": "3 m 01 s", "c": "#DC2626", "g": "direct"}, {"n": "Cross-network", "s": 2321, "p": 1.39, "e": 14.95, "t": "10 s", "c": "#9A3412", "g": "paid"}, {"n": "AI Assistant", "s": 77, "p": 0.05, "e": 67.53, "t": "21 s", "c": "#7C3AED", "g": "organic"}, {"n": "Organic Social", "s": 72, "p": 0.04, "e": 59.72, "t": "1 m 40 s", "c": "#14B8A6", "g": "organic"}, {"n": "Organic Video", "s": 8, "p": 0.01, "e": 100.0, "t": "21 s", "c": "#0891B2", "g": "organic"}];
 
   var GRUPOS = {
     all:{label:'todo el tráfico'}, paid:{label:'tráfico pagado'},
     organic:{label:'tráfico orgánico'}, direct:{label:'directo y referido'}
   };
-  var filtro = 'all', TOTAL_GA4 = 158778;
+  var filtro = 'all', TOTAL_GA4 = 166864;
 
   function grupoDe(nombre){
     var p = String(nombre).split('/');
@@ -2181,7 +2393,7 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
                pasosTag: 'Las dos propiedades sumadas' }
   };
   DATOS_PROP.juntos.hall = DATOS_PROP.boom.hall.concat(DATOS_PROP.mtj.hall);
-  var META_PROP = {"boom": {"nombre": "Boom_Jalisco", "id": "511675384", "total": 158778, "usuarios": "114,666", "vistas": "649,835", "vpu": "5,67", "inter": "56.94 %", "tiempo": "2 m 17 s", "rebote": "43.06 %", "sub": "Propiedad <b>Boom_Jalisco</b> (511675384) · landing de campaña y flujo de enrolamiento · 649,835 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["46,534", "Usuarios de pauta"], ["2", "De ellos, llegaron al final"], ["1,404", "Registros exitosos (cierre real)"], ["15.1 %", "Usuarios fuera de Jalisco"]], "banda": "La pauta arrancó el <b>19 de agosto</b> · desde entonces el rebote del sitio pasó de <b>25.9 % a 55.4 %</b> y el <b>99.67 %</b> del tráfico comprado no pasa de la landing"}, "mtj": {"nombre": "Mi tarjeta Jalisco", "id": "511676885", "total": 11226, "usuarios": "7,839", "vistas": "20,628", "vpu": "2,63", "inter": "64.15 %", "tiempo": "31 s", "rebote": "35.85 %", "sub": "Propiedad <b>Mi tarjeta Jalisco</b> (511676885) · sitio de soporte al tarjetahabiente · 20,628 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["11,226", "Sesiones"], ["88.16 %", "Tráfico directo"], ["10,423", "Vistas en /ayuda/"], ["352", "Sesiones de google / cpc"]], "banda": "Sitio de <b>soporte al tarjetahabiente</b>, no de adquisición · el <b>88.16 %</b> entra directo y la mitad de las vistas se va a <b>/ayuda/</b>"}, "juntos": {"nombre": "Las dos propiedades", "id": "511675384 + 511676885", "total": 170004, "usuarios": "122,505", "vistas": "670,463", "vpu": "5,47", "inter": "57.42 %", "tiempo": "2 m 10 s", "rebote": "42.58 %", "sub": "Propiedades <b>Boom_Jalisco</b> (511675384) y <b>Mi tarjeta Jalisco</b> (511676885) sumadas · 670,463 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["170,004", "Sesiones sumadas"], ["122,505", "Usuarios"], ["57.42 %", "Interacción"], ["31.7 %", "Del tráfico viene de pauta"]], "banda": "Las dos propiedades juntas: <b>170,004 sesiones</b> · Mi tarjeta Jalisco aporta apenas el <b>6.6 %</b> del volumen y no recibe adquisición"}};
+  var META_PROP = {"boom": {"nombre": "Boom_Jalisco", "id": "511675384", "total": 166864, "usuarios": "121,364", "vistas": "674,515", "vpu": "5,56", "inter": "55.42 %", "tiempo": "3 m 05 s", "rebote": "44.58 %", "sub": "Propiedad <b>Boom_Jalisco</b> (511675384) · landing de campaña y flujo de enrolamiento · 674,515 vistas · datos leídos directamente de GA4 el 8 de septiembre", "heroKpis": [["121,364", "Usuarios activos"], ["51,393", "Inician el registro"], ["1,442", "Registros exitosos (cierre real)"], ["2.81 %", "Conversión al paso final"]], "banda": "Del 1 de agosto al 7 de septiembre: <b>166,864 sesiones</b> y <b>55.42 %</b> de interacción · de cada 100 personas que inician el registro, <b>menos de 3</b> terminan con la cuenta activa"}, "mtj": {"nombre": "Mi tarjeta Jalisco", "id": "511676885", "total": 11226, "usuarios": "7,839", "vistas": "20,628", "vpu": "2,63", "inter": "64.15 %", "tiempo": "31 s", "rebote": "35.85 %", "sub": "Propiedad <b>Mi tarjeta Jalisco</b> (511676885) · sitio de soporte al tarjetahabiente · 20,628 vistas · datos leídos directamente de GA4 el 6 de septiembre", "heroKpis": [["11,226", "Sesiones"], ["88.16 %", "Tráfico directo"], ["10,423", "Vistas en /ayuda/"], ["352", "Sesiones de google / cpc"]], "banda": "Sitio de <b>soporte al tarjetahabiente</b>, no de adquisición · el <b>88.16 %</b> entra directo y la mitad de las vistas se va a <b>/ayuda/</b>"}, "juntos": {"nombre": "Las dos propiedades", "id": "511675384 + 511676885", "total": 178090, "usuarios": "129,203", "vistas": "695,143", "vpu": "5,38", "inter": "55.97 %", "tiempo": "2 m 08 s", "rebote": "44.03 %", "sub": "Propiedades <b>Boom_Jalisco</b> (511675384) y <b>Mi tarjeta Jalisco</b> (511676885) sumadas · 695,143 vistas · Boom_Jalisco al 7 de septiembre; Mi tarjeta Jalisco no se volvió a leer y sigue al 6 de septiembre", "heroKpis": [["178,090", "Sesiones sumadas"], ["129,203", "Usuarios"], ["55.97 %", "Interacción"], ["34.5 %", "Del tráfico viene de pauta"]], "banda": "Las dos propiedades juntas: <b>178,090 sesiones</b> · Mi tarjeta Jalisco aporta apenas el <b>6.3 %</b> del volumen y no recibe adquisición"}};
 
   function cargarSerie(sd){
     if (!sd || !sd.series || !sd.series.length) return;
@@ -2246,6 +2458,52 @@ var SEED = {"startDate": "2026-08-01", "bounce": [30.93, 29.18, 23.91, 26.54, 26
     b.addEventListener('click', function(){ pintaProp(b.getAttribute('data-p')); });
   });
   pintaProp('boom');
+
+  // ---------- secciones plegables ----------
+  // Del embudo hacia abajo: todo arranca contraído. La primera sección
+  // (tráfico diario) se queda siempre abierta.
+  (function plegables(){
+    var secciones = Array.prototype.slice.call(document.querySelectorAll('.doc > .section'));
+    if (secciones.length < 2) return;
+
+    secciones.slice(1).forEach(function(sec){
+      var hdr = sec.querySelector(':scope > .sechdr');
+      if (!hdr) return;
+
+      // Todo lo que va después del encabezado se mete en un contenedor plegable.
+      var cuerpo = document.createElement('div');
+      cuerpo.className = 'sec-body';
+      var n;
+      while ((n = hdr.nextSibling)) cuerpo.appendChild(n);
+      sec.appendChild(cuerpo);
+
+      var tog = document.createElement('span');
+      tog.className = 'sec-tog';
+      tog.innerHTML = '<span class="sec-tog-t">Ver</span><i>⌄</i>';
+      hdr.appendChild(tog);
+
+      sec.classList.add('plegable');
+      hdr.setAttribute('role', 'button');
+      hdr.setAttribute('tabindex', '0');
+      hdr.setAttribute('aria-expanded', 'false');
+
+      function alternar(){
+        var abierta = sec.classList.toggle('abierta');
+        hdr.setAttribute('aria-expanded', abierta ? 'true' : 'false');
+        tog.querySelector('.sec-tog-t').textContent = abierta ? 'Ocultar' : 'Ver';
+        // Al abrir, forzamos el redibujo de las gráficas: se trazaron
+        // mientras el contenedor estaba oculto.
+        if (abierta) {
+          try { window.dispatchEvent(new Event('resize')); } catch(e){}
+        }
+      }
+
+      hdr.addEventListener('click', alternar);
+      hdr.addEventListener('keydown', function(ev){
+        if (ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); alternar(); }
+      });
+    });
+  })();
 
 })();
 </script>
