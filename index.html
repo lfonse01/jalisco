@@ -499,6 +499,7 @@ cursor:pointer;transition:all .15s;user-select:none;}
 .lg-i.off{opacity:.4;text-decoration:line-through;}
 .lg-sw{width:10px;height:10px;border-radius:3px;flex:none;}
 .lg-sw.line{height:0;border-top:2px dashed var(--orange-t);border-radius:0;width:15px;}
+.lg-sw.punt{height:0;border-top:3.4px solid #1D4ED8;border-radius:2px;width:17px;}
 .tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:10.5px;
 font-weight:600;padding:9px 12px;border-radius:var(--r8);white-space:nowrap;opacity:0;
 transition:opacity .12s;box-shadow:var(--sh-md);z-index:10;line-height:1.6;}
@@ -1416,6 +1417,24 @@ var SEED = {"startDate": "2026-08-15", "bounce": [26.18, 25.12, 23.18, 23.05, 29
       lb.innerHTML = '<span class="lg-sw line"></span>% de rebote';
       lg.appendChild(lb);
     }
+    (function(){
+      var hayM = false, hayS = false;
+      for (var q = 0; q < days; q++){
+        var r = invDia(q);
+        if (!r) continue;
+        if (r[0] !== null && r[0] !== undefined) hayM = true;
+        if (r[1] !== null && r[1] !== undefined) hayS = true;
+      }
+      [[hayM,'__meta','Inversión Meta','#1D4ED8'], [hayS,'__sem','Inversión SEM','#15803D']].forEach(function(c){
+        if (!c[0]) return;
+        var d = document.createElement('div');
+        d.className = 'lg-i' + (oculta[c[1]] ? ' off' : '');
+        d.innerHTML = '<span class="lg-sw punt" style="border-top-color:'+c[3]+'"></span>'+c[2];
+        d.title = 'Clic para ocultar o mostrar esta línea';
+        d.addEventListener('click', function(){ oculta[c[1]] = !oculta[c[1]]; renderDaily(); });
+        lg.appendChild(d);
+      });
+    })();
 
     // tabla resumen de las series
     var tb = document.getElementById('dtbl');
@@ -1439,8 +1458,52 @@ var SEED = {"startDate": "2026-08-15", "bounce": [26.18, 25.12, 23.18, 23.05, 29
     renderBR();
   }
 
+  // ---------- inversion diaria de medios (MXN) ----------
+  // Fuente: reporte de Meta (17 ago - 10 sep) y pacing de SEM (24 ago - 11 sep),
+  // ambos en USD, convertidos a 18.50 MXN por dólar. null = el reporte no cubre ese día.
+  var TC_INV = 18.50;
+  var INV = {"2026-08-17":[698.19,null],"2026-08-18":[1661.30,null],"2026-08-19":[1822.06,null],"2026-08-20":[1708.66,null],"2026-08-21":[1746.03,null],"2026-08-22":[1797.46,null],"2026-08-23":[1825.58,null],"2026-08-24":[1792.10,6.11],"2026-08-25":[1770.82,1207.12],"2026-08-26":[1745.66,1198.24],"2026-08-27":[1793.21,1216.19],"2026-08-28":[1748.44,1219.89],"2026-08-29":[1935.84,1183.26],"2026-08-30":[1939.54,1180.49],"2026-08-31":[1914.93,1114.44],"2026-09-01":[2187.81,1171.24],"2026-09-02":[2693.05,1069.49],"2026-09-03":[2666.96,1218.96],"2026-09-04":[2465.12,1205.83],"2026-09-05":[2916.71,1078.55],"2026-09-06":[2992.93,1115.37],"2026-09-07":[2797.01,1075.77],"2026-09-08":[2496.57,1324.79],"2026-09-09":[2732.82,1165.87],"2026-09-10":[1308.88,1594.70],"2026-09-11":[null,174.09]};
+  var COL_META = '#1D4ED8', COL_SEM = '#15803D';
+
+  function isoDia(d){
+    var f = fecha(d);
+    return f.getFullYear() + '-' +
+           ('0'+(f.getMonth()+1)).slice(-2) + '-' +
+           ('0'+f.getDate()).slice(-2);
+  }
+  function invDia(d){
+    if (!startDate) return null;
+    return INV[isoDia(d)] || null;
+  }
+  function mxn(v){ return '$' + nf(v); }
+
+  // Catmull-Rom convertido a Bezier: curva la linea sin inventar picos
+  function suave(pts){
+    if (pts.length < 3) return pts.map(function(p,i){ return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1); }).join(' ');
+    var d = 'M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1), T = 0.42;
+    for (var i = 0; i < pts.length-1; i++){
+      var p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || pts[i+1];
+      var c1x = p1[0] + (p2[0]-p0[0])/6*T*2, c1y = p1[1] + (p2[1]-p0[1])/6*T*2;
+      var c2x = p2[0] - (p3[0]-p1[0])/6*T*2, c2y = p2[1] - (p3[1]-p1[1])/6*T*2;
+      d += 'C'+c1x.toFixed(1)+' '+c1y.toFixed(1)+','+c2x.toFixed(1)+' '+c2y.toFixed(1)+
+           ','+p2[0].toFixed(1)+' '+p2[1].toFixed(1);
+    }
+    return d;
+  }
+
   var NS = 'http://www.w3.org/2000/svg';
   function el(t,a){ var n = document.createElementNS(NS,t); for (var k in a) n.setAttribute(k,a[k]); return n; }
+
+  // La pastilla se dibuja antes que el texto, asi que hay que medirlo y
+  // reajustarla; si no, el texto se desborda y se pierde contra el fondo.
+  function ajustaPill(rect, texto, pad){
+    var w = 0;
+    try { w = texto.getComputedTextLength(); } catch(e){ w = 0; }
+    if (!w || !isFinite(w)) return +rect.getAttribute('width');
+    var total = Math.ceil(w + pad*2);
+    rect.setAttribute('width', total);
+    return total;
+  }
 
   function drawChart(){
     var top = (lastTop||[]).filter(function(s){ return !oculta[s.n]; });
@@ -1449,8 +1512,31 @@ var SEED = {"startDate": "2026-08-15", "bounce": [26.18, 25.12, 23.18, 23.05, 29
     if (!top.length || !days) return;
 
     var hasBR = BR.some(function(v){ return v !== null; });
-    var W = 1000, H = 366, ml = 56, mr = hasBR ? 48 : 14, mt = 24, mb = 56;
+
+    // inversion del rango visible
+    var IM = [], IS = [];
+    for (var q = 0; q < days; q++){
+      var r = invDia(q);
+      IM.push(r && r[0] !== null && r[0] !== undefined ? r[0] : null);
+      IS.push(r && r[1] !== null && r[1] !== undefined ? r[1] : null);
+    }
+    var verM = !oculta['__meta'] && IM.some(function(v){ return v !== null; });
+    var verS = !oculta['__sem']  && IS.some(function(v){ return v !== null; });
+    var hasINV = verM || verS;
+
+    var mrBR = hasBR ? 46 : 0, mrIN = hasINV ? 66 : 0;
+    var W = 1000, H = 366, ml = 56, mr = 14 + mrBR + mrIN, mt = 24, mb = 56;
     var iw = W-ml-mr, ih = H-mt-mb;
+
+    // escala propia de inversion, redondeada hacia arriba
+    var topInv = 0;
+    if (hasINV){
+      var mx = 0;
+      if (verM) IM.forEach(function(v){ if (v !== null && v > mx) mx = v; });
+      if (verS) IS.forEach(function(v){ if (v !== null && v > mx) mx = v; });
+      var stepI = Math.pow(10, Math.floor(Math.log(mx||1)/Math.LN10))/2;
+      topInv = Math.max(stepI, Math.ceil((mx*1.12)/stepI)*stepI);
+    }
 
     var dt = [];
     for (var d = 0; d < days; d++) dt.push(top.reduce(function(t,s){ return t + s.v[d]; }, 0));
@@ -1472,6 +1558,18 @@ var SEED = {"startDate": "2026-08-15", "bounce": [26.18, 25.12, 23.18, 23.05, 29
           'font-weight':700,'font-family':'Montserrat, sans-serif'});
         lb.textContent = p+'%'; svg.appendChild(lb);
       });
+    }
+    if (hasINV){
+      var xIn = ml+iw+mrBR+12;
+      for (var ti = 0; ti <= 4; ti++){
+        var vi = topInv*ti/4, yi = mt+ih-(vi/topInv)*ih;
+        var li = el('text',{x:xIn,y:yi+3.5,'text-anchor':'start',fill:'#475569','font-size':9.4,
+          'font-weight':700,'font-family':'Montserrat, sans-serif'});
+        li.textContent = mxn(vi); svg.appendChild(li);
+      }
+      var cap = el('text',{x:W-2, y:mt-9, 'text-anchor':'end', fill:'#64748B','font-size':8,
+        'font-weight':800,'font-family':'Montserrat, sans-serif','letter-spacing':'.06em'});
+      cap.textContent = 'INVERSIÓN MXN'; svg.appendChild(cap);
     }
 
     var slot = iw/days, bw = Math.min(26, slot*0.68);
@@ -1507,6 +1605,12 @@ var SEED = {"startDate": "2026-08-15", "bounce": [26.18, 25.12, 23.18, 23.05, 29
                     s.n+'<span class="tv">'+nf(s.v[dd])+'</span></div>';
           });
           html += '<hr><div class="tl">Total<span class="tv">'+nf(tot)+'</span></div>';
+          if (verM && IM[dd] !== null)
+            html += '<div class="tl"><span class="tsw" style="background:'+COL_META+'"></span>'+
+                    'Inversión Meta<span class="tv">'+mxn(IM[dd])+'</span></div>';
+          if (verS && IS[dd] !== null)
+            html += '<div class="tl"><span class="tsw" style="background:'+COL_SEM+'"></span>'+
+                    'Inversión SEM<span class="tv">'+mxn(IS[dd])+'</span></div>';
           if (BR[dd] !== null && BR[dd] !== undefined)
             html += '<div class="tl">Rebote<span class="tv">'+pf(BR[dd])+'</span></div>';
           else if (vista === 'canal' && dd >= iniPar)
@@ -1566,13 +1670,15 @@ var SEED = {"startDate": "2026-08-15", "bounce": [26.18, 25.12, 23.18, 23.05, 29
       var yRef = mt + ih - (27/100)*ih;
       svg.appendChild(el('line',{x1:ml, y1:yRef.toFixed(1), x2:ml+iw, y2:yRef.toFixed(1),
         stroke:'#0F766E','stroke-width':1.8,'stroke-dasharray':'7 5','stroke-linecap':'round', opacity:.9}));
-      var wRef = 150, xRef = ml + 6;
-      svg.appendChild(el('rect',{x:xRef.toFixed(1), y:(yRef-19).toFixed(1), width:wRef, height:16, rx:8,
-        fill:'#0F766E', opacity:.94}));
+      var xRef = ml + 6;
+      var rRef = el('rect',{x:xRef.toFixed(1), y:(yRef-19).toFixed(1), width:150, height:16, rx:8,
+        fill:'#0F766E', opacity:.94});
+      svg.appendChild(rRef);
       var tRef = el('text',{x:(xRef+9).toFixed(1), y:(yRef-7.5).toFixed(1), fill:'#fff',
         'font-size':8.6,'font-weight':800,'font-family':'Montserrat, sans-serif'});
       tRef.textContent = 'REFERENCIA DE REBOTE · 27 %';
       svg.appendChild(tRef);
+      ajustaPill(rRef, tRef, 9);
     }
 
     // ---- marca de inicio de campaña: 17 de agosto ----
@@ -1586,14 +1692,39 @@ var SEED = {"startDate": "2026-08-15", "bounce": [26.18, 25.12, 23.18, 23.05, 29
       var xc = ml + slot*idx;   // borde izquierdo del día 17
       svg.appendChild(el('line',{x1:xc.toFixed(1), y1:mt-4, x2:xc.toFixed(1), y2:mt+ih,
         stroke:'#9A3412','stroke-width':1.8,'stroke-dasharray':'6 4'}));
-      var pill = el('rect',{x:(xc+5).toFixed(1), y:mt-4, width:132, height:17, rx:8,
+      var pill = el('rect',{x:(xc+5).toFixed(1), y:mt-4, width:140, height:17, rx:8,
         fill:'#9A3412', opacity:.92});
       svg.appendChild(pill);
       var tx = el('text',{x:(xc+13).toFixed(1), y:mt+8.5, fill:'#fff','font-size':9,'font-weight':800,
         'font-family':'Montserrat, sans-serif'});
       tx.textContent = 'INICIO DE CAMPAÑA · 17 AGO';
       svg.appendChild(tx);
+      var wp = ajustaPill(pill, tx, 9);
+      // si la pastilla se sale por la derecha, se voltea al otro lado de la línea
+      if (xc + 5 + wp > ml + iw){
+        pill.setAttribute('x', (xc - 5 - wp).toFixed(1));
+        tx.setAttribute('x', (xc - 5 - wp + 9).toFixed(1));
+      }
     })();
+
+    // ---- lineas punteadas de inversion ----
+    if (hasINV){
+      [[verM, IM, COL_META], [verS, IS, COL_SEM]].forEach(function(cfg){
+        if (!cfg[0]) return;
+        var arr = cfg[1], col = cfg[2], seg = [], cur = [];
+        arr.forEach(function(v, i){
+          if (v === null){ if (cur.length) seg.push(cur); cur = []; return; }
+          cur.push([ml+slot*i+slot/2, mt+ih-(v/topInv)*ih, v]);
+        });
+        if (cur.length) seg.push(cur);
+        seg.forEach(function(pts){
+          if (pts.length > 1){
+            svg.appendChild(el('path',{d:suave(pts),fill:'none',stroke:col,'stroke-width':3.6,
+              'stroke-linejoin':'round','stroke-linecap':'round', opacity:.95}));
+          }
+        });
+      });
+    }
 
     svg.appendChild(el('line',{x1:ml,y1:mt+ih,x2:ml+iw,y2:mt+ih,stroke:'#1D2332','stroke-width':1.5}));
   }
@@ -2615,7 +2746,7 @@ function cargarSerie(sd){
   <div class="rp-b">
     <div class="rp-mid">
       <div class="rp-lbl">Referencia de rebote</div>
-      <div class="rp-big rp-big-alt rp-xl">27.00 %</div>
+      <div class="rp-big rp-big-alt rp-xl">27 %</div>
       <div class="rp-sub">
         <span class="rp-tag rp-tag-alt">Referencia del sitio</span><br>
         La línea punteada verde de la gráfica de tráfico diario marca este nivel.
